@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit-rtl.css" rel="stylesheet">
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a href="" class="uk-navbar-item uk-logo">TitarCRM</a>
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">Проекты</a></li>
+                        <li><a href="">Сайты</a></li>
+                        <li ><a href="">Задачи</a></li>
+                        
+                    </ul>
+                    
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <!--<li class=""><img class="uk-navbar-item uk-responsive-height uk-padding-small uk-border-circle" src="../img/titar.jpg"></li>-->
+                        <li ><span class="uk-navbar-item">Volodymyr Tytarenko<span class="uk-navbar-item" uk-icon="icon:sign-out;"></span></span></li>
+                    </ul>
+                    
+                </div>
+            </nav>
+            <div class="uk-flex uk-flex-row " uk-height-viewport="expand: true">
+                <div class="uk-width-expand uk-padding-small">
+                    <div class="uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between">
+                        <div>
+                            <h3 class="uk-margin-remove">Проекты</h3>
+                        </div>
+                            
+                        <div class="">
+                            <div class="uk-button-group">
+                                <form class="uk-search uk-search-default">
+                                    <span uk-search-icon></span>
+                                    <input class="uk-search-input" type="search" placeholder="Поиск...">
+                                </form>
+                                <button class="uk-button uk-button-primary">Новый проект</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-flex uk-flex-row uk-flex-top	">
+                        <div class="uk-width-1-4 uk-card uk-card-default uk-margin-small-left uk-margin-small-right">
+                            <div class="uk-card-header">
+                                <h3 class="uk-card-title">Новая заявка</h3>
+                            </div>
+                            <div class="uk-card-body">
+                                <ul class="uk-list uk-list-divider" uk-sortable="group:projets">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-4 uk-card uk-card-default uk-margin-small-left uk-margin-small-right">
+                            <div class="uk-card-header">
+                                <h3 class="uk-card-title">Проектирование</h3>
+                            </div>
+                            <div class="uk-card-body">
+                                <ul class="uk-list uk-list-divider" uk-sortable="group:projets">
+                                    <li>Алексей Горький</li>
+                                    <li>Надежда Титаренко</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-4 uk-card uk-card-default uk-margin-small-left uk-margin-small-right">
+                            <div class="uk-card-header">
+                                <h3 class="uk-card-title">Разработка</h3>
+                            </div>
+                            <div class="uk-card-body">
+                                <ul class="uk-list uk-list-divider" uk-sortable="group:projets">
+                                    <li>Минералофф</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-4 uk-card uk-card-default uk-margin-small-left uk-margin-small-right">
+                            <div class="uk-card-header">
+                                <h3 class="uk-card-title">Сдача проекта</h3>
+                            </div>
+                            <div class="uk-card-body">
+                                <ul class="uk-list uk-list-divider" uk-sortable="group:projets">
+                                    <li>Сергей Тремполец</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1-6@m uk-padding-small uk-light uk-background-secondary">
+                    <h3>Интересные статьи</h3>
+                    <ul class="uk-list uk-list-divider">
+                        <li>
+                            <div class="uk-flex uk-flex-column">
+                                <div>
+                                    <h6 class="uk-margin-remove">Дайджест продуктового дизайна, март 2018</h6>
+                                </div>
+                                <div class="uk-flex uk-flex-row uk-flex-between">
+                                    <span><span uk-icon="icon:thumbnails;"></span> Веб-дизайн</span>
+                                    <a class=""><span uk-icon="icon:heart;ratio:1"></span> <span>Читать</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-flex uk-flex-column">
+                                <div>
+                                    <h6 class="uk-margin-remove">Дайджест продуктового дизайна, март 2018</h6>
+                                </div>
+                                <div class="uk-flex uk-flex-row uk-flex-between">
+                                    <span><span uk-icon="icon:thumbnails;"></span> Веб-дизайн</span>
+                                    <a class=""><span uk-icon="icon:heart;ratio:1"></span> <span>Читать</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>

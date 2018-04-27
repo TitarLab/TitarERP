@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a href="" class="uk-navbar-item uk-logo">TitarCRM</a>
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">Проекты</a></li>
+                        <li><a href="">Сайты</a></li>
+                        <li ><a href="">Задачи</a></li>
+                        
+                    </ul>
+                    
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <!--<li class=""><img class="uk-navbar-item uk-responsive-height uk-padding-small uk-border-circle" src="../img/titar.jpg"></li>-->
+                        <li ><span class="uk-navbar-item">Volodymyr Tytarenko<span class="uk-navbar-item" uk-icon="icon:sign-out;"></span></span></li>
+                    </ul> 
+                </div>
+            </nav>
+            <div class="uk-flex uk-flex-row " uk-height-viewport="expand: true">
+                <div class="uk-width-expand uk-padding-small">
+                    <div class="uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between	">
+                        <div>
+                            <h3 class="uk-margin-remove">Клиенты</h3>
+                        </div>
+                            
+                        <div class="">
+                            <div class="uk-button-group">
+                                <form class="uk-search uk-search-default">
+                                    <span uk-search-icon></span>
+                                    <input class="uk-search-input" type="search" placeholder="Поиск...">
+                                </form>
+                                <button class="uk-button uk-button-primary">Новый клиент</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-flex uk-flex-row uk-flex-top	">
+                        <table class="uk-table uk-table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Имя</th>
+                                    <th>Статус</th>
+                                    <th>Последний контакт</th>
+                                    <th>Контакты</th>
+                                    <th class="uk-flex uk-flex-right">Управление</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Алексей Горький</td>
+                                    <td>Проект</td>
+                                    <td>08.04.2018</td>
+                                    <td>
+                                        <ul class="uk-iconnav">
+                                            <li><a href="#" uk-icon="icon: t-telegram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-instagram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-facebook;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-phone;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-mail;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-vk;ratio:0"></a></li>
+                                        </ul>
+                                    </td>
+                                    <td class="uk-flex uk-flex-right">
+                                        <div class="uk-button-group">
+                                            <button class="uk-button uk-button-default"><span uk-icon="icon:more;"></span></button>
+                                            <div uk-dropdown>
+                                                <ul class="uk-nav uk-dropdown-nav">
+                                                    <li><a href="#">Обновить дату контакта</a></li>
+                                                    <li><a href="#">Список проектов</a></li>
+                                                    <li class="uk-nav-header">Header</li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li class="uk-nav-divider"></li>
+                                                    <li><a href="#">Item</a></li>
+                                                </ul>
+                                            </div>
+                                            <button class="uk-button uk-button-default">Редактировать</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Татьяна Демченко</td>
+                                    <td>Поддержка</td>
+                                    <td>11.04.2018</td>
+                                    <td>
+                                        <ul class="uk-iconnav">
+                                            <li><a href="#" uk-icon="icon: t-telegram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-instagram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-facebook;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-phone;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-mail;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-vk;ratio:0"></a></li>
+                                        </ul>
+                                    </td>
+                                    <td class="uk-flex uk-flex-right">
+                                        <div class="uk-button-group">
+                                            <button class="uk-button uk-button-default"><span uk-icon="icon:more;"></span></button>
+                                            <div uk-dropdown>
+                                                <ul class="uk-nav uk-dropdown-nav">
+                                                    <li><a href="#">Обновить дату контакта</a></li>
+                                                    <li><a href="#">Список проектов</a></li>
+                                                    <li class="uk-nav-header">Header</li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li class="uk-nav-divider"></li>
+                                                    <li><a href="#">Item</a></li>
+                                                </ul>
+                                            </div>
+                                            <button class="uk-button uk-button-default">Редактировать</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Сергей Тремполец</td>
+                                    <td>Оплата</td>
+                                    <td>11.04.2018</td>
+                                    <td>
+                                        <ul class="uk-iconnav">
+                                            <li><a href="#" uk-icon="icon: t-telegram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-instagram;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-facebook;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-phone;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-mail;ratio:0"></a></li>
+                                            <li><a href="#" uk-icon="icon: t-vk;ratio:0"></a></li>
+                                        </ul>
+                                    </td>
+                                    <td class="uk-flex uk-flex-right">
+                                        <div class="uk-button-group">
+                                            <button class="uk-button uk-button-default"><span uk-icon="icon:more;"></span></button>
+                                            <div uk-dropdown>
+                                                <ul class="uk-nav uk-dropdown-nav">
+                                                    <li><a href="#">Обновить дату контакта</a></li>
+                                                    <li><a href="#">Список проектов</a></li>
+                                                    <li class="uk-nav-header">Header</li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li><a href="#">Item</a></li>
+                                                    <li class="uk-nav-divider"></li>
+                                                    <li><a href="#">Item</a></li>
+                                                </ul>
+                                            </div>
+                                            <button class="uk-button uk-button-default">Редактировать</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>

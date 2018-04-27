@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit-rtl.css" rel="stylesheet">
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container  uk-light" uk-navbar>
+                <div class="uk-navbar-left uk-background-primary uk-width-expand">
+                    <a href="" class="uk-navbar-item uk-logo">TitarCRM</a>
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">Проекты</a></li>
+                        <li><a href="">Сайты</a></li>
+                        <li ><a href="">Задачи</a></li>
+                        
+                    </ul>
+                    
+                </div>
+                <div class="uk-navbar-right uk-background-primary ">
+                    <ul class="uk-navbar-nav">
+                        <!--<li class=""><img class="uk-navbar-item uk-responsive-height uk-padding-small uk-border-circle" src="../img/titar.jpg"></li>-->
+                        <li ><span class="uk-navbar-item">Volodymyr Tytarenko<span class="uk-navbar-item" uk-icon="icon:sign-out;"></span></span></li>
+                    </ul>
+                    
+                </div>
+            </nav>
+            
+            <div class="uk-flex uk-flex-row " uk-height-viewport="expand: true">
+                <div class="uk-width-expand uk-padding-small">
+                    <div class="uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between	">
+                        <div>
+                            <h3>Мои задачи</h3>
+                        </div>
+                            
+                        <div class="">
+                            <div class="uk-button-group">
+                                <form class="uk-search uk-search-default">
+                                    <span uk-search-icon></span>
+                                    <input class="uk-search-input" type="search" placeholder="Поиск...">
+                                </form>
+                                <button class="uk-button uk-button-primary">Новый проект</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-flex uk-flex-row uk-flex-top	">
+                        
+                        <div class="uk-width-1-4 uk-margin-small-left uk-margin-small-right" uk-margin>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-header">
+                                    <h3 class="uk-card-title">В ожидании</h3>
+                                </div>
+                            </div>
+                            <ul class="uk-list">
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">Алексей Горький</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:gorkiy-task">
+                                                <li>
+                                                    <span>Дизайн страницы портфолио</span> 
+                                                    <span type="button" class="" uk-icon="icon:info;"></span>
+                                                    <div uk-dropdown>
+                                                        Страница со всеми альбомами
+                                                    </div>
+                                                    <span class="uk-badge uk-background-primary">Новый</span>
+                                                    <span class="uk-badge t-background-danger">Важно</span>
+                                                </li>
+                                                <li>
+                                                    <span>Дизайн страницы контакты</span> 
+                                                    <span type="button" class="" uk-icon="icon:info;"></span>
+                                                    <div uk-dropdown>
+                                                        Страница со всеми контактами
+                                                    </div>
+                                                    <span class="uk-badge uk-background-primary">Новый</span>
+                                                    <span class="uk-badge t-background-danger">Важно</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarlab.com</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:titarlab-task">
+                                                <li>
+                                                    <span>Дизайн главного сайта</span> 
+                                                    <span type="button" class="" uk-icon="icon:info;"></span>
+                                                    <div uk-dropdown>
+                                                        Разработать дизайн сайта для titarlab.com
+                                                    </div>
+                                                    <span class="uk-badge uk-background-primary">Новый</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarenko-leotards</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:leotards-task">
+                                                <li>
+                                                    <span>Дизайн сайта</span> 
+                                                    <span type="button" class="" uk-icon="icon:info;"></span>
+                                                    <div uk-dropdown>
+                                                        Разработать дизайн сайта
+                                                    </div>
+                                                    <span class="uk-badge uk-background-primary">Новый</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                                    
+                        </div>
+                        <div class="uk-width-1-4 uk-margin-small-left uk-margin-small-right" uk-margin>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-header">
+                                    <h3 class="uk-card-title">В процессе</h3>
+                                </div>
+                            </div>
+                            <ul class="uk-list">
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">Алексей Горький</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:gorkiy-task">
+                                                <li>
+                                                    <span>Дизайн главной страницы</span> 
+                                                    <span type="button" class="" uk-icon="icon:info;"></span>
+                                                    <div uk-dropdown>
+                                                        Дизайн главной страницы
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarlab.com</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:titarlab-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarenko-leotards</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:leotards-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                                    
+                        </div>
+                        <div class="uk-width-1-4 uk-margin-small-left uk-margin-small-right" uk-margin>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-header">
+                                    <h3 class="uk-card-title">Готово</h3>
+                                </div>
+                            </div>
+                            <ul class="uk-list">
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">Алексей Горький</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:gorkiy-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarlab.com</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:titarlab-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarenko-leotards</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:leotards-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                                    
+                        </div>
+                        <div class="uk-width-1-4 uk-margin-small-left uk-margin-small-right" uk-margin>
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-header">
+                                    <h3 class="uk-card-title">Доработки</h3>
+                                </div>
+                            </div>
+                            <ul class="uk-list">
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">Алексей Горький</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:gorkiy-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarlab.com</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:titarlab-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="uk-card uk-card-default">
+                                        <div class="uk-card-header uk-card-secondary uk-light">
+                                            <h4 class="">titarenko-leotards</h4>
+                                        </div>
+                                        <div class="uk-card-body">
+                                            <ul class="uk-list uk-list-divider" uk-sortable="group:leotards-task">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>
