@@ -1,4 +1,7 @@
-api/db.php
-api/login.php
+db.php
+api.php
 config.php
 deployment-config.json
+api/db.php
+api/db.php
+config.php
