@@ -1,9 +1,16 @@
 define(['mithril','titar'], function(n,t){
 
     var Client = {
-        list:[]
+        list:[],
+				current:{
+					id:0,
+					name:"",
+					contacts:"",
+					note:"",
+					status:"",
+					lastContact:""
+				}
     }
 
     return Client;
 });
-

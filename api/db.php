@@ -3,7 +3,7 @@ require_once "../config.php";
 
 class DB{
     public $conn;
-    
+
     public function createConnection(){
         $this->conn = mysqli_connect($host, $login, $password, $database);
         mysqli_set_charset ($this->conn , "utf8");
@@ -21,8 +21,6 @@ class DB{
             while ($row = $queryResult->fetch_object()){
                 $result[] = $row;
             }
-        } else {
-            echo "Ошибка: " . mysqli_error($this->conn);
         }
         mysqli_free_result($queryResult);
         return $result;

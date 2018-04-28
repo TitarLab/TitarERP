@@ -3,7 +3,7 @@ define([], function(){
     var Titar = {
         global:{
             host:"https://wallet.titarlab.com/",
-            siteTitle:"TitarCRM",
+            siteTitle:"TitarERP",
             logo: "https://wallet.titarlab.com/img/logo.png"
         },
         getById: function(id){
@@ -17,13 +17,13 @@ define([], function(){
             date += "-";
             if(dateNow.getMonth()+1 < 10){
                 date += "0";
-            }   
+            }
             date += dateNow.getMonth()+1;
 
             date += "-";
             if(dateNow.getDate() < 10){
                 date += "0";
-            }   
+            }
             date += dateNow.getDate();
             return date;
         },

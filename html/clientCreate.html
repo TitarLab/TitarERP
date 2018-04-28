@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a href="" class="uk-navbar-item uk-logo">TitarCRM</a>
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">test</a></li>
+                        <li><a href="">Сайты</a></li>
+                        <li ><a href="">Задачи</a></li>
+
+                    </ul>
+
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <!--<li class=""><img class="uk-navbar-item uk-responsive-height uk-padding-small uk-border-circle" src="../img/titar.jpg"></li>-->
+                        <li ><span class="uk-navbar-item">Volodymyr Tytarenko<span class="uk-navbar-item" uk-icon="icon:sign-out;"></span></span></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="uk-flex uk-flex-row " uk-height-viewport="expand: true">
+                <div class="uk-width-expand uk-padding-small">
+                    <div class="uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between	">
+                        <div>
+                        		<h3 class="uk-margin-remove">Новый клиент</h3>
+                        </div>
+
+                        <div class="">
+                            <div class="uk-button-group">
+                                <button class="uk-button uk-button-primary">Создать клиента</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-flex uk-flex-row uk-flex-top	">
+                      <div class="uk-card uk-card-default uk-width-1-2">
+                        <div class="uk-card-header">
+                          <h3>Профиль</h3>
+                        </div >
+                        <div class="uk-card-body">
+                          <div class="uk-form-stacked">
+                            <div class="uk-margin">
+                              <label class="uk-form-label" for="">Имя</label>
+                              <input class="uk-input" placeholder="Имя">
+                            </div>
+                            <div class="uk-margin">
+                              <label class="uk-form-label" for="form-stacked-select">Статус</label>
+                              <div class="uk-form-controls">
+                                <select class="uk-select" id="form-stacked-select">
+                                  <option>Новый клиент</option>
+                                  <option>Обсуждение</option>
+                                  <option>Проект</option>
+                                  <option>Разработка</option>
+                                  <option>Поддержка</option>
+                                  <option>Окончен</option>
+                                </select>
+                              </div>
+															<div class="uk-margin">
+                                <label class="uk-form-label" for="">Дата контакта</label>
+                                <input class="uk-input" type="date" placeholder="Примечание">
+                              </div>
+															<div class="uk-margin">
+                                <label class="uk-form-label" for="">Примечание</label>
+                                <input class="uk-input" placeholder="Примечание">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="uk-card uk-card-default uk-width-1-2 uk-margin-small-left">
+                        <div class="uk-card-header">
+                          <h3>Контакты</h3>
+                        </div>
+                        <div class="uk-card-body">
+                          <div>
+
+                            <button class="uk-button uk-button-default">Добавить контакт</button>
+                            <div uk-dropdown>
+                                <ul class="uk-nav uk-dropdown-nav">
+																	<li class="uk-nav-header">Социальные сети</li>
+																	<li>
+																		<ul class="uk-nav uk-iconnav">
+																			<li><a href="#"><span uk-icon="icon:t-telegram; ratio:0;"></span></a></li>
+																			<li><a href="#"><span uk-icon="icon:t-instagram; ratio:0;"></span></a></li>
+																			<li><a href="#"><span uk-icon="icon:t-facebook; ratio:0;"></span></a></li>
+																			<li><a href="#"><span uk-icon="icon:t-vk; ratio:0;"></span></a></li>
+																		</ul>
+																	</li>
+																	<li class="uk-nav-header">Контакты</li>
+																	<li>
+																		<ul class="uk-nav uk-iconnav">
+																			<li><a href="#"><span uk-icon="icon:t-phone; ratio:0;"></span></a></li>
+																			<li><a href="#"><span uk-icon="icon:t-mail; ratio:0;"></span></a></li>
+																		</ul>
+																	</li>
+
+                                </ul>
+                            </div>
+                            <div class="uk-form-stacked uk-margin">
+                              <div class="uk-margin">
+                                <label class="uk-form-label">Телеграм <span uk-icon="icon:close"></span></label>
+                                <input class="uk-input" placeholder="Телеграм" value="@bovatitar">
+                              </div>
+                              <div class="uk-margin">
+                                <label class="uk-form-label">Телефон <span uk-icon="icon:close"></span> </label>
+                                <input class="uk-input" placeholder="Телефон" value="+380994780827">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>

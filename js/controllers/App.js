@@ -1,8 +1,8 @@
-define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionList','views/Client/List'], function(n, t, AuthController, Layout, TransactionList, ClientList){
+define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionList','views/Client/List','views/Client/New'], function(n, t, AuthController, Layout, TransactionList, ClientList, ClientNew){
 
     var App = {
         init:function(){
-            
+
         },
         start:function(){
             //if(AuthController.checkStatus() == false){
@@ -17,10 +17,10 @@ define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionLi
             m.mount(document.body,Layout);
             m.route(t.getById('content'), "/client/list", {
                 "/client/list": ClientList,
+                "/client/new": ClientNew,
             });
         }
     }
 
     return App;
 });
-

@@ -15,7 +15,7 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                                 m("span",{"uk-search-icon":""}),
                                 m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
                             ]),
-                            m("button.uk-button uk-button-primary","Новый клиент")
+                            m("a.uk-button uk-button-primary",{href:"#!/client/new"},"Новый клиент")
                         ])
                     ])
                 ]),
@@ -26,23 +26,50 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                                 m("th","Имя"),
                                 m("th","Статус"),
                                 m("th","Последний контакт"),
-                                
+
                                 m("th","Примечение"),
                                 m("th","Контакты"),
                                 m("th.uk-flex uk-flex-right","Управление"),
                             ])
                         ]),
                         m("tbody",[
-                            Client.list.map(function(client){
+                            Client.list.map(function(client,i){
                                 return m("tr",[
                                     m("td",client.name),
                                     m("td",client.status),
                                     m("td",client.lastContact),
-                                    
+
                                     m("td",client.note),
                                     m("td",client.contacts),
                                     m("td.uk-flex uk-flex-right",[
                                         m("div.uk-button-group",[
+                                            m("button.uk-button uk-button-default",{},[
+                                                m("span",{"uk-icon":"icon:more"})
+                                            ]),
+                                            m("div",{"uk-dropdown":""},[
+                                              m("ul.uk-nav uk-dropdown-nav",[
+                                                m("li.uk-nav-header","Обновить дату последнего контакта"),
+                                                m("li",[
+                                                  m("a","Сегодня")
+                                                ]),
+                                                m("li",[
+                                                  m("a","Вчера")
+                                                ]),
+                                                m("li",[
+                                                  m("div.uk-button-group",[
+                                                    m("input.uk-input",{type:"date"}),
+                                                    m("button.uk-button uk-button-default",[
+                                                      m("span",{"uk-icon":"icon:check"})
+                                                    ])
+                                                  ])
+
+                                                ]),
+																								m("li.uk-nav-divider"),
+																								m("li",[
+																									m("a",{onclick:function(){ClientController.remove(client.id);Client.list.splice(i,1);}},"Удалить клиента")
+																								])
+                                              ])
+                                            ]),
                                             m("button.uk-button uk-button-default",{},"Редактировать")
                                         ])
                                     ]),
