@@ -21,14 +21,14 @@ if($data->model == "client"){
         $report->result = $result[0]->maxId+1;
         echo json_encode($report, JSON_UNESCAPED_UNICODE);
     }else if($data->action == "add"){
-        $sql = "INSERT INTO client id, name, status, note, last_contact values '".$data->client->id."', '".$data->client->name."', '".$data->client->status."', '".$data->client->note."', '".$data->client->lastContact."'";
-        $db->request($sql);
+        $sql = "INSERT INTO client (id, name, status, note, last_contact) values ('".$data->client->id."', '".$data->client->name."', '".$data->client->status."', '".$data->client->note."', '".$data->client->lastContact."')";
+        $db->request($sql, false);
         $report->code = 200;
         $report->note = "Клиент успешно добавлен!";
         echo json_encode($report, JSON_UNESCAPED_UNICODE);
     }else if($data->action == "remove"){
         $sql = "DELETE from client where id = '".$data->id."'";
-        $db->request($sql);
+        $db->request($sql, false);
         $report->code = 200;
         $report->result = $result[0]->maxId+1;
         echo json_encode($report, JSON_UNESCAPED_UNICODE);
