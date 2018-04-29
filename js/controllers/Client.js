@@ -85,6 +85,23 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 							}
 					});
 				},
+				save:function(){
+					if(Client.current != null){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"client",action:"save", client:Client.current},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
+								}else{
+
+								}
+						});
+					}
+
+				},
 				remove:function(id){
 					if(id != null){
 						m.request({

@@ -9,7 +9,7 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 								m("h2.uk-margin-remove", Client.current.firstname + " " + Client.current.lastname),
 								m("div.uk-flex uk-flex-right",[
 									m("div.uk-button-right",[
-										m("button.uk-button uk-button-primary",{onclick:function(){alert(Client.current.firstname)}},"Сохранить")
+										m("button.uk-button uk-button-primary",{onclick:function(){ClientController.save();}},"Сохранить")
 									])
 								])
 							]),
@@ -40,21 +40,31 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m("label",{for:"current-firstname"},"Имя"),
-													m("input.uk-input",{id:"current-firstname", value:Client.current.firstname, placeholder:"Имя"})
+													m("input.uk-input",{id:"current-firstname", value:Client.current.firstname, placeholder:"Имя", oninput: m.withAttr("value",function(value){Client.current.firstname = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m("label",{for:"current-firstname"},"Фамилия"),
-													m("input.uk-input",{id:"current-lastname", value:Client.current.lastname, placeholder:"Фамилия"})
+													m("input.uk-input",{id:"current-lastname", value:Client.current.lastname, placeholder:"Фамилия", oninput: m.withAttr("value",function(value){Client.current.lastname = value;})})
 												])
 											]),
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m("label",{for:"current-email"},"Почта"),
-													m("input.uk-input",{id:"current-email", value:Client.current.email, placeholder:"Почта"})
+													m("input.uk-input",{id:"current-email", value:Client.current.email, placeholder:"Почта", oninput: m.withAttr("value",function(value){Client.current.email = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m("label",{for:"current-phone"},"Телефон"),
-													m("input.uk-input",{id:"current-phone", value:Client.current.phone, placeholder:"Телефон"})
+													m("input.uk-input",{id:"current-phone", value:Client.current.phone, placeholder:"Телефон", oninput: m.withAttr("value",function(value){Client.current.phone = value;})})
+												])
+											]),
+											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
+												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
+													m("label",{for:"current-lastContact"},"Последний контакт"),
+													m("input.uk-input",{id:"current-lastContact", value:Client.current.lastContact, type:"date", oninput: m.withAttr("value",function(value){Client.current.lastContact = value;})})
+												]),
+												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
+													m("label",{for:"current-note"},"Примечение"),
+													m("input.uk-input",{id:"current-note", value:Client.current.note, placeholder:"Примечение", oninput: m.withAttr("value",function(value){Client.current.note = value;})})
 												])
 											])
 										])

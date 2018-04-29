@@ -39,7 +39,7 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 																			m("a",{href:"#!/client/view/"+client.id},client.firstname + " " + client.lastname)
 																		]),
                                     m("td",client.status),
-                                    m("td",client.lastContact),
+                                    m("td",new Date(client.lastContact).toLocaleDateString("ru-RU")),
                                     m("td",client.note),
 																		m("td",[
 																			[{}].map(function(){

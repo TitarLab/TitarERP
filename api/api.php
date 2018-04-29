@@ -9,13 +9,13 @@ $db->createConnection();
 
 if($data->model == "client"){
     if($data->action == "get"){
-        $sql = "SELECT id, firstname, lastname, status, DATE_FORMAT(last_contact, '%d.%m.%Y') as 'lastContact', contacts, note, photo,email,phone from client where 1 order by id ";
+        $sql = "SELECT id, firstname, lastname, status, last_contact as 'lastContact', contacts, note, photo,email,phone from client where 1 order by id ";
         $result = $db->request($sql);
         $report->code = 200;
         $report->result = $result;
         echo json_encode($report, JSON_UNESCAPED_UNICODE);
     }else if($data->action == "getCurrent"){
-        $sql = "SELECT id, firstname, lastname, status, DATE_FORMAT(last_contact, '%d.%m.%Y') as 'lastContact', contacts, note, photo,email,phone from client where id = '".$data->id."' order by id ";
+        $sql = "SELECT id, firstname, lastname, status, last_contact as 'lastContact', contacts, note, photo,email,phone from client where id = '".$data->id."' order by id ";
         $result = $db->request($sql);
 				$client = $result[0];
 				$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
@@ -34,6 +34,12 @@ if($data->model == "client"){
         $db->request($sql, false);
         $report->code = 200;
         $report->info = "Клиент успешно добавлен!";
+        echo json_encode($report, JSON_UNESCAPED_UNICODE);
+    }else if($data->action == "save"){
+        $sql = "UPDATE client set firstname = '".$data->client->firstname."', lastname = '".$data->client->lastname."', status = '".$data->client->status."', note = '".$data->client->note."', last_contact = '".$data->client->lastContact."', contacts = '".json_encode($data->client->client->contacts,JSON_UNESCAPED_UNICODE)."', photo = '".$data->client->photo."', email = '".$data->client->email."', phone = '".$data->client->phone."' where id = '".$data->client->id."'";
+        $db->request($sql, false);
+        $report->code = 200;
+        $report->info = "Клиент успешно обновлён!";
         echo json_encode($report, JSON_UNESCAPED_UNICODE);
     }else if($data->action == "remove"){
         $sql = "DELETE from client where id = '".$data->id."'";
