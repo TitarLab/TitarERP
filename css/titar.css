@@ -10,3 +10,10 @@
 .t-background-danger{
     background: #f0506e;
 }
+
+.t-border-right{
+	border-right: 1px solid #e5e5e5 !important;
+}
+.t-border-bottom{
+	border-bottom: 1px solid #e5e5e5 !important;
+}

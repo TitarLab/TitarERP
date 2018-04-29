@@ -8,6 +8,10 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 						new:function(){
 							ClientController.init.default();
 							ClientController.load.nextId();
+						},
+						current:function(id){
+							ClientController.load.current(id);
+							ClientController.init.default();
 						}
         },
         load:{
@@ -20,11 +24,38 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
                 }).then(function(report){
                     if(report.code == 200){
                         Client.list = report.result;
+												if(Client.list != null){
+													Client.list.forEach(function(client){
+														if(client.contacts != null && client.contacts != ""){
+															client.contacts = JSON.parse(client.contacts);
+														}
+
+													});
+												}
+
                     }else{
 
                     }
                 });
             },
+						current:function(id){
+							m.request({
+									method: "POST",
+									url:"../api/api.php",
+									data:{model:"client",action:"getCurrent", id:id},
+									withCredentials:true,
+							}).then(function(report){
+									if(report.code == 200){
+											Client.current = report.result
+											if(Client.current.contacts != null && Client.current.contacts != ""){
+												Client.current.contacts = JSON.parse(Client.current.contacts);
+											}
+
+									}else{
+
+									}
+							});
+						},
 						nextId:function(){
 							m.request({
 									method: "POST",
@@ -48,7 +79,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
-
+								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
 
 							}
@@ -63,7 +94,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
-									
+									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 
 								}
@@ -71,6 +102,13 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					}
 
 				},
+				addContact:function(name){
+					let contact = {
+						name:name,
+						value:""
+					};
+					Client.current.contacts.push(contact);
+				}
     }
 
     return ClientController;

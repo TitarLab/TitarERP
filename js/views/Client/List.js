@@ -35,12 +35,23 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                         m("tbody",[
                             Client.list.map(function(client,i){
                                 return m("tr",[
-                                    m("td",client.name),
+                                    m("td",[
+																			m("a",{href:"#!/client/view/"+client.id},client.firstname + " " + client.lastname)
+																		]),
                                     m("td",client.status),
                                     m("td",client.lastContact),
-
                                     m("td",client.note),
-                                    m("td",client.contacts),
+																		m("td",[
+																			[{}].map(function(){
+																				if(client.contacts != null && typeof client.contacts == "object"){
+																					return client.contacts.map(function(contact){
+																						return m("span",contact.name+":"+contact.value+" ");
+																					});
+																				}
+
+																			})
+
+																		]),
                                     m("td.uk-flex uk-flex-right",[
                                         m("div.uk-button-group",[
                                             m("button.uk-button uk-button-default",{},[

@@ -5,7 +5,7 @@ define(['mithril','titar'], function(n,t){
 				current:{
 					id:0,
 					name:"",
-					contacts:"",
+					contacts:[],
 					note:"",
 					status:"",
 					lastContact:""

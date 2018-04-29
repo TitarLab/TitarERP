@@ -1,4 +1,4 @@
-define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionList','views/Client/List','views/Client/New'], function(n, t, AuthController, Layout, TransactionList, ClientList, ClientNew){
+define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionList','views/Client/List','views/Client/New', 'views/Client/View'], function(n, t, AuthController, Layout, TransactionList, ClientList, ClientNew, ClientView){
 
     var App = {
         init:function(){
@@ -18,6 +18,7 @@ define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionLi
             m.route(t.getById('content'), "/client/list", {
                 "/client/list": ClientList,
                 "/client/new": ClientNew,
+                "/client/view/:id": ClientView,
             });
         }
     }
