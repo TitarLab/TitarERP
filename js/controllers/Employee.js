@@ -1,24 +1,26 @@
-define(['mithril','titar','models/Client','models/Notification','libs/sortable'], function(n,t,Client,Notification,Sortable){
+define(['mithril','titar','models/Employee','models/Notification','libs/sortable'], function(n,t,Employee,Notification,Sortable){
 
-    var ClientController = {
+    var EmployeeController = {
         init:{
             default:function(){
-								ClientController.clearCurrent();
-                ClientController.load.list();
+							EmployeeController.clearCurrent();
+                EmployeeController.load.list();
             },
 						new:function(){
-							ClientController.init.default();
-							ClientController.load.nextId();
-
+							EmployeeController.init.default();
+							EmployeeController.load.nextId();
 						},
 						current:function(id){
-							ClientController.init.default();
-							ClientController.load.current(id);
-							Client.list.forEach(function(item){
+							EmployeeController.init.default();
+							EmployeeController.load.current(id);
+							Employee.list.forEach(function(item){
 								if(item.id == id){
-									Client.current = item;
+									Employee.current = item;
+
 								}
 							})
+
+
 						}
         },
         load:{
@@ -26,20 +28,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
                 m.request({
                     method: "POST",
                     url:"../api/api.php",
-                    data:{model:"client",action:"get"},
+                    data:{model:"employee",action:"get"},
                     withCredentials:true,
                 }).then(function(report){
                     if(report.code == 200){
-                        Client.list = report.result;
-												if(Client.list != null){
-													Client.list.forEach(function(client){
-														if(client.contacts != null && client.contacts != ""){
-															client.contacts = JSON.parse(client.contacts);
-														}
-
-													});
-												}
-
+                        Employee.list = report.result;
                     }else{
 
                     }
@@ -49,15 +42,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 							m.request({
 									method: "POST",
 									url:"../api/api.php",
-									data:{model:"client",action:"getCurrent", id:id},
+									data:{model:"employee",action:"getCurrent", id:id},
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
-											Client.current = report.result
-											if(Client.current.contacts != null && Client.current.contacts != ""){
-												Client.current.contacts = JSON.parse(Client.current.contacts);
-											}
-
+											Employee.current = report.result
 									}else{
 
 									}
@@ -67,11 +56,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 							m.request({
 									method: "POST",
 									url:"../api/api.php",
-									data:{model:"client",action:"getNextId"},
+									data:{model:"employee",action:"getNextId"},
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
-											Client.current.id = report.result;
+											Employee.current.id = report.result;
 									}else{
 
 									}
@@ -82,7 +71,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					m.request({
 							method: "POST",
 							url:"../api/api.php",
-							data:{model:"client",action:"add", client:Client.current},
+							data:{model:"employee",action:"add", employee:Employee.current},
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
@@ -93,11 +82,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					});
 				},
 				save:function(){
-					if(Client.current != null){
+					if(Employee.current != null){
 						m.request({
 								method: "POST",
 								url:"../api/api.php",
-								data:{model:"client",action:"save", client:Client.current},
+								data:{model:"employee",action:"save", employee:Employee.current},
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
@@ -114,7 +103,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 						m.request({
 								method: "POST",
 								url:"../api/api.php",
-								data:{model:"client",action:"remove", id:id},
+								data:{model:"employee",action:"remove", id:id},
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
@@ -134,11 +123,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					Client.current.contacts.push(contact);
 				},
 				clearCurrent:function(){
-					Object.keys(Client.current).forEach(function(item){
-						Client.current[item] = null;
+					Object.keys(Employee.current).forEach(function(item){
+						Employee.current[item] = null;
 					});
 				}
     }
 
-    return ClientController;
+    return EmployeeController;
 });

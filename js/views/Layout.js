@@ -21,11 +21,11 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal'], fun
                         ])
                     ])
                 ]),
-                m("div.uk-flex uk-flex-row",{id:"content","uk-height-viewport":"expand: true"},[
-                    
+                m("div.uk-flex uk-flex-row",{id:"content"},[
+
                 ])
             ])
-            
+
 //            ,m("div#wrapper",{class:"wrapper"},[
 //                m("div#leftmenu",{class:"col-xs-2 nav nav-left"},[
 //                    m(Menu)
@@ -37,9 +37,9 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal'], fun
 //                m("div",[
 //                    m(Modal)
 //                ])
-//                
+//
 //            ] )
         }
     }
-    
+
 });

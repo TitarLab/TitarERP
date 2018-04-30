@@ -1,5 +1,5 @@
 define(['mithril','controllers/Client','models/Client'], function(n,ClientController,Client){
-    var ClientNewView = {
+    var EmployeeNewView = {
         oninit: function(){
             ClientController.init.new();
         },
@@ -123,6 +123,6 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
             ]);
         },
     }
-    return ClientNewView;
+    return EmployeeNewView;
 
 });
