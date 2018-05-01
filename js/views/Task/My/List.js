@@ -25,7 +25,13 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
                                 m("span.uk-badge","2")
                             ]),
                             m("div",[
-                                m("ul.uk-list",{"uk-sortable":"group: tasks"})
+                                m("ul.uk-list",{"uk-sortable":"group: tasks"},[
+																	Task.list.map(function(item){
+																		return [
+																			m("h2",item.name)
+																		];
+																	})
+																])
                             ])
                         ])
                     ])
