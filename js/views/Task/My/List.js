@@ -1,7 +1,7 @@
 define(['mithril','controllers/Task','models/Task'], function(n,TaskController,Task){
     var TaskMyListView = {
         oninit: function(){
-
+            TaskController.init.default();
         },
         view : function(){
             return[
