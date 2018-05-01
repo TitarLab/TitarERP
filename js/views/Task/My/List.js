@@ -5,7 +5,7 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
         },
         view : function(){
             return[
-                m("div.uk-flex uk-flex-column",[
+                m("div.uk-flex uk-flex-column uk-width-expand",[
                     m("div.uk-flex uk-flex-between uk-flex-middle uk-width-1-1 uk-padding-small t-border-bottom",[
                         m("h2.uk-margin-remove","Мои задачи"),
                         m("div.uk-flex uk-flex-right",[
@@ -16,7 +16,7 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
                                 ])
                             ])
                         ])
-                      
+
                     ]),
                     m("div.uk-flex uk-flex-row",{"uk-height-viewport":"expand: true"},[
                         m("div.uk-width-1-4 uk-padding-small",[
@@ -30,9 +30,9 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
                         ])
                     ])
                 ]),
-                
+
             ]
-            
+
         },
     }
     return TaskMyListView;
