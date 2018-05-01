@@ -17,19 +17,20 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
                             ])
                         ])
                       
-                    ])
-                ]),
-                m("div.uk-flex uk-flex-row",{"uk-height-viewport":"expand: true"},[
-                    m("div.uk-width-1-4 uk-padding-small",[
-                        m("div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
-                            m("h3.uk-margin-remove","Новые"),
-                            m("span.uk-badge","2")
-                        ]),
-                        m("div",[
-                            m("ul.uk-list",{"uk-sortable":"group: tasks"})
+                    ]),
+                    m("div.uk-flex uk-flex-row",{"uk-height-viewport":"expand: true"},[
+                        m("div.uk-width-1-4 uk-padding-small",[
+                            m("div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
+                                m("h3.uk-margin-remove","Новые"),
+                                m("span.uk-badge","2")
+                            ]),
+                            m("div",[
+                                m("ul.uk-list",{"uk-sortable":"group: tasks"})
+                            ])
                         ])
                     ])
-                ])
+                ]),
+                
             ]
             
         },
