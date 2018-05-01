@@ -3,7 +3,7 @@ define(['mithril','titar','models/Task'], function(n,t,Task){
     var TaskController = {
 			init:{
 					default:function(){
-						TaskController.clearCurrent();
+							//TaskController.clearCurrent();
 							TaskController.load.list();
 					},
 					new:function(){
@@ -113,7 +113,7 @@ define(['mithril','titar','models/Task'], function(n,t,Task){
 							}
 
 						},
-						clearCurrent:function(){
+					clearCurrent:function(){
 							Object.keys(Task.current).forEach(function(item){
 								Task.current[item] = null;
 							});
