@@ -144,13 +144,20 @@ if($data->model == "client"){
 	}
 }else if($data->model == "task"){
 	if($data->action == "get"){
-			$sql = "SELECT task.*, task_status.name as 'status' from task left join task_status on task_status.id = task.status_id where 1 order by id ";
-			$result = $db->request($sql);
+			$tasks = array();
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 1 order by id ";
+			$tasks[] = $db->request($sql);
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 2 order by id ";
+			$tasks[] = $db->request($sql);
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 3 order by id ";
+			$tasks[] = $db->request($sql);
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 4 order by id ";
+			$tasks[] = $db->request($sql);
 			$report->code = 200;
-			$report->result = $result;
+			$report->result = $tasks;
 			echo json_encode($report, JSON_UNESCAPED_UNICODE);
 	}else if($data->action == "getCurrent"){
-			$sql = "SELECT task.*, task_status.name as 'status' from task left join task_status on task_status.id = task.status_id where id = '".$data->id."' order by id ";
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where id = '".$data->id."' order by id ";
 			$result = $db->request($sql);
 			$project = $result[0];
 			//$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
