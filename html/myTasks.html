@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container  uk-light" uk-navbar>
+                <div class="uk-navbar-left uk-background-primary uk-width-expand">
+                    <a href="" class="uk-navbar-item uk-logo">TitarCRM</a>
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="">Проекты</a></li>
+                        <li><a href="">Сайты</a></li>
+                        <li ><a href="">Задачи</a></li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right uk-background-primary ">
+                    <ul class="uk-navbar-nav">
+                        <!--<li class=""><img class="uk-navbar-item uk-responsive-height uk-padding-small uk-border-circle" src="../img/titar.jpg"></li>-->
+                        <li ><span class="uk-navbar-item">Volodymyr Tytarenko<span class="uk-navbar-item" uk-icon="icon:sign-out;"></span></span></li>
+                    </ul>
+                </div>
+            </nav>
+						<div class="uk-flex  uk-flex-column">
+							<div class="uk-flex uk-flex-between uk-flex-middle uk-width-1-1 uk-padding-small t-border-bottom">
+								<h2 class="uk-margin-remove">Мои задачи</h2>
+								<div class="uk-flex uk-flex-right">
+									<div class="uk-button-group">
+										<div class="uk-search uk-search-default">
+												<span uk-search-icon></span>
+												<input class="uk-search-input" type="search" placeholder="Поиск...">
+										</div>
+										<!-- <button class="uk-button uk-button-primary">Сохранить</button> -->
+									</div>
+								</div>
+							</div>
+							<div class="uk-flex uk-flex-row" uk-height-viewport="expand: true">
+								<div class="uk-width-1-4 uk-padding-small">
+									<div class="uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom">
+										<h3 class="uk-margin-remove">Новые</h3>
+										<span class="uk-badge">2</span>
+									</div>
+									<div>
+										<ul class="uk-list" uk-sortable="group: tasks"">
+											<li>
+												<div class="uk-card uk-card-default">
+													<div class="uk-card-body">
+														<h4 class="uk-margin-remove">Дизайн главной страницы</h4>
+														<h5 class="uk-margin-remove">gorkiyalexey</h5>
+														<!-- <span><span class="uk-badge"></span> Дизайн</span> -->
+														<div class="uk-flex uk-margin-small-top uk-flex-column">
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:clock"></span>
+																<span class="uk-margin-small-left">05.05.2018</span>
+															</div>
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:star"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="uk-card uk-card-default">
+													<div class="uk-card-body">
+														<h4 class="uk-margin-remove">Решить проблему авторизации</h4>
+														<h5 class="uk-margin-remove">demchenkophoto</h5>
+														<!-- <span><span class="uk-badge"></span> Дизайн</span> -->
+														<div class="uk-flex uk-margin-small-top uk-flex-column">
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:clock"></span>
+																<span class="uk-margin-small-left">Срочно</span>
+															</div>
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:star"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="uk-width-1-4 uk-padding-small">
+									<div class="uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom">
+										<h3 class="uk-margin-remove">В процессе</h3>
+										<span class="uk-badge">1</span>
+									</div>
+									<div>
+										<ul class="uk-list" uk-sortable="group: tasks"">
+											<li>
+												<div class="uk-card uk-card-default">
+													<div class="uk-card-body">
+														<h4 class="uk-margin-remove">Модуль Задачи</h4>
+														<h5 class="uk-margin-remove">TitarERP</h5>
+														<!-- <span><span class="uk-badge"></span> Дизайн</span> -->
+														<div class="uk-flex uk-margin-small-top uk-flex-column">
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:star"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="uk-width-1-4 uk-padding-small">
+									<div class="uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom">
+										<h3 class="uk-margin-remove">Тестирование</h3>
+										<span class="uk-badge">1</span>
+									</div>
+									<div>
+										<ul class="uk-list" uk-sortable="group: tasks"">
+											<li>
+												<div class="uk-card uk-card-default">
+													<div class="uk-card-body">
+														<h4 class="uk-margin-remove">Модуль Клиенты</h4>
+														<h5 class="uk-margin-remove">TitarERP</h5>
+														<!-- <span><span class="uk-badge"></span> Дизайн</span> -->
+														<div class="uk-flex uk-margin-small-top uk-flex-column">
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:clock"></span>
+																<span class="uk-margin-small-left">05.05.2018</span>
+															</div>
+															<div class="uk-flex uk-flex-middle">
+																<span uk-icon="icon:star"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="uk-width-1-4 uk-padding-small">
+									<div class="uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom">
+										<h3 class="uk-margin-remove">Готово</h3>
+										<span class="uk-badge">1</span>
+									</div>
+									<div>
+										<ul class="uk-list" uk-sortable="group: tasks"">
+											<li>
+												<div class="uk-card uk-card-default">
+													<div class="uk-card-body">
+														<h4 class="uk-margin-remove">Упомянуть Молчика</h4>
+														<h5 class="uk-margin-remove">TitarERP</h5>
+														<!-- <span><span class="uk-badge"></span> Дизайн</span> -->
+														<div class="uk-flex uk-margin-small-top uk-flex-column">
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+	            </div>
+						</div>
+		</div>
+    </body>
+</html>
