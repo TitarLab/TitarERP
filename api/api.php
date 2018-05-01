@@ -144,13 +144,13 @@ if($data->model == "client"){
 	}
 }else if($data->model == "task"){
 	if($data->action == "get"){
-			$sql = "SELECT task.*, task_status.name as "status" from task left join task_status on task_status.id = task.status_id where 1 order by id ";
+			$sql = "SELECT task.*, task_status.name as 'status' from task left join task_status on task_status.id = task.status_id where 1 order by id ";
 			$result = $db->request($sql);
 			$report->code = 200;
 			$report->result = $result;
 			echo json_encode($report, JSON_UNESCAPED_UNICODE);
 	}else if($data->action == "getCurrent"){
-			$sql = "SELECT task.*, task_status.name as "status" from task left join task_status on task_status.id = task.status_id where id = '".$data->id."' order by id ";
+			$sql = "SELECT task.*, task_status.name as 'status' from task left join task_status on task_status.id = task.status_id where id = '".$data->id."' order by id ";
 			$result = $db->request($sql);
 			$project = $result[0];
 			//$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
