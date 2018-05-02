@@ -144,15 +144,34 @@ if($data->model == "client"){
 	}
 }else if($data->model == "task"){
 	if($data->action == "get"){
+		$tasks = array();
+		$sql = "SELECT * from task_status where 1";
+		$result = $db->request($sql);
+		foreach($result as $category){
+			$tasks[] = $category;
+			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = '".$category->id."' order by id";
+			$taskTemp = $db->request($sql);
+			$tasks[count($tasks)-1]->list = array();
+			foreach ($taskTemp as $task) {
+				$tasks[count($tasks)-1]->list += array($task->id => $task);
+			}
+			if(count($tasks[count($tasks)-1]->list) == 0){
+				$tasks[count($tasks)-1]->list = (object)$tasks[count($tasks)-1]->list;
+			}
+		}
+		$report->code = 200;
+		$report->result = $tasks;
+		echo json_encode($report, JSON_UNESCAPED_UNICODE);
+		}else if($data->action == "getStatus"){
 			$tasks = array();
-			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 1 order by id ";
-			$tasks[] = $db->request($sql);
-			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 2 order by id ";
-			$tasks[] = $db->request($sql);
-			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 3 order by id ";
-			$tasks[] = $db->request($sql);
-			$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = 4 order by id ";
-			$tasks[] = $db->request($sql);
+			$sql = "SELECT * from task_status where 1";
+			$result = $db->request($sql);
+			foreach($result as $category){
+				$tasks[] = $category;
+				$sql = "task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = '".$category->id."' order by id";
+				$taskTemp = $db->request($sql);
+				$tasks[count($tasks)]->list = $taskTemp;
+			}
 			$report->code = 200;
 			$report->result = $tasks;
 			echo json_encode($report, JSON_UNESCAPED_UNICODE);

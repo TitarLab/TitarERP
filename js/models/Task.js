@@ -5,7 +5,9 @@ define(['mithril','titar'], function(n,t){
 				current:{
 					id:0,
 					name:"",
-				}
+				},
+				categoryElems:[],
+				tempCategoryId:0
     }
 
     return Task;
