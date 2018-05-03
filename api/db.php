@@ -11,16 +11,23 @@ class DB{
             die("Ошибка соединения: " . mysqli_connect_error());
         }
     }
-    public function request($sql){
+    public function request($sql, $get = true){
         if (!$this->conn) {
             die("Ошибка соединения: " . mysqli_connect_error());
         }
         $queryResult = mysqli_query($this->conn, $sql);
         $result = array();
         if ($queryResult != false){
-            while ($row = $queryResult->fetch_object()){
-                $result[] = $row;
-            }
+					if($get == true){
+						while ($row = $queryResult->fetch_object()){
+								$result[] = $row;
+						}
+					}else{
+						return true;
+					}
+
+        } else {
+            echo "Ошибка: " . mysqli_error($this->conn);
         }
         mysqli_free_result($queryResult);
         return $result;

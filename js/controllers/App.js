@@ -1,4 +1,13 @@
-define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionList','views/Client/List','views/Client/New', 'views/Client/View','views/Employee/List','views/Employee/New', 'views/Employee/View','views/Project/List','views/Project/New', 'views/Project/View'], function(n, t, AuthController, Layout, TransactionList, ClientList, ClientNew, ClientView, EmployeeList, EmployeeNew, EmployeeView, ProjectList, ProjectNew, ProjectView){
+define(['mithril','titar','controllers/Auth','views/Layout',
+'views/Client/List','views/Client/New', 'views/Client/View',
+'views/Employee/List','views/Employee/New', 'views/Employee/View',
+'views/Project/List','views/Project/New', 'views/Project/View',
+'views/Task/My/List'
+], function(n, t, AuthController, Layout,
+ClientList, ClientNew, ClientView,
+EmployeeList, EmployeeNew, EmployeeView,
+ProjectList, ProjectNew, ProjectView,
+TaskMyListView){
 
     var App = {
         init:function(){
@@ -25,6 +34,7 @@ define(['mithril','titar','controllers/Auth','views/Layout','views/TransactionLi
 								"/project/list": ProjectList,
                 "/project/new": ProjectNew,
                 "/project/view/:id": ProjectView,
+								"/task/my": TaskMyListView,
             });
         }
     }
