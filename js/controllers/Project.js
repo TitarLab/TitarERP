@@ -4,7 +4,7 @@ define(['mithril','titar','models/Project','libs/sortable'], function(n,t,Projec
         init:{
             default:function(){
 							ProjectController.clearCurrent();
-                ProjectController.load.list();
+              ProjectController.load.list();
             },
 						new:function(){
 							ProjectController.init.default();
@@ -16,7 +16,6 @@ define(['mithril','titar','models/Project','libs/sortable'], function(n,t,Projec
 							Project.list.forEach(function(item){
 								if(item.id == id){
 									Project.current = item;
-
 								}
 							})
 

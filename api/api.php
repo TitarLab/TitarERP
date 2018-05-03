@@ -101,18 +101,25 @@ if($data->model == "client"){
 	if($data->action == "get"){
 			$sql = "SELECT project.*,client.firstname, client.lastname from project left join client on client.id = project.client_id where 1 order by id ";
 			$result = $db->request($sql);
+			foreach ($result as $project) {
+				$sql = "SELECT tag.id, tag.name, tag.color from project_tag left join tag on tag.id = project_tag.tag_id where project_id = '".$project->id."' order by id";
+				$tags = $db->request($sql);
+				$project->tagList = $tags;
+			}
 			$report->code = 200;
 			$report->result = $result;
 			echo json_encode($report, JSON_UNESCAPED_UNICODE);
 	}else if($data->action == "getCurrent"){
-			$sql = "SELECT * from project where id = '".$data->id."' order by id ";
-			$result = $db->request($sql);
-			$project = $result[0];
-			//$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
-			//$client->projects = $db->request($sql);
-			$report->code = 200;
-			$report->result = $project;
-			echo json_encode($report, JSON_UNESCAPED_UNICODE);
+		$sql = "SELECT project.*,client.firstname, client.lastname from project left join client on client.id = project.client_id where project.id = '".$data->id."' order by id ";
+		$result = $db->request($sql);
+		foreach ($result as $project) {
+			$sql = "SELECT tag.id, tag.name, tag.color from project_tag left join tag on tag.id = project_tag.tag_id where project_id = '".$project->id."' order by id";
+			$tags = $db->request($sql);
+			$project->tagList = $tags;
+		}
+		$report->code = 200;
+		$report->result = $result[0];
+		echo json_encode($report, JSON_UNESCAPED_UNICODE);
 	}else if($data->action == "getNextId"){
 			$sql = "SELECT max(id) as 'maxId' from project where 1";
 			$result = $db->request($sql);
