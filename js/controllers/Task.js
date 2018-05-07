@@ -116,6 +116,24 @@ define(['mithril','titar','models/Task'], function(n,t,Task){
 							}
 
 						},
+						search:{
+							byName:function(value){
+								m.request({
+										method: "POST",
+										url:"../api/api.php",
+										data:{model:"task",action:"searchStatus", value:value},
+										withCredentials:true,
+
+								}).then(function(report){
+										if(report.code == 200){
+											Task.status.searchList = report.result;
+										}else{
+
+										}
+								});
+							},
+
+						},
 					clearCurrent:function(){
 							Object.keys(Task.current).forEach(function(item){
 								Task.current[item] = null;

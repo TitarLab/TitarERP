@@ -12,7 +12,7 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
 									]),
 									m("div.uk-flex uk-flex-right",[
 										m("div.uk-button-group",[
-											m("button.uk-button uk-button-primary","Задачи")
+											m("a.uk-button uk-button-primary",{href:"#!/project/view/"+Project.current.id+"/task/list"},"Задачи")
 										])
 									])
 								]),

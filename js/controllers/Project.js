@@ -1,4 +1,4 @@
-define(['mithril','titar','models/Project','libs/sortable'], function(n,t,Project,Sortable){
+define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,Task){
 
     var ProjectController = {
         init:{
@@ -118,6 +118,23 @@ define(['mithril','titar','models/Project','libs/sortable'], function(n,t,Projec
 					Object.keys(Project.current).forEach(function(item){
 						Project.current[item] = null;
 					});
+				},
+				addCategory:function(){
+					if(Project.current.id != null && Task.status.new.name != null && Task.status.new.name != ""){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"addCategory", id:Project.current.id, value:Task.status.new.name},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									Project.current.caregoryList = Project.current.caregoryList.concat(report.result);
+									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
+								}else{
+
+								}
+						});
+					}
 				}
     }
 
