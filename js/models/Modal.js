@@ -2,7 +2,7 @@ define(['mithril','titar',], function(n,t){
 
     var Modal = {
         attribute:{
-            
+
         },
         type:"",
         current:{},
@@ -19,8 +19,11 @@ define(['mithril','titar',], function(n,t){
             Modal.attribute.func(param);
             Modal.hide();
         },
+				accept2:function(func,param){
+            func(param);
+            Modal.hide();
+        },
     }
 
     return Modal;
 });
-

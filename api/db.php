@@ -5,7 +5,7 @@ class DB{
     public $conn;
 
     public function createConnection(){
-        $this->conn = mysqli_connect($host, $login, $password, $database);
+        $this->conn = mysqli_connect("rivaldi.mysql.tools", "rivaldi_titarcrm", "aqqdevje", "rivaldi_titarcrm");
         mysqli_set_charset ($this->conn , "utf8");
         if (!$this->conn) {
             die("Ошибка соединения: " . mysqli_connect_error());

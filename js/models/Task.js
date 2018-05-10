@@ -7,7 +7,13 @@ define(['mithril','titar'], function(n,t){
 					name:"",
 				},
 				categoryElems:[],
-				tempCategoryId:0
+				tempCategoryId:0,
+				status:{
+					searchList:[],
+					new:{
+						name:""
+					}
+				}
     }
 
     return Task;

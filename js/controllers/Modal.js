@@ -1,15 +1,14 @@
-define(['mithril','titar','models/Modal','views/ModalStandart','views/ModalAccept'], function(n,t,Modal,ModalStandart,ModalAccept){
+define(['mithril','titar','models/Modal','views/Project/Modal/NewTask'], function(n,t,Modal,ModalNewTaskView){
 
     var ModalController = {
         setType:function(type){
             if(type == "accept"){
                 Modal.current = ModalAccept;
             }else{
-                Modal.current = ModalStandart;
+                Modal.current = ModalNewTaskView;
             }
         }
     }
 
     return ModalController;
 });
-
