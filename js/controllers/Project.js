@@ -128,7 +128,7 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
-									Project.current.caregoryList = Project.current.caregoryList.concat(report.result);
+									Project.current.categoryList = Project.current.categoryList.concat(report.result);
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 

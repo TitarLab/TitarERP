@@ -23,7 +23,8 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal'], fun
                 ]),
                 m("div.uk-flex uk-flex-row",{id:"content"},[
 
-                ])
+                ]),
+								m(Modal)
             ])
 
 //            ,m("div#wrapper",{class:"wrapper"},[

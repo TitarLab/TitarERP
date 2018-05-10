@@ -1,4 +1,4 @@
-define(['mithril','titar','models/Task'], function(n,t,Task){
+define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Project){
 
     var TaskController = {
 			init:{
@@ -72,7 +72,7 @@ define(['mithril','titar','models/Task'], function(n,t,Task){
 							m.request({
 									method: "POST",
 									url:"../api/api.php",
-									data:{model:"task",action:"add", task:Task.current},
+									data:{model:"task",action:"add", task:Task.current, project:Project.current},
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -121,7 +121,7 @@ define(['mithril','titar','models/Task'], function(n,t,Task){
 								m.request({
 										method: "POST",
 										url:"../api/api.php",
-										data:{model:"task",action:"searchStatus", value:value},
+										data:{model:"task",action:"searchCategory", value:value},
 										withCredentials:true,
 
 								}).then(function(report){

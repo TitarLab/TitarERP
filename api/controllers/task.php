@@ -6,7 +6,7 @@ if($data->action == "get"){
 	$result = $db->request($sql);
 	foreach($result as $category){
 		$tasks[] = $category;
-		$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where status_id = '".$category->id."' order by id";
+		$sql = "SELECT task.*, task_status.name as 'status', task_category.name as 'category', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id left join task_category on task_category.id = task.category_id where status_id = '".$category->id."' order by id";
 		$taskTemp = $db->request($sql);
 		$tasks[count($tasks)-1]->list = array();
 		foreach ($taskTemp as $task) {
@@ -33,7 +33,7 @@ if($data->action == "get"){
 		$report->result = $tasks;
 		echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "getCurrent"){
-		$sql = "SELECT task.*, task_status.name as 'status', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id where id = '".$data->id."' order by id ";
+		$sql = "SELECT task.*, task_status.name as 'status', task_category.name as 'category', project.name as 'project' from task left join task_status on task_status.id = task.status_id left join project on project.id = task.project_id left join task_category on task_category.id = task.category_id  where id = '".$data->id."' order by id ";
 		$result = $db->request($sql);
 		$project = $result[0];
 		//$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
@@ -48,11 +48,11 @@ if($data->action == "get"){
 		$report->result = $result[0]->maxId+1;
 		echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "add"){
-		// $sql = "INSERT INTO project (id, firstname, lastname, phone, email) values ('".$data->project->id."', '".$data->project->firstname."', '".$data->project->lastname."', '".$data->project->phone."', '".$data->project->email."')";
-		// $db->request($sql, false);
-		// $report->code = 200;
-		// $report->info = "Работник успешно добавлен!";
-		// echo json_encode($report, JSON_UNESCAPED_UNICODE);
+		$sql = "INSERT INTO task (name, project_id, employee_id, status_id, category_id, priority, deadline) values ('".$data->task->name."', '".$data->project->id."', '".$data->task->employeeId."', '".$data->task->statusId."', '".$data->task->categoryId."', '".$data->task->priority."', '".$data->task->deadline."')";
+		$db->request($sql, false);
+		$report->code = 200;
+		$report->info = "Задача успешно добавлена!";
+		echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "save"){
 		// $sql = "UPDATE client set firstname = '".$data->project->firstname."', lastname = '".$data->project->lastname."', photo = '".$data->project->photo."', email = '".$data->project->email."', phone = '".$data->project->phone."' where id = '".$data->project->id."'";
 		// $db->request($sql, false);
@@ -68,6 +68,13 @@ if($data->action == "get"){
 		// echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "searchStatus"){
 	$sql = "SELECT id, list_name as 'name' from task_status where list_name like '%".$data->value."%'";
+	$result = $db->request($sql);
+	$report->code = 200;
+	$report->info = "Поиск завершён. Найдено ".count($result)." результатов";
+	$report->result = $result;
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "searchCategory"){
+	$sql = "SELECT id, name from task_category where name like '%".$data->value."%'";
 	$result = $db->request($sql);
 	$report->code = 200;
 	$report->info = "Поиск завершён. Найдено ".count($result)." результатов";

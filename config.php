@@ -1,5 +1,5 @@
 <?php
-$host = "host";
-$database = "table";
-$login = "login";
-$password = "password";
+$host = "rivaldi.mysql.tools";
+$database = "rivaldi_titarcrm";
+$login = "rivaldi_titarcrm";
+$password = "aqqdevje";
