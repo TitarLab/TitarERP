@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hemp Site</title>
+        <link href="../css/uikit.css" rel="stylesheet">
+        <link href="../css/titar.css" rel="stylesheet">
+        <script src="../js/libs/uikit.min.js"></script>
+        <script src="../js/libs/uikit-icons.min.js"></script>
+    </head>
+    <body>
+		<div class="uk-flex uk-flex-column">
+			<nav class="uk-navbar-container  uk-light" uk-navbar>
+                <div class="uk-navbar-center uk-background-primary uk-width-expand">
+                    <a href="" class="uk-navbar-item uk-navbar-center uk-logo">TitarERP</a>
+                </div>
+            </nav>
+						<div class="uk-flex uk-flex-center uk-flex-middle  uk-flex-column" uk-height-viewport="expand: true">
+							<div class="uk-card uk-card-default uk-width-1-2">
+								<div class="uk-card-header uk-background-primary uk-light">
+									<h4>Конфигурация базы данных</h4>
+								</div>
+								<div class="uk-card-body">
+									<div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-select">Тип базы данных *</label>
+								        <div class="uk-form-controls">
+								            <select class="uk-select" id="form-stacked-select">
+								                <option>MySQL</option>
+								            </select>
+								        </div>
+								    </div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-text">Имя сервера базы данных *</label>
+								        <div class="uk-form-controls">
+								            <input class="uk-input" id="form-stacked-text" type="text" value="localhost" placeholder="">
+								        </div>
+								    </div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-text">Имя пользователя *</label>
+								        <div class="uk-form-controls">
+								            <input class="uk-input" id="form-stacked-text" type="text" placeholder="">
+								        </div>
+								    </div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-text">Пароль</label>
+								        <div class="uk-form-controls">
+								            <input class="uk-input" id="form-stacked-text" type="text" placeholder="">
+								        </div>
+												<!-- <div>Введите пароль пользователя базы данных. Не рекомендуется применять учетную запись без пароля.</div> -->
+								    </div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-text">Имя базы данных *</label>
+								        <div class="uk-form-controls">
+								            <input class="uk-input" id="form-stacked-text" type="text" placeholder="">
+								        </div>
+								    </div>
+										<div class="uk-margin">
+								        <label class="uk-form-label" for="form-stacked-text">Префикс таблиц</label>
+								        <div class="uk-form-controls">
+								            <input class="uk-input" id="form-stacked-text" type="text" placeholder="">
+								        </div>
+								    </div>
+										<div class="uk-margin">
+								        <button class="uk-button uk-button-primary uk-width-1-1">Далее</button>
+								    </div>
+									</div>
+								</div>
+							</div>
+						</div>
+		</div>
+    </body>
+</html>
