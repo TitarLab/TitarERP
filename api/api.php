@@ -12,7 +12,9 @@ $db = new Medoo([
     'database_name' => 'rivaldi_titarcrm',
     'server' => 'rivaldi.mysql.tools',
     'username' => 'rivaldi_titarcrm',
-    'password' => 'aqqdevje'
+    'password' => 'aqqdevje',
+		'charset' => 'utf8'
+
 ]);
 
 if($data->model == "client"){

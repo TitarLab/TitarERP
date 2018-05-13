@@ -7,25 +7,27 @@ if($data->action == "get"){
 		"project.name",
 		"project.url",
 		"project.id",
+		"project.client_id",
 		"client.firstname",
 		"client.lastname",
-		"client.id(clientId)"
 	],[
-		"ORDER" => ["id" => "ASC"]
+		"ORDER" => ["project.id" => "ASC"],
 	]);
-	$result = json_decode(json_encode($result));
-	foreach ($result as $project) {
-		$project->tagList = $db->select("project_tag",[
+	if($db->error()[0] != "00000"){
+		echo json_encode($db->error());
+	}
+	for($i = 0; $i < count($result); $i++){
+		$result[$i] = (object)$result[$i];
+		$result[$i]->tagList = $db->select("project_tag",[
 			"[>]tag" => ["tag_id" => "id"]
 		],[
 			"tag.id",
 			"tag.name",
 			"tag.color",
 		],[
-			"ORDER" => ["project_tag.id" => "ASC"],
-			"project_id" => $project->id
+			"ORDER" => ["id" => "ASC"],
+			"project_id" => $result[$i]->id
 		]);
-		$project->tagList = json_decode(json_encode($project->tagList));
 
 		$categories = $db->select("project_task_category",[
 			"[>]task_category" => ["id_task_category" => "id"]
@@ -35,8 +37,8 @@ if($data->action == "get"){
 		],[
 			"project_task_category.id_project" => $project->id
 		]);
-		$categories = json_decode(json_encode($categories));
-		foreach ($categories as $category) {
+		for($k = 0; $k < count($categories);$k++){
+			$categories[$k] = (object)$category[$k];
 			$taskTemp = $db->select("task",[
 				"[>]task_category" => ["category_id" => "id"],
 				"[>]task_status" => ["status_id" => "id"],
@@ -47,21 +49,24 @@ if($data->action == "get"){
 			],[
 				"ORDER" => ["id" => "ASC"],
 				"AND" => [
-					"project_id" => $project->id,
-					"category_id" => $category->id,
+					"project_id" => $result[$i]->id,
+					"category_id" => $categories[$k]->id,
 				]
 			]);
-			$taskTemp = json_decode(json_encode($taskTemp));
-			$category->list = array();
-			foreach ($taskTemp as $task) {
-				$category->list += array($task->id => $task);
+			$categories[$k]->list = array();
+			for($j = 0; $j < count($taskTemp); $j++){
+				$taskTemp[$j] = (object)$taskTemp[$j];
+				$categories[$k]->list += array($taskTemp[$j]->id => $taskTemp[$j]);
 			}
-			if(count($category->list) == 0){
-				$category->list = (object)$category->list;
+			if(count($categories[$k]->list) == 0){
+				$categories[$k]->list = (object)$category->list;
 			}
 		}
-		$project->categoryList = $categories;
+
+		$result[$i]->categoryList = $categories;
+		//echo json_encode($project->tag_list);
 	}
+	$report->code = 200;
 	$report->result = $result;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "getCurrent"){
@@ -78,7 +83,6 @@ if($data->action == "get"){
 		"ORDER" => ["project.id" => "ASC"],
 		"project.id" => $data->id
 	]);
-	$result = json_decode(json_encode($result));
 	foreach ($result as $project) {
 		$project->tagList = $db->select("project_tag",[
 			"[>]tag" => ["tag_id" => "id"]
@@ -90,7 +94,6 @@ if($data->action == "get"){
 			"ORDER" => ["project_tag.id" => "ASC"],
 			"project_id" => $project->id
 		]);
-		$project->tagList = json_decode(json_encode($project->tagList));
 
 		$categories = $db->select("project_task_category",[
 			"[>]task_category" => ["id_task_category" => "id"]
@@ -100,7 +103,6 @@ if($data->action == "get"){
 		],[
 			"project_task_category.id_project" => $project->id
 		]);
-		$categories = json_decode(json_encode($categories));
 		foreach ($categories as $category) {
 			$taskTemp = $db->select("task",[
 				"[>]task_category" => ["category_id" => "id"],
@@ -116,7 +118,6 @@ if($data->action == "get"){
 					"category_id" => $category->id,
 				]
 			]);
-			$taskTemp = json_decode(json_encode($taskTemp));
 			$category->list = array();
 			foreach ($taskTemp as $task) {
 				$category->list += array($task->id => $task);

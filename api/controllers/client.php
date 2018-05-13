@@ -1,53 +1,58 @@
 <?php
 
 if($data->action == "get"){
-		$sql = "SELECT id, firstname, lastname, status, last_contact as 'lastContact', contacts, note, photo,email,phone from client where 1 order by id ";
-		$result = $db->request($sql);
-		$report->code = 200;
-		$report->result = $result;
-		echo json_encode($report, JSON_UNESCAPED_UNICODE);
-}else if($data->action == "getCurrent"){
-		$sql = "SELECT id, firstname, lastname, status, last_contact as 'lastContact', contacts, note, photo,email,phone from client where id = '".$data->id."' order by id ";
-		$result = $db->request($sql);
-		$client = $result[0];
-		$sql = "SELECT id, name from project where client_id = '".$data->id."' order by id ";
-		$client->projects = $db->request($sql);
-		$report->code = 200;
-		$report->result = $client;
-		echo json_encode($report, JSON_UNESCAPED_UNICODE);
-}else if($data->action == "getNextId"){
-		$sql = "SELECT max(id) as 'maxId' from client where 1";
-		$result = $db->request($sql);
-		$report->code = 200;
-		$report->result = $result[0]->maxId+1;
-		echo json_encode($report, JSON_UNESCAPED_UNICODE);
-}else if($data->action == "add"){
-
-
-	require '../libs/Medoo.php';
-	use Medoo\Medoo;
-
-
-	$db = new Medoo([
-	    'database_type' => 'mysql',
-	    'database_name' => 'rivaldi_titarcrm',
-	    'server' => 'rivaldi.mysql.tools',
-	    'username' => 'rivaldi_titarcrm',
-	    'password' => 'aqqdevje'
-	]);
-
-	$data = $db->select("client",[
+	$result = $db->select("client",[
+		"id",
 		"firstname",
-		"lastname"
+		"lastname",
+		"status",
+		"last_contact(lastContact)",
+		"contacts",
+		"note",
+		"photo",
+		"email",
+		"phone",
 	],[
-		"id" => 1
+		"ORDER" => ["id" => "ASC"],
 	]);
-
-	echo json_encode($data);
-
-
-
-
+	$report->code = 200;
+	$report->result = $result;
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "getCurrent"){
+	$result = $db->select("client",[
+		"id",
+		"firstname",
+		"lastname",
+		"status",
+		"last_contact(lastContact)",
+		"contacts",
+		"note",
+		"photo",
+		"email",
+		"phone",
+	],[
+		"ORDER" => ["id" => "ASC"],
+		"id" => $data->id
+	]);
+	$client = $result[0];
+	$client->projects = $db->select("project",[
+		"id",
+		"name",
+	],[
+		"ORDER" => ["id" => "ASC"],
+		"client_id" => $data->id
+	]);
+	$report->code = 200;
+	$report->result = $client;
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "getNextId"){
+	$result = max("client", [
+		"id(maxId)"
+	]);
+	$report->code = 200;
+	$report->result = $result[0]->maxId+1;
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "add"){
 	$db->insert("client", [
 		"id" => $data->client->id,
 		"firstname" => $data->client->firstname,
@@ -61,7 +66,7 @@ if($data->action == "get"){
 	$report->info = "Клиент успешно добавлен!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "save"){
-	$db->update("account", [
+	$db->update("client", [
 		"firstname" => $data->client->firstname,
 		"lastname" => $data->client->lastname,
 		"status" => $data->client->status,
