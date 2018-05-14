@@ -34,12 +34,9 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 															return m("li.uk-width-medium uk-padding-small uk-flex uk-flex-column uk-background-default  uk-margin-remove-top uk-visible-toggle",[
 																m("div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
 																	m("div.uk-flex uk-flex-middle",[
-																		m("ul.uk-hidden-hover uk-iconnav uk-padding-remove-left",[
-																			m('li',[
-																				m("span.uk-margin-small-right uk-sortable-handle",{"uk-icon":"icon:table"}),
-																			])
-																		]),
-																		m("h3.uk-margin-remove", category.name),
+																		m("h3.uk-margin-remove uk-sortable-handle", category.name),
+
+
 
 																	]),
 																	m('div.uk-flex uk-flex-middle',[

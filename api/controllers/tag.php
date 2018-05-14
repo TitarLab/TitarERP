@@ -1,12 +1,26 @@
 <?php
 
 if($data->action == "search"){
-		$sql = "SELECT project.*,client.firstname, client.lastname from project left join client on client.id = project.client_id where 1 order by id ";
-		$result = $db->request($sql);
+	$result = $db->select("project",[
+		"[>]client" => ["client.id" => "project.client_id"]
+	],[
+		"project.*",
+		"client.firstname",
+		"client.lastname",
+	],[
+		"ORDER" => ["id" => "ASC"],
+	]);
 		foreach ($result as $project) {
-			$sql = "SELECT tag.id, tag.name, tag.color from project_tag left join tag on tag.id = project_tag.tag_id where project_id = '".$project->id."' order by id";
-			$tags = $db->request($sql);
-			$project->tagList = $tags;
+			$project->tagList = $db->select("project_tag",[
+				"[>]tag" => ["tag.id" => "project_tag.tag_id"]
+			],[
+				"tag.id",
+				"tag.name",
+				"tag.color",
+			],[
+				"ORDER" => ["id" => "ASC"],
+				"project_id" => $project->id
+			]);
 		}
 		$report->code = 200;
 		$report->result = $result;

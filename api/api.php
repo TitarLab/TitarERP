@@ -3,9 +3,19 @@ $postData = file_get_contents('php://input');
 $data = json_decode($postData);
 $report = new report;
 
-require("db.php");
-$db = new DB;
-$db->createConnection();
+require '../libs/Medoo.php';
+use Medoo\Medoo;
+
+
+$db = new Medoo([
+    'database_type' => 'mysql',
+    'database_name' => 'rivaldi_titarcrm',
+    'server' => 'rivaldi.mysql.tools',
+    'username' => 'rivaldi_titarcrm',
+    'password' => 'aqqdevje',
+		'charset' => 'utf8'
+
+]);
 
 if($data->model == "client"){
     require_once("controllers/client.php");
@@ -23,7 +33,6 @@ if($data->model == "client"){
     echo $report;
 }
 
-$db->closeConnection();
 
 class report{
     public $code = 200;
