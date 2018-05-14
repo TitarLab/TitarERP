@@ -842,6 +842,7 @@ class Medoo
 						$LIMIT = [0, $LIMIT];
 					}
 
+
 					if (
 						is_array($LIMIT) &&
 						is_numeric($LIMIT[ 0 ]) &&
