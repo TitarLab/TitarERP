@@ -7,9 +7,42 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal'], fun
             return m("div.uk-flex uk-flex-column",[
                 m("nav.uk-navbar-container uk-light",{"uk-navbar":""},[
                     m("div.uk-navbar-left uk-background-primary uk-width-expand",[
-                        m("a.uk-navbar-item uk-logo",t.global.siteTitle),
-                        m(Menu)
-                    ]),
+											m("span.uk-navbar-item uk-link",{"uk-icon":"icon:grid"}),
+											m("div.uk-width-medium",{"uk-dropdown":"mode: click"},[
+												m("div",{"uk-grid":""},[
+													m("div",[
+														m("ul.uk-nav uk-dropdown-nav uk-flex uk-flex-row uk-flex-wrap",[
+															m("li.uk-margin-small-right",[
+																m("a",{href:"#!/project/list"},[
+																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
+																		m("img",{src:"../img/icons/menu/project.svg", width:64, height:64, "uk-svg":""}),
+																		m("span","Проекты")
+																	])
+																])
+															]),
+															m("li.uk-margin-small-right",[
+																m("a",{href:"#!/task/my"},[
+																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
+																		m("img",{src:"../img/icons/menu/checklist.svg", width:64, height:64, "uk-svg":""}),
+																		m("span","Мои задачи")
+																	])
+																])
+															]),
+															m("li.uk-margin-small-right",[
+																m("a",{href:"#!/task/my"},[
+																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
+																		m("img",{src:"../img/icons/menu/checklist.svg", width:64, height:64, "uk-svg":""}),
+																		m("span","Мои задачи")
+																	])
+																])
+															]),
+														])
+													])
+												])
+											]),
+                      m("a.uk-navbar-item uk-logo",t.global.siteTitle),
+                      m(Menu)
+	                  ]),
                     m("div.uk-navbar-right uk-background-primary",[
                         m("ul.uk-navbar-nav",[
                             m("li",[
