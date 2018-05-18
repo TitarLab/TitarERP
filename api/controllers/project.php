@@ -40,10 +40,11 @@ if($data->action == "get"){
 			$taskTemp = $db->select("task",[
 				"[>]task_category" => ["category_id" => "id"],
 				"[>]task_status" => ["status_id" => "id"],
-				"[>]project" => ["project_id" => "id"],
+				"[>]project" => ["project_id" => "id"]
 			],[
-				"task_category.name",
-				"task_category.id"
+				"task.name",
+				"task.id",
+				"task_status.name(status)"
 			],[
 				"ORDER" => ["id" => "ASC"],
 				"AND" => [
@@ -107,8 +108,9 @@ if($data->action == "get"){
 				"[>]task_status" => ["status_id" => "id"],
 				"[>]project" => ["project_id" => "id"],
 			],[
-				"task_category.name",
-				"task_category.id"
+				"task.name",
+				"task.id",
+				"task_status.name(status)"
 			],[
 				"ORDER" => ["id" => "ASC"],
 				"AND" => [

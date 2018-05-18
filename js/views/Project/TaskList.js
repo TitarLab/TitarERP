@@ -21,7 +21,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
                         ])
 
                     ]),
-                    m("div.uk-flex uk-flex-row",{"uk-height-viewport":"expand: true"},[
+                    m("div.uk-flex uk-flex-row",{style:"overflow-x: auto; overflow-y: hidden;","uk-height-viewport":"expand: true"},[
 											m("ul.uk-flex uk-flex-row uk-list",{"uk-sortable":"handle: .uk-sortable-handle", "uk-height-viewport":"expand: true"},[
 												[{}].map(function(){
 													if(Project.current.categoryList != null){
@@ -61,7 +61,46 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																							m("div.uk-card-body",[
 																								m("div.uk-flex uk-flex-middle uk-flex-between",[
 																									m("h4.uk-margin-remove",task.name),
-																									m("span",{"uk-icon":"icon: more-vertical"})
+																									m("span.uk-link",{"uk-icon":"icon: more-vertical"}),
+																									m("div.uk-width-medium",{"uk-dropdown":"mode: click"},[
+																										m("div",[
+																											m("div",[
+																												m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
+																													m("li",[
+																														m("a","Подробнее"),
+																													]),
+																													m("li",[
+																														m("a","Редактировать"),
+																													]),
+																													m("li.uk-width-1-1",[
+																														m("a",[
+																															m("div.uk-width-1-1 uk-flex uk-flex-between",[
+																																m("span","Изменить статус"),
+																																m("span",{"uk-icon":"icon:triangle-right"})
+																															])
+																														]),
+																														m("div",{"uk-dropdown":"pos: right-center; offset: 0"},[
+																															m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
+																																m("li.uk-active",[
+																																	m("a","Новая")
+																																]),
+																																m("li",[
+																																	m("a","В процессе")
+																																]),
+																															])
+																														])
+																													]),
+																													m("li.uk-margin-small-bottom"),
+																													m("li",[
+																														m("a","Удалить"),
+																													]),
+																													m("li",[
+																														m("a","Закрыть"),
+																													]),
+																												])
+																											])
+																										])
+																									]),
 																								]),
 																								// m("h5.uk-margin-remove",task.project),
 																								m("div.uk-flex uk-margin-small-top uk-flex-column",[

@@ -15,7 +15,6 @@ if($data->action == "get"){
 		],[
 			"task.id",
 			"task.project_id",
-			"task.employee_id",
 			"task.name",
 			"task.status_id",
 			"task.category_id",
@@ -48,7 +47,6 @@ if($data->action == "get"){
 	],[
 		"task.id",
 		"task.project_id",
-		"task.employee_id",
 		"task.name",
 		"task.status_id",
 		"task.category_id",
@@ -74,15 +72,21 @@ if($data->action == "get"){
 	$report->result = $result[0]->maxId+1;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "add"){
+	if($data->task->priority == null){
+		$data->task->priority = "Обычный";
+	}
+	if($data->task->deadline == null){
+		$data->task->deadline = "";
+	}
 	$db->insert("task", [
 		"name" => $data->task->name,
 		"project_id" => $data->project->id,
-		"employee_id" => $data->task->employeeId,
 		"status_id" => $data->task->statusId,
 		"category_id" => $data->task->categoryId,
 		"priority" => $data->task->priority,
 		"deadline" => $data->task->deadline
 	]);
+	echo json_encode($db->error(), JSON_UNESCAPED_UNICODE);
 	$report->code = 200;
 	$report->info = "Задача успешно добавлена!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
