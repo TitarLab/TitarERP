@@ -1,6 +1,7 @@
-define([], function(){
+define(['models/Localisation'], function(Localisation){
 
     var Titar = {
+		localisation:Localisation,
         global:{
             host:"https://wallet.titarlab.com/",
             siteTitle:"TitarERP",
@@ -9,6 +10,12 @@ define([], function(){
         getById: function(id){
             return document.getElementById(id);
         },
+		getCookie:function(name) {
+		  var matches = document.cookie.match(new RegExp(
+		    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		  ));
+		  return matches ? decodeURIComponent(matches[1]) : undefined;
+	  },
         getDate(offset = 0){
             var date;
             var dateNow = new Date();

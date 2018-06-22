@@ -1,4 +1,4 @@
-define(['mithril','controllers/Client','models/Client'], function(n,ClientController,Client){
+define(['mithril','titar','controllers/Client','models/Client'], function(n,t,ClientController,Client){
     var ClientListView = {
         oninit: function(){
             ClientController.init.default();
@@ -13,9 +13,9 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                         m("div.uk-button-group",[
                             m("div.uk-search uk-search-default",[
                                 m("span",{"uk-search-icon":""}),
-                                m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
+                                m("input.uk-search-input",{type:"search", placeholder:t.localisation.dictionary.SEARCH})
                             ]),
-                            m("a.uk-button uk-button-primary",{href:"#!/client/new"},"Новый клиент")
+                            m("a.uk-button uk-button-primary",{href:"#!/client/new"},t.localisation.dictionary.CLIENT_NEW)
                         ])
                     ])
                 ]),
@@ -23,13 +23,13 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                     m("table.uk-table uk-table-striped",[
                         m("thead",[
                             m("tr",[
-                                m("th","Имя"),
-                                m("th","Статус"),
-                                m("th","Последний контакт"),
+                                m("th",t.localisation.dictionary.NAME),
+                                m("th",t.localisation.dictionary.STATUS),
+                                m("th",t.localisation.dictionary.LAST_CONTACT),
 
-                                m("th","Примечение"),
-                                m("th","Контакты"),
-                                m("th.uk-flex uk-flex-right","Управление"),
+                                m("th",t.localisation.dictionary.NOTE),
+                                m("th",t.localisation.dictionary.CONTACTS),
+                                m("th.uk-flex uk-flex-right",t.localisation.dictionary.MANAGE),
                             ])
                         ]),
                         m("tbody",[
@@ -59,12 +59,12 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                                             ]),
                                             m("div",{"uk-dropdown":""},[
                                               m("ul.uk-nav uk-dropdown-nav",[
-                                                m("li.uk-nav-header","Обновить дату последнего контакта"),
+                                                m("li.uk-nav-header",t.localisation.dictionary.CLIENT_UPDATE_LAST_CONTACT),
                                                 m("li",[
-                                                  m("a","Сегодня")
+                                                  m("a",t.localisation.dictionary.TODAY)
                                                 ]),
                                                 m("li",[
-                                                  m("a","Вчера")
+                                                  m("a",t.localisation.dictionary.YESTERDAY)
                                                 ]),
                                                 m("li",[
                                                   m("div.uk-button-group",[
@@ -77,11 +77,11 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                                                 ]),
 																								m("li.uk-nav-divider"),
 																								m("li",[
-																									m("a",{onclick:function(){ClientController.remove(client.id);Client.list.splice(i,1);}},"Удалить клиента")
+																									m("a",{onclick:function(){ClientController.remove(client.id);Client.list.splice(i,1);}},t.localisation.dictionary.CLIENT_DELETE)
 																								])
                                               ])
                                             ]),
-                                            m("button.uk-button uk-button-default",{},"Редактировать")
+                                            m("button.uk-button uk-button-default",{},t.localisation.dictionary.EDIT)
                                         ])
                                     ]),
                                 ])

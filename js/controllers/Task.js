@@ -76,6 +76,13 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
+										Project.current.categoryList.forEach((item) => {
+											if(item.id == report.result.categoryId){
+												item.list[report.result.id] = report.result;
+												throw BreakException;
+											}
+										})
+										Project.current.categoryList.
 										UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 									}else{
 

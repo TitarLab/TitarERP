@@ -1,0 +1,34 @@
+{
+	"NAME":"Tytuł",
+	"STATUS":"Status",
+	"LAST_CONTACT":"Ostatni kontakt",
+	"NOTE":"Uwaga",
+	"CONTACTS":"Kontakty",
+	"CONTACT":"Kontakt",
+	"MANAGE":"Zarządzanie",
+	"SEARCH":"Wyszukaj",
+	"EDIT":"Edytuj",
+	"TODAY":"Dzisiaj",
+	"YESTERDAY":"Wczoraj",
+	"SITE":"Strona WWW",
+	"LOGIN":"Login",
+	"PASSWORD":"Hasło",
+	"SAVE":"Zapisz",
+	"BACK":"Wróć",
+
+	"CLIENT_NAME":"Imę",
+	"CLIENT_NEW":"Nowy klient",
+	"CLIENT_DELETE":"Usuń klienta",
+	"CLIENT_UPDATE_LAST_CONTACT":"Zaktualizuj datę ostatniego kontaktu",
+	"CLIENT":"Klient",
+	"CLIENTS":"Klienci",
+
+	"PROJECT":"Projekt",
+	"PROJECTS":"Projekty",
+	"PROJECT_NEW":"Nowy projekt",
+	"PROJECT_DELETE":"Usuń projekt",
+	"PROJECT_EDIT":"Edytować Project",
+
+	"TASK":"Cel",
+	"TASKS":"Cele"
+}

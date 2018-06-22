@@ -1,0 +1,34 @@
+{
+	"NAME":"Name",
+	"STATUS":"Status",
+	"LAST_CONTACT":"Last contact",
+	"NOTE":"Note",
+	"CONTACTS":"Contacts",
+	"CONTACT":"Contact",
+	"MANAGE":"Manage",
+	"SEARCH":"Search",
+	"EDIT":"Edit",
+	"TODAY":"Today",
+	"YESTERDAY":"Yesterday",
+	"SITE":"Site",
+	"LOGIN":"Login",
+	"PASSWORD":"Password",
+	"SAVE":"Save",
+	"BACK":"Back",
+
+	"CLIENT_NAME":"Name",
+	"CLIENT_NEW":"New client",
+	"CLIENT_DELETE":"Delete client",
+	"CLIENT_UPDATE_LAST_CONTACT":"Update last contact",
+	"CLIENT":"Client",
+	"CLIENTS":"Clients",
+
+	"PROJECT":"Project",
+	"PROJECTS":"Projects",
+	"PROJECT_NEW":"New project",
+	"PROJECT_DELETE":"Delete Project",
+	"PROJECT_EDIT":"EDIT Project",
+
+	"TASK":"Task",
+	"TASKS":"Tasks"
+}

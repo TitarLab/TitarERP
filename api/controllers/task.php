@@ -86,7 +86,21 @@ if($data->action == "get"){
 		"priority" => $data->task->priority,
 		"deadline" => $data->task->deadline
 	]);
-	echo json_encode($db->error(), JSON_UNESCAPED_UNICODE);
+	$report->result = $db->get("task",[
+		"[>]task_category" => ["category_id" => "id"],
+		"[>]task_status" => ["status_id" => "id"],
+		"[>]project" => ["project_id" => "id"],
+	],[
+		"task.name",
+		"task.id",
+		"task.category_id(categoryId)",
+		"task_status.name(status)"
+	],[
+		"ORDER" => ["id" => "ASC"],
+		"AND" => [
+			"task.id" => $db->id()
+		]
+	]);
 	$report->code = 200;
 	$report->info = "Задача успешно добавлена!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);

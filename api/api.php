@@ -27,6 +27,8 @@ if($data->model == "client"){
 	require_once("controllers/task.php");
 }else if($data->model == "tag"){
 	require_once("controllers/tag.php");
+}else if($data->model == "auth"){
+	require_once("controllers/auth.php");
 }else{
     $report->code = "ERROR";
     $report->info = "Некорректная модель";
