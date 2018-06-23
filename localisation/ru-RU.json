@@ -1,0 +1,34 @@
+{
+	"NAME":"Название",
+	"STATUS":"Статус",
+	"LAST_CONTACT":"Последний контакт",
+	"NOTE":"Примечание",
+	"CONTACTS":"Контакты",
+	"CONTACT":"Контакт",
+	"MANAGE":"Управление",
+	"SEARCH":"Поиск",
+	"EDIT":"Редактировать",
+	"TODAY":"Сегодня",
+	"YESTERDAY":"Вчера",
+	"SITE":"Сайт",
+	"LOGIN":"Логин",
+	"PASSWORD":"Пароль",
+	"SAVE":"Сохранить",
+	"BACK":"Назад",
+
+	"CLIENT_NAME":"Имя",
+	"CLIENT_NEW":"Новый клиент",
+	"CLIENT_DELETE":"Удалить клиента",
+	"CLIENT_UPDATE_LAST_CONTACT":"Обновить дату последнего контакта",
+	"CLIENT":"Клиент",
+	"CLIENTS":"Клиенты",
+
+	"PROJECT":"Проект",
+	"PROJECTS":"Проекты",
+	"PROJECT_NEW":"Новый проект",
+	"PROJECT_DELETE":"Удалить проект",
+	"PROJECT_EDIT":"Редактировать проект",
+
+	"TASK":"Задача",
+	"TASKS":"Задачи"
+}

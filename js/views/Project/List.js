@@ -1,4 +1,4 @@
-define(['mithril','controllers/Project','models/Project'], function(n,ProjectController,Project){
+define(['mithril','titar','controllers/Project','models/Project'], function(n,t,ProjectController,Project){
     var ProjectListView = {
         oninit: function(){
             ProjectController.init.default();
@@ -11,11 +11,11 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
                     ]),
                     m("div",[
                         m("div.uk-button-group",[
-                            m("div.uk-search uk-search-default",[
-                                m("span",{"uk-search-icon":""}),
-                                m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
-                            ]),
-                            m("a.uk-button uk-button-primary",{href:"#!/project/new"},"Новый проект")
+                            // m("div.uk-search uk-search-default",[
+                            //     m("span",{"uk-search-icon":""}),
+                            //     m("input.uk-search-input",{type:"search", placeholder:t.localisation.dictionary.SEARCH})
+                            // ]),
+                            m("a.uk-button uk-button-primary",{href:"#!/project/new"},t.localisation.dictionary.PROJECT_NEW)
                         ])
                     ])
                 ]),
@@ -23,10 +23,10 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
                     m("table.uk-table uk-table-striped",[
                         m("thead",[
                             m("tr",[
-                                m("th","Название"),
-                                m("th","Сайт"),
-                                m("th","Клиент"),
-                                m("th.uk-flex uk-flex-right","Управление"),
+                                m("th",t.localisation.dictionary.NAME),
+                                m("th",t.localisation.dictionary.SITE),
+                                m("th",t.localisation.dictionary.CLIENT),
+                                m("th.uk-flex uk-flex-right",t.localisation.dictionary.MANAGE),
                             ])
                         ]),
                         m("tbody",[
@@ -39,14 +39,28 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
 																			m("a",{href:project.url},project.url)
 																		]),
 																		m("td",[
-																			m("a",{href:"#!/client/view/"+project.client_id},project.firstname + " " + project.lastname)
+																			[{}].map(() => {
+																				console.log(project);
+																				if(project.clientId != null && project.clientId > 0){
+																					return m("a",{href:"#!/client/view/"+project.clientId},project.firstname + " " + project.lastname)
+																				}
+																			})
+
 																		]),
                                     m("td.uk-flex uk-flex-right",[
                                         m("div.uk-button-group",[
                                             m("button.uk-button uk-button-default",{},[
                                                 m("span",{"uk-icon":"icon:more"})
                                             ]),
-                                            m("button.uk-button uk-button-default",{},"Редактировать")
+											m("div",{"uk-dropdown":""},[
+                                              m("ul.uk-nav uk-dropdown-nav",[
+												  m("li.uk-nav-divider"),
+												  m("li",[
+													  m("a",{onclick:function(){ProjectController.remove(project.id);Project.list.splice(i,1);}},t.localisation.dictionary.PROJECT_DELETE)
+												  ])
+                                              ])
+                                            ]),
+                                            m("a.uk-button uk-button-default",{href:"#!/project/edit/"+project.id},t.localisation.dictionary.EDIT)
                                         ])
                                     ]),
                                 ])

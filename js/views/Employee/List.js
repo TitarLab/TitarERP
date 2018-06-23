@@ -11,10 +11,10 @@ define(['mithril','controllers/Employee','models/Employee'], function(n,Employee
                     ]),
                     m("div",[
                         m("div.uk-button-group",[
-                            m("div.uk-search uk-search-default",[
-                                m("span",{"uk-search-icon":""}),
-                                m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
-                            ]),
+                            // m("div.uk-search uk-search-default",[
+                            //     m("span",{"uk-search-icon":""}),
+                            //     m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
+                            // ]),
                             m("a.uk-button uk-button-primary",{href:"#!/client/new"},"Новый работник")
                         ])
                     ])

@@ -1,7 +1,8 @@
-define(['mithril','controllers/Project','models/Project'], function(n,ProjectController,Project){
+define(['mithril','titar','controllers/Project','models/Project'], function(n,t,ProjectController,Project){
     var ProjectView = {
         oninit: function(vnode){
             ProjectController.init.current(vnode.attrs.id);
+			//alert(JSON.stringify(t.localisation));
         },
         view : function(){
             return [
@@ -12,7 +13,8 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
 									]),
 									m("div.uk-flex uk-flex-right",[
 										m("div.uk-button-group",[
-											m("a.uk-button uk-button-primary",{href:"#!/project/view/"+Project.current.id+"/task/list"},"Задачи")
+											m("a.uk-button uk-button-default",{href:"#!/project/edit/"+Project.current.id},t.localisation.dictionary.PROJECT_EDIT),
+											m("a.uk-button uk-button-primary",{href:"#!/project/view/"+Project.current.id+"/task/list"},t.localisation.dictionary.TASKS)
 										])
 									])
 								]),
@@ -39,17 +41,41 @@ define(['mithril','controllers/Project','models/Project'], function(n,ProjectCon
 
 													[{}].map(function(){
 														if(Project.current.tagList != null){
-															return Project.current.tagList.map(function(tag){
+															return Object.keys(Project.current.tagList).map(function(tag){
 																return m("li",[
 																	m("span.uk-badge"),
-																	m("span",tag.name)
+																	m("span",Project.current.tagList[tag].name)
 																])
 															})
 														}
 													})
 
 												])
-											])
+											]),
+											m("div",[
+												[{}].map(() => {
+													if(Project.current.clientId != null){
+														return m("ul.uk-list",[
+															m("li.uk-nav-header",t.localisation.dictionary.CLIENT),
+															m("li",[
+																m("a",{href:"#!/client/view/"+Project.current.clientId},Project.current.firstname + " " + Project.current.lastname)
+															]),
+														])
+													}
+												})
+											]),
+											m("div",[
+												[{}].map(() => {
+													if(Project.current.url != null){
+														return m("ul.uk-list",[
+															m("li.uk-nav-header",[
+																m('a',{href:Project.current.url},t.localisation.dictionary.SITE),
+															]),
+														])
+													}
+												})
+
+											]),
 										])
 									]),
 									m("div.uk-width-expand",[

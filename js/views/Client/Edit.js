@@ -1,5 +1,5 @@
 define(['mithril','titar','controllers/Client','models/Client'], function(n,t,ClientController,Client){
-    var ClientNewView = {
+    var ClientEditView = {
         oninit: function(vnode){
             ClientController.init.current(vnode.attrs.id);
         },
@@ -8,8 +8,9 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 							m("div.uk-flex uk-flex-between uk-flex-middle uk-width-1-1 uk-padding-small t-border-bottom",[
 								m("h2.uk-margin-remove", Client.current.firstname + " " + Client.current.lastname),
 								m("div.uk-flex uk-flex-right",[
-									m("div.uk-button-group",[
-										m("a.uk-button uk-button-default",{href:"#!/client/edit/"+Client.current.id},t.localisation.dictionary.EDIT)
+									m("div.uk-button-right",[
+										m("a.uk-button uk-button-default",{href:"#!/client/view/"+Client.current.id},t.localisation.dictionary.BACK),
+										m("button.uk-button uk-button-primary",{onclick:function(){ClientController.save();}},"Сохранить")
 									])
 								])
 							]),
@@ -33,11 +34,9 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 											m("ul.uk-list",[
 												m("li.uk-nav-header","Проекты"),
 												[{}].map(function(){
-													if(Client.current.projectList != null){
-														return Client.current.projectList.map(function(project){
-															return m("li",[
-																m('a',{href:"#!/project/view/"+project.id},project.name)
-															])
+													if(Client.current.projects != null){
+														return Client.current.projects.map(function(project){
+															return m("li",project.name)
 														})
 													}
 												})
@@ -51,44 +50,32 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 										m("div.uk-flex uk-flex-column",[
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Имя"),
-														m('dd',Client.current.firstname)
-													]),
+													m("label",{for:"current-firstname"},"Имя"),
+													m("input.uk-input",{id:"current-firstname", value:Client.current.firstname, placeholder:"Имя", oninput: m.withAttr("value",function(value){Client.current.firstname = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Фамилия"),
-														m('dd',Client.current.lastname)
-													]),
+													m("label",{for:"current-firstname"},"Фамилия"),
+													m("input.uk-input",{id:"current-lastname", value:Client.current.lastname, placeholder:"Фамилия", oninput: m.withAttr("value",function(value){Client.current.lastname = value;})})
 												])
 											]),
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Почта"),
-														m('dd',Client.current.email)
-													]),
+													m("label",{for:"current-email"},"Почта"),
+													m("input.uk-input",{id:"current-email", value:Client.current.email, placeholder:"Почта", oninput: m.withAttr("value",function(value){Client.current.email = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Телефон"),
-														m('dd',Client.current.phone)
-													]),
+													m("label",{for:"current-phone"},"Телефон"),
+													m("input.uk-input",{id:"current-phone", value:Client.current.phone, placeholder:"Телефон", oninput: m.withAttr("value",function(value){Client.current.phone = value;})})
 												])
 											]),
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Последний контакт"),
-														m('dd',Client.current.lastContact)
-													]),
+													m("label",{for:"current-lastContact"},"Последний контакт"),
+													m("input.uk-input",{id:"current-lastContact", value:Client.current.lastContact, type:"date", oninput: m.withAttr("value",function(value){Client.current.lastContact = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Примечение"),
-														m('dd',Client.current.note)
-													]),
+													m("label",{for:"current-note"},"Примечение"),
+													m("input.uk-input",{id:"current-note", value:Client.current.note, placeholder:"Примечение", oninput: m.withAttr("value",function(value){Client.current.note = value;})})
 												])
 											])
 										])
@@ -98,6 +85,6 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
             ]);
         },
     }
-    return ClientNewView;
+    return ClientEditView;
 
 });

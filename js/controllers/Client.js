@@ -86,6 +86,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
+								m.route.set("client/list");
 								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
 
@@ -101,6 +102,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
+									m.route.set("client/list");
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 
@@ -137,6 +139,8 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					Object.keys(Client.current).forEach(function(item){
 						Client.current[item] = null;
 					});
+					Client.current.status = "Новый клиент";
+					Client.current.lastContact = t.getDate();
 				}
     }
 

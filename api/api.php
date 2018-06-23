@@ -9,10 +9,10 @@ use Medoo\Medoo;
 
 $db = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'rivaldi_titarcrm',
-    'server' => 'rivaldi.mysql.tools',
-    'username' => 'rivaldi_titarcrm',
-    'password' => 'aqqdevje',
+    'database_name' => 'fix',
+    'server' => 'fix',
+    'username' => 'fixm',
+    'password' => 'fix',
 		'charset' => 'utf8'
 
 ]);
@@ -27,6 +27,8 @@ if($data->model == "client"){
 	require_once("controllers/task.php");
 }else if($data->model == "tag"){
 	require_once("controllers/tag.php");
+}else if($data->model == "auth"){
+	require_once("controllers/auth.php");
 }else{
     $report->code = "ERROR";
     $report->info = "Некорректная модель";

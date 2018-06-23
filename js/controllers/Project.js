@@ -74,6 +74,7 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
+								m.route.set('/project/list/')
 								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
 
@@ -89,6 +90,7 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
+									m.route.set('/project/view/'+Project.current.id)
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 
@@ -96,6 +98,22 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 						});
 					}
 
+				},
+				removeTag:function(id){
+					if(id != null){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"removeTag", id:id},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									delete Project.current.tagList[id];
+								}else{
+
+								}
+						});
+					}
 				},
 				remove:function(id){
 					if(id != null){
@@ -117,6 +135,9 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 				clearCurrent:function(){
 					Object.keys(Project.current).forEach(function(item){
 						Project.current[item] = null;
+						if(item == "tagList"){
+							Project.current[item] = {}
+						}
 					});
 				},
 				addCategory:function(){
@@ -135,7 +156,48 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 								}
 						});
 					}
-				}
+				},
+				addTag:function(addToProject = true){
+					if(Project.current.id != null && Project.tag.new.name != null && Project.tag.new.name != ""){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"addTag", id:Project.current.id, value:Project.tag.new.name, addToProject: addToProject},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									if(addToProject == true){
+										Project.current.tagList[report.result.projectTagId] = {id:report.result.id, name:report.result.name}
+									}else{
+										Project.current.tagList[report.result.id] = {id:report.result.id, name:report.result.name}
+									}
+								}else{
+
+								}
+						});
+					}
+				},
+				search:{
+					tag:{
+						byName:function(value){
+							m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"searchTag", value:value},
+								withCredentials:true,
+
+							}).then(function(report){
+								if(report.code == 200){
+									Project.tag.searchList = report.result;
+								}else{
+
+								}
+							});
+						},
+					}
+
+				},
+
     }
 
     return ProjectController;
