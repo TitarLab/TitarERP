@@ -9,6 +9,8 @@ define(['mithril','titar','models/Auth'], function(n,t,Auth){
 				Auth.firstname = t.getCookie("firstname");
 				Auth.lastname = t.getCookie("lastname");
 				Auth.email = t.getCookie("email");
+				Auth.userId = t.getCookie("userId");
+				t.userId = Auth.userId;
             }
             return Auth.status;
         },
@@ -30,9 +32,12 @@ define(['mithril','titar','models/Auth'], function(n,t,Auth){
 					Auth.firstname = report.result.firstname;
 					Auth.lastname = report.result.lastname;
 					Auth.email = report.result.email;
+					Auth.userId = report.result.id;
+					t.userId = Auth.userId;
 					document.cookie = "firstname="+Auth.firstname+"; path=/; expires=" + date.toUTCString();
 					document.cookie = "lastname="+Auth.lastname+"; path=/; expires=" + date.toUTCString();
 					document.cookie = "email="+Auth.email+"; path=/; expires=" + date.toUTCString();
+					document.cookie = "userId="+Auth.userId+"; path=/; expires=" + date.toUTCString();
 					window.location = "https://crm.titarlab.com";
 				}
 

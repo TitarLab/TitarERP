@@ -8,7 +8,9 @@ define(['mithril','titar'], function(n,t){
 					contacts:[],
 					note:"",
 					status:"",
-					lastContact:""
+					lastContact:"",
+					commentNew:""
+					
 				}
     }
 

@@ -135,6 +135,34 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					};
 					Client.current.contacts.push(contact);
 				},
+				addComment:function(){
+					m.request({
+							method: "POST",
+							url:"../api/api.php",
+							data:{model:"client",action:"addComment", comment:{text:Client.current.commentNew, userId:t.userId},id:Client.current.id},
+							withCredentials:true,
+					}).then(function(report){
+							if(report.code == 200){
+								Client.current.commentList[report.result.id] = report.result;
+							}else{
+
+							}
+					});
+				},
+				removeComment:function(id){
+					m.request({
+							method: "POST",
+							url:"../api/api.php",
+							data:{model:"client",action:"removeComment", id:id},
+							withCredentials:true,
+					}).then(function(report){
+							if(report.code == 200){
+								delete Client.current.commentList[id];
+							}else{
+
+							}
+					});
+				},
 				clearCurrent:function(){
 					Object.keys(Client.current).forEach(function(item){
 						Client.current[item] = null;

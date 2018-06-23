@@ -4,6 +4,7 @@ if($data->action == "login"){
 		"[>]employee" => ["employee_id" => "id"]
 	],[
 		"user.password",
+		"user.id",
 		"employee.firstname",
 		"employee.lastname",
 		"employee.email"
