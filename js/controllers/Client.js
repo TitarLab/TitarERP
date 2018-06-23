@@ -144,6 +144,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					}).then(function(report){
 							if(report.code == 200){
 								Client.current.commentList[report.result.id] = report.result;
+								Client.current.commentNew = '';
 							}else{
 
 							}
