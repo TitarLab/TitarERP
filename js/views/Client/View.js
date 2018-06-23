@@ -92,6 +92,42 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 												])
 											])
 										])
+									]),
+									m("div.uk-flex uk-flex-column uk-padding-small",[
+										m("h3","Комментарии"),
+										m('ul.uk-comment-list',[
+											[{}].map(() => {
+												if(Client.current.commentList != null){
+													return Object.keys(Client.current.commentList).map((id) => {
+														return m("li",[
+															m("article.uk-comment uk-comment-primary",[
+																m("header.uk-comment-header uk-grid-medium uk-flex-middle",[
+																	m('div',[
+																		m("h4.uk-comment-title uk-margin-remove",[
+																			m("a",Client.current.commentList[id].firstname + " " + Client.current.commentList[id].lastname)
+																		]),
+																		m("ul.uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top",[
+																			m('li',Client.current.commentList[id].dateCreated),
+																			m("li",[
+																				m("a",{onclick:()=>{ClientController.removeComment(id)},"uk-icon":"icon: trash"})
+																			])
+																		])
+																	])
+																]),
+																m("div.uk-comment-body",[
+																	m("p",Client.current.commentList[id].text)
+																])
+															])
+														])
+													})
+												}
+											}),
+											m('div',[
+												m("textarea.uk-textarea uk-margin-small-bottom",{oninput: m.withAttr("value",function(value){Client.current.commentNew = value;}), value:Client.current.commentNew,placeholder:"Написать комментарий"}),
+													m("button.uk-button uk-button-primary",{onclick:()=> {ClientController.addComment();}},"Отправить")
+											])
+
+										])
 									])
 								])
 							])

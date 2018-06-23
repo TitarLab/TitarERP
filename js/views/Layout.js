@@ -1,4 +1,4 @@
-define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'controllers/App2', 'controllers/Auth'], function(n,t,Menu,Notification,Modal,App2,AuthController){
+define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'controllers/App2', 'controllers/Auth', 'models/Auth'], function(n,t,Menu,Notification,Modal,App2,AuthController, Auth){
     return {
         oncreate:function(){
             //state.notificationEl = getById("notification");
@@ -59,7 +59,7 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'con
 							]),
                             m("li",[
                                 m("span.uk-navbar-item",[
-                                    m("span","Volodymyr Tytarenko"),
+                                    m("span",Auth.firstname + " " + Auth.lastname),
                                     m("span.uk-navbar-item",{"uk-icon":"icon:sign-out;", onclick:() => {AuthController.logout();}})
                                 ])
                             ])

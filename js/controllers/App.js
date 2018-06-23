@@ -16,9 +16,11 @@ LoginView){
 
         },
         start:function(){
-			App.setLanguage("ru-RU");
-			App.setLanguage("en-GB");
-			App.setLanguage("pl-PL");
+			if(document.cookie.match("language")){
+				App.setLanguage(t.getCookie("language"));
+			}else{
+				App.setLanguage("en-GB");
+			}
             if(AuthController.checkStatus() == false){
                 m.mount(document.body,LoginView);
             }else{
@@ -36,6 +38,7 @@ LoginView){
 			}).then(function(report){
 				t.localisation.dictionary = report;
 				t.localisation.currentLanguage = t.localisation.list[language];
+				document.cookie = "language="+language+"; path=/; expires=" + new Date(new Date().getTime() + 60 * 10000000).toUTCString();
 			});
 		},
         normalStart:function(){
