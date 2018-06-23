@@ -7,7 +7,7 @@ define(['mithril','titar','controllers/Auth','models/Auth'], function(n,t,AuthCo
             return [
 				m("div.uk-flex uk-flex-column uk-flex-middle uk-flex-center uk-background-muted uk-background-cover",{"uk-height-viewport":"expand: true"},[
 					m("img.uk-margin-medium-bottom",{src:"../img/logo.png", width:"128", height:"128"}),
-					m("div.uk-width-large uk-card uk-card-default uk-form-stacked",[
+					m("form.uk-width-large uk-card uk-card-default uk-form-stacked",{onsubmit:() => {event.preventDefault();AuthController.login()}},[
 						m("div.uk-card-body",[
 							m("div.uk-margin",[
 								m("div.uk-form-controls",[
@@ -21,7 +21,7 @@ define(['mithril','titar','controllers/Auth','models/Auth'], function(n,t,AuthCo
 							]),
 
 						]),
-						m("button.uk-button uk-button-primary uk-width-1-1",{onclick:() => {AuthController.login()}},t.localisation.dictionary.LOGIN)
+						m("button.uk-button uk-button-primary uk-width-1-1",t.localisation.dictionary.LOGIN)
 					])
 				])
 			]

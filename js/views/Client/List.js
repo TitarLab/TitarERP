@@ -81,7 +81,7 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 																								])
                                               ])
                                             ]),
-                                            m("button.uk-button uk-button-default",{},t.localisation.dictionary.EDIT)
+                                            m("a.uk-button uk-button-default",{href:"#!/client/edit/"+client.id},t.localisation.dictionary.EDIT)
                                         ])
                                     ]),
                                 ])

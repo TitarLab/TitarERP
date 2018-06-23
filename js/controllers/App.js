@@ -1,11 +1,11 @@
 define(['mithril','titar','controllers/Auth','views/Layout',
-'views/Client/List','views/Client/New', 'views/Client/View',
+'views/Client/List','views/Client/New', 'views/Client/View', 'views/Client/Edit',
 'views/Employee/List','views/Employee/New', 'views/Employee/View',
 'views/Project/List','views/Project/New', 'views/Project/View', 'views/Project/TaskList', 'views/Project/Edit',
 'views/Task/My/List',
 'views/App/Login'
 ], function(n, t, AuthController, Layout,
-ClientList, ClientNew, ClientView,
+ClientList, ClientNew, ClientView, ClientEdit,
 EmployeeList, EmployeeNew, EmployeeView,
 ProjectList, ProjectNew, ProjectView, ProjectTaskList, ProjectEdit,
 TaskMyListView,
@@ -16,14 +16,14 @@ LoginView){
 
         },
         start:function(){
+			App.setLanguage("ru-RU");
+			App.setLanguage("en-GB");
+			App.setLanguage("pl-PL");
             if(AuthController.checkStatus() == false){
                 m.mount(document.body,LoginView);
             }else{
                 App.init();
                 App.normalStart();
-				App.setLanguage("ru-RU");
-				App.setLanguage("en-GB");
-				App.setLanguage("pl-PL");
                 //test();
            }
         },
@@ -44,6 +44,7 @@ LoginView){
                 "/client/list": ClientList,
                 "/client/new": ClientNew,
                 "/client/view/:id": ClientView,
+                "/client/edit/:id": ClientEdit,
 				"/employee/list": EmployeeList,
                 "/employee/new": EmployeeNew,
                 "/employee/view/:id": EmployeeView,

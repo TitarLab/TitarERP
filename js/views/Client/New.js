@@ -16,7 +16,7 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
                     ])
                 ]),
                 m("div.uk-flex uk-flex-row uk-flex-top",[
-									m("div.uk-card uk-card-default uk-width-1-2",[
+									m("div.uk-card uk-card-default uk-width-1-1",[
 										m("div.uk-card-header",[
 											m("h3","Профиль")
 										]),
@@ -29,6 +29,14 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 												m("div.uk-margin",[
 													m("label.uk-form-label","Фамилия"),
 													m("input.uk-input",{placeholder:"Фамилия", oninput: m.withAttr("value",function(value){Client.current.lastname = value;}),value:Client.current.lastname})
+												]),
+												m("div.uk-margin",[
+													m("label.uk-form-label","Почта"),
+													m("input.uk-input",{placeholder:"Почта", oninput: m.withAttr("value",function(value){Client.current.email = value;}),value:Client.current.email})
+												]),
+												m("div.uk-margin",[
+													m("label.uk-form-label","Телефон"),
+													m("input.uk-input",{placeholder:"Телефон", oninput: m.withAttr("value",function(value){Client.current.phone = value;}),value:Client.current.phone})
 												]),
 												m("div.uk-margin",[
 													m("label.uk-form-label","Статус"),
@@ -52,73 +60,73 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 											])
 										])
 									]),
-									m("div.uk-card uk-card-default uk-width-1-2 uk-margin-small-left",[
-										m("div.uk-card-header",[
-											m("h3","Контакты")
-										]),
-										m("div.uk-card-body",[
-											m("button.uk-button uk-button-default","Добавить контакт"),
-											m("div",{"uk-dropdown":""},[
-												m("ul.uk-nav uk-dropdown-nav",[
-													m("li.uk-nav-header","Социальные сети"),
-													m("li",[
-														m('ul.uk-nav uk-iconnav',[
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("Telegram");}},[
-																	m("span",{"uk-icon":"icon:t-telegram;ratio:0"})
-																])
-															]),
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("Instagram");}},[
-																	m("span",{"uk-icon":"icon:t-instagram;ratio:0"})
-																])
-															]),
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("Facebook");}},[
-																	m("span",{"uk-icon":"icon:t-facebook;ratio:0"})
-																])
-															]),
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("VK");}},[
-																	m("span",{"uk-icon":"icon:t-vk;ratio:0"})
-																])
-															]),
-														]),
-													]),
-													m("li.uk-nav-header","Контакты"),
-													m("li",[
-														m("ul.uk-nav uk-iconnav",[
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("Телефон");}},[
-																	m("span",{"uk-icon":"icon:t-phone;ratio:0"})
-																])
-															]),
-															m("li",[
-																m("a",{onclick:function(){ClientController.addContact("Email");}},[
-																	m("span",{"uk-icon":"icon:t-mail;ratio:0"})
-																])
-															]),
-														])
-													])
-
-
-												])
-											]),
-											m("div.uk-form-skacked uk-margin",[
-												[{}].map(function(){
-													if(Client.current != null && Client.current.contacts != null && Client.current.contacts.length > 0){
-														return Client.current.contacts.map(function(contact, i){
-															return m("div.uk-margin",[
-																m("label.uk-form-label",{for:"contact-"+i},contact.name),
-																m("input.uk-input",{placeholder:contact.name, id:"contact-"+i,value:contact.value, oninput: m.withAttr("value",function(value){contact.value = value;})})
-															])
-														});
-													}
-												})
-
-											])
-										])
-									])
+									// m("div.uk-card uk-card-default uk-width-1-2 uk-margin-small-left",[
+									// 	m("div.uk-card-header",[
+									// 		m("h3","Контакты")
+									// 	]),
+									// 	m("div.uk-card-body",[
+									// 		m("button.uk-button uk-button-default","Добавить контакт"),
+									// 		m("div",{"uk-dropdown":""},[
+									// 			m("ul.uk-nav uk-dropdown-nav",[
+									// 				m("li.uk-nav-header","Социальные сети"),
+									// 				m("li",[
+									// 					m('ul.uk-nav uk-iconnav',[
+									// 						m("li",[
+									// 							m("a",{onclick:function(){ClientController.addContact("Telegram");}},[
+									// 								m("span",{"uk-icon":"icon:t-telegram;ratio:0"})
+									// 							])
+									// 						]),
+									// 						m("li",[
+									// 							m("a",{onclick:function(){ClientController.addContact("Instagram");}},[
+									// 								m("span",{"uk-icon":"icon:t-instagram;ratio:0"})
+									// 							])
+									// 						]),
+									// 						m("li",[
+									// 							m("a",{onclick:function(){ClientController.addContact("Facebook");}},[
+									// 								m("span",{"uk-icon":"icon:t-facebook;ratio:0"})
+									// 							])
+									// 						]),
+									// 						m("li",[
+									// 							m("a",{onclick:function(){ClientController.addContact("VK");}},[
+									// 								m("span",{"uk-icon":"icon:t-vk;ratio:0"})
+									// 							])
+									// 						]),
+									// 					]),
+									// 				]),
+													// m("li.uk-nav-header","Контакты"),
+													// m("li",[
+													// 	m("ul.uk-nav uk-iconnav",[
+													// 		m("li",[
+													// 			m("a",{onclick:function(){ClientController.addContact("Телефон");}},[
+													// 				m("span",{"uk-icon":"icon:t-phone;ratio:0"})
+													// 			])
+													// 		]),
+													// 		m("li",[
+													// 			m("a",{onclick:function(){ClientController.addContact("Email");}},[
+													// 				m("span",{"uk-icon":"icon:t-mail;ratio:0"})
+													// 			])
+													// 		]),
+													// 	])
+													// ])
+									//
+									//
+									// 			])
+									// 		]),
+									// 		m("div.uk-form-skacked uk-margin",[
+									// 			[{}].map(function(){
+									// 				if(Client.current != null && Client.current.contacts != null && Client.current.contacts.length > 0){
+									// 					return Client.current.contacts.map(function(contact, i){
+									// 						return m("div.uk-margin",[
+									// 							m("label.uk-form-label",{for:"contact-"+i},contact.name),
+									// 							m("input.uk-input",{placeholder:contact.name, id:"contact-"+i,value:contact.value, oninput: m.withAttr("value",function(value){contact.value = value;})})
+									// 						])
+									// 					});
+									// 				}
+									// 			})
+									//
+									// 		])
+									// 	])
+									// ])
                 ])
             ]);
         },

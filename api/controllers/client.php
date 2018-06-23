@@ -15,6 +15,16 @@ if($data->action == "get"){
 	],[
 		"ORDER" => ["id" => "ASC"],
 	]);
+	$result = json_decode(json_encode($result));
+	foreach($result as $client){
+		$client->projectList = $db->select("project",[
+			"name",
+			"id"
+		],[
+			"ORDER" => ["id" => "ASC"],
+			"client_id" => $client->id
+		]);
+	}
 	$report->code = 200;
 	$report->result = $result;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
@@ -34,8 +44,9 @@ if($data->action == "get"){
 		"ORDER" => ["id" => "ASC"],
 		"id" => $data->id
 	]);
+	$result = json_decode(json_encode($result));
 	$client = $result[0];
-	$client->projects = $db->select("project",[
+	$client->projectList = $db->select("project",[
 		"id",
 		"name",
 	],[
@@ -46,11 +57,9 @@ if($data->action == "get"){
 	$report->result = $client;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "getNextId"){
-	$result = max("client", [
-		"id(maxId)"
-	]);
+	$result = $db->max("client", "id");
 	$report->code = 200;
-	$report->result = $result[0]->maxId+1;
+	$report->result = $result+1;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "add"){
 	$db->insert("client", [
@@ -60,8 +69,11 @@ if($data->action == "get"){
 		"status" => $data->client->status,
 		"note" => $data->client->note,
 		"last_contact" => $data->client->lastContact,
-		"contacts[JSON]" => $data->client->contacts
+		"phone" => $data->client->phone,
+		"email" => $data->client->email,
+		//"contacts[JSON]" => $data->client->contacts
 	]);
+	//echo json_encode($db->error());
 	$report->code = 200;
 	$report->info = "Клиент успешно добавлен!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
