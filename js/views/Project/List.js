@@ -11,10 +11,10 @@ define(['mithril','titar','controllers/Project','models/Project'], function(n,t,
                     ]),
                     m("div",[
                         m("div.uk-button-group",[
-                            m("div.uk-search uk-search-default",[
-                                m("span",{"uk-search-icon":""}),
-                                m("input.uk-search-input",{type:"search", placeholder:t.localisation.dictionary.SEARCH})
-                            ]),
+                            // m("div.uk-search uk-search-default",[
+                            //     m("span",{"uk-search-icon":""}),
+                            //     m("input.uk-search-input",{type:"search", placeholder:t.localisation.dictionary.SEARCH})
+                            // ]),
                             m("a.uk-button uk-button-primary",{href:"#!/project/new"},t.localisation.dictionary.PROJECT_NEW)
                         ])
                     ])
