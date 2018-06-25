@@ -107,7 +107,12 @@ if($data->action == "get"){
 }else if($data->action == "save"){
 
 }else if($data->action == "remove"){
-
+	$db->delete("task", [
+		"id" => $data->id
+	]);
+	$report->code = 200;
+	$report->info = "Задача успешно удалена!";
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "searchStatus"){
 	$result = $db->select("task_status",[
 		"id",

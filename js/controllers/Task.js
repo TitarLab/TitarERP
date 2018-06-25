@@ -1,5 +1,5 @@
 define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Project){
-
+	var BreakException = {};
     var TaskController = {
 			init:{
 					default:function(){
@@ -76,13 +76,17 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
-										Project.current.categoryList.forEach((item) => {
-											if(item.id == report.result.categoryId){
-												item.list[report.result.id] = report.result;
-												throw BreakException;
-											}
-										})
-										Project.current.categoryList.
+										try{
+											Project.current.categoryList.forEach((item) => {
+												if(item.id == report.result.categoryId){
+													item.list[report.result.id] = report.result;
+													throw BreakException;
+												}
+											})
+										}catch(e){
+											 if (e !== BreakException) throw e;
+										}
+										//Project.current.categoryList.
 										UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 									}else{
 
@@ -106,7 +110,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							}
 
 						},
-						remove:function(id){
+						remove:function(id, catId = -1){
 							if(id != null){
 								m.request({
 										method: "POST",
@@ -116,6 +120,10 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								}).then(function(report){
 										if(report.code == 200){
 											UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
+											if(catId >= 0){
+												delete Project.current.categoryList[catId].list[id];
+											}
+
 										}else{
 
 										}

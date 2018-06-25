@@ -9,10 +9,10 @@ use Medoo\Medoo;
 
 $db = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'fix',
-    'server' => 'fix',
-    'username' => 'fixm',
-    'password' => 'fix',
+    'database_name' => 'rivaldi_titarcrm',
+    'server' => 'rivaldi.mysql.tools',
+    'username' => 'rivaldi_titarcrm',
+    'password' => 'aqqdevje',
 		'charset' => 'utf8'
 
 ]);

@@ -75,6 +75,7 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
+								m.route.set("/employee/list")
 								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
 
@@ -90,6 +91,7 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
+									m.route.set("/employee/view/"+Employee.current.id)
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 

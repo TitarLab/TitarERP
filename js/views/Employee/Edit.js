@@ -1,5 +1,5 @@
 define(['mithril','titar','controllers/Employee','models/Employee'], function(n,t,EmployeeController,Employee){
-    var EmployeeView = {
+    var EmployeeEditView = {
         oninit: function(vnode){
             EmployeeController.init.current(vnode.attrs.id);
         },
@@ -9,26 +9,17 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
 								m("h2.uk-margin-remove", Employee.current.firstname + " " + Employee.current.lastname),
 								m("div.uk-flex uk-flex-right",[
 									m("div.uk-button-right",[
-										m("a.uk-button uk-button-default",{href:"#!/employee/edit/"+Employee.current.id},t.localisation.dictionary.EDIT)
+										m("a.uk-button uk-button-default",{href:"#!/employee/view/"+Employee.current.id},t.localisation.dictionary.BACK),
+										m("button.uk-button uk-button-primary",{onclick:function(){EmployeeController.save();}},"Сохранить")
 									])
 								])
 							]),
 							m("div.uk-flex uk-flex-row",{"uk-height-viewport":"expand: true"},[
 								m("div.uk-width-1-6 t-border-right",[
 									m("div.uk-flex uk-flex-column uk-padding-small",{"uk-margin":"margin:uk-margin-medium-top"},[
-										[{}].map(function(){
-											let tempStyle;
-											if(Employee.current.photo != null){
-												tempStyle = "background-image:url("+Employee.current.photo+"); background-size:cover; background-position:center";
-											}
-											return m("div.uk-background-muted uk-inline uk-border-rounded uk-flex uk-flex-center uk-flex-middle",{style:"width:100%; padding-top: 100%;" + tempStyle},[
-												[{}].map(function(){
-													if((Employee.current.photo == null || Employee.current.photo.length == 0 )&& Employee.current.firstname != null && Employee.current.lastname != null){
-														return m("span.uk-overlay uk-position-center",{style:"font-size:64px"},Employee.current.firstname.substr(0,1) + Employee.current.lastname.substr(0,1))
-													}
-												})
-											])
-										}),
+										m("div",[
+											m("img.uk-border-rounded",{src:Employee.current.photo, alt:Employee.current.firstname + " " + Employee.current.lastname})
+										]),
 										m("div",[
 											m("ul.uk-list",[
 												//m("li.uk-nav-header","Проекты"),
@@ -41,39 +32,31 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
 										m("div.uk-flex uk-flex-column",[
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Имя"),
-														m('dd',Employee.current.firstname)
-													]),
+													m("label",{for:"current-firstname"},"Имя"),
+													m("input.uk-input",{id:"current-firstname", value:Employee.current.firstname, placeholder:"Имя", oninput: m.withAttr("value",function(value){Employee.current.firstname = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Фамилия"),
-														m('dd',Employee.current.lastname)
-													]),
+													m("label",{for:"current-firstname"},"Фамилия"),
+													m("input.uk-input",{id:"current-lastname", value:Employee.current.lastname, placeholder:"Фамилия", oninput: m.withAttr("value",function(value){Employee.current.lastname = value;})})
 												])
 											]),
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Почта"),
-														m('dd',Employee.current.email)
-													]),
+													m("label",{for:"current-email"},"Почта"),
+													m("input.uk-input",{id:"current-email", value:Employee.current.email, placeholder:"Почта", oninput: m.withAttr("value",function(value){Employee.current.email = value;})})
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
-													m('dl.uk-description-list',[
-														m('dt',"Телефон"),
-														m('dd',Employee.current.phone)
-													]),
+													m("label",{for:"current-phone"},"Телефон"),
+													m("input.uk-input",{id:"current-phone", value:Employee.current.phone, placeholder:"Телефон", oninput: m.withAttr("value",function(value){Employee.current.phone = value;})})
 												])
 											]),
 										])
-									]),
+									])
 								])
 							])
             ]);
         },
     }
-    return EmployeeView;
+    return EmployeeEditView;
 
 });

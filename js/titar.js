@@ -16,6 +16,18 @@ define(['models/Localisation'], function(Localisation){
 		  ));
 		  return matches ? decodeURIComponent(matches[1]) : undefined;
 	  },
+	  sort:(list, argument) => {
+		  list.sort(function(obj1,obj2){
+			  if(typeof obj1[argument] === "number"){
+				  return obj1[argument] - obj2[argument];
+			  }else{
+				  if (obj1[argument].toLowerCase() < obj2[argument].toLowerCase()) return 1;
+				  if (obj1[argument].toLowerCase() > obj2[argument].toLowerCase()) return -1;
+				  return 0;
+			  }
+
+		  });
+	  },
         getDate(offset = 0){
             var date;
             var dateNow = new Date();

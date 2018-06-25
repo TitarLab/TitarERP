@@ -35,6 +35,22 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																m("div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
 																	m("div.uk-flex uk-flex-middle",[
 																		m("h3.uk-margin-remove uk-sortable-handle", category.name),
+																		m("span.uk-link",{"uk-icon":"icon: more-vertical"}),
+																		m("div.uk-width-medium",{"uk-dropdown":"mode: click"},[
+																			m("div",[
+																				m("div",[
+																					m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
+																						m("li.uk-margin-small-bottom"),
+																						m("li",[
+																							m("a",{onclick:()=>{ProjectController.removeCategory(category.id, categoryIndex)}},"Удалить"),
+																						]),
+																						// m("li",[
+																						// 	m("a",{href:"#"},"Закрыть"),
+																						// ]),
+																					])
+																				])
+																			])
+																		]),
 
 
 
@@ -92,11 +108,11 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																													]),
 																													m("li.uk-margin-small-bottom"),
 																													m("li",[
-																														m("a","Удалить"),
+																														m("a",{onclick:()=>{TaskController.remove(task.id, categoryIndex)}},"Удалить"),
 																													]),
-																													m("li",[
-																														m("a","Закрыть"),
-																													]),
+																													// m("li",[
+																													// 	m("a",{href:"#"},"Закрыть"),
+																													// ]),
 																												])
 																											])
 																										])
@@ -131,7 +147,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 													m("div.uk-width-medium uk-padding-small  ",[
 														m("div.uk-flex uk-flex-middle uk-margin-small-bottom",[
 															m("a.uk-flex uk-flex-middle",[
-																m("span.uk-margin-small-right",{"uk-icon":"icon:plus"}),
+																// m("span.uk-margin-small-right",{"uk-icon":"icon:plus"}),
 																m("h3.uk-margin-remove", "Новая колонка"),
 															])
 														]),

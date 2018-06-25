@@ -16,25 +16,33 @@ if($data->action == "get"){
 	$report->result = $result[0];
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "getNextId"){
-	$result = max("employee", [
-		"id(maxId)"
-	]);
+	$result = $db->max("employee", "id");
 	$report->code = 200;
-	$report->result = $result[0]->maxId+1;
+	$report->result = $result+1;
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "add"){
 	$db->insert("employee", [
 		"id" => $data->employee->id,
 		"firstname" => $data->employee->firstname,
 		"lastname" => $data->employee->lastname,
-		"phone" => $data->employee->status,
-		"email" => $data->employee->note
+		"phone" => $data->employee->phone,
+		"email" => $data->employee->email
 	]);
 	$report->code = 200;
 	$report->info = "Работник успешно добавлен!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "save"){
-
+	$db->update("employee", [
+		"firstname" => $data->employee->firstname,
+		"lastname" => $data->employee->lastname,
+		"phone" => $data->employee->phone,
+		"email" => $data->employee->email,
+	], [
+		"id" => $data->employee->id
+	]);
+	$report->code = 200;
+	$report->info = "Работник успешно обновлён!";
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "remove"){
 	$db->delete("employee", [
 		"id" => $data->id

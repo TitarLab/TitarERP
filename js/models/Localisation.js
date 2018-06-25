@@ -40,6 +40,8 @@ define(['mithril','titar'], function(n,t){
 
 			TASK:"TASK",
 			TASKS:"TASKS",
+
+			"EMPLOYEE_DELETE":"EMPLOYEE_DELETE"
 		}
     }
 

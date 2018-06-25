@@ -199,6 +199,23 @@ if($data->action == "get"){
 	$report->code = 200;
 	$report->info = "проект успешно удалён!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "removeCategory"){
+	$db->delete("project_task_category", [
+		"AND" => [
+			"id_task_category" => $data->id,
+			"id_project" => $data->projectId
+		]
+	]);
+	//echo json_encode($db->error());
+	$db->delete("task", [
+		"AND" => [
+			"category_id" => $data->id,
+			"project_id" => $data->projectId
+		]
+	]);
+	$report->code = 200;
+	$report->info = "Категория успешно удалена!";
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "addCategory"){
 		$id = -1;
 		$result = $db->select("task_category",[

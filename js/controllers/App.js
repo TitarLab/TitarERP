@@ -1,12 +1,12 @@
 define(['mithril','titar','controllers/Auth','views/Layout',
 'views/Client/List','views/Client/New', 'views/Client/View', 'views/Client/Edit',
-'views/Employee/List','views/Employee/New', 'views/Employee/View',
+'views/Employee/List','views/Employee/New', 'views/Employee/View', 'views/Employee/Edit',
 'views/Project/List','views/Project/New', 'views/Project/View', 'views/Project/TaskList', 'views/Project/Edit',
 'views/Task/My/List',
 'views/App/Login'
 ], function(n, t, AuthController, Layout,
 ClientList, ClientNew, ClientView, ClientEdit,
-EmployeeList, EmployeeNew, EmployeeView,
+EmployeeList, EmployeeNew, EmployeeView, EmployeeEdit,
 ProjectList, ProjectNew, ProjectView, ProjectTaskList, ProjectEdit,
 TaskMyListView,
 LoginView){
@@ -51,6 +51,7 @@ LoginView){
 				"/employee/list": EmployeeList,
                 "/employee/new": EmployeeNew,
                 "/employee/view/:id": EmployeeView,
+                "/employee/edit/:id": EmployeeEdit,
 				"/project/list": ProjectList,
                 "/project/new": ProjectNew,
                 "/project/view/:id": ProjectView,

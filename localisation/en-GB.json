@@ -30,5 +30,7 @@
 	"PROJECT_EDIT":"EDIT Project",
 
 	"TASK":"Task",
-	"TASKS":"Tasks"
+	"TASKS":"Tasks",
+
+	"EMPLOYEE_DELETE":"Delete employee"
 }

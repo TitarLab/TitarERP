@@ -1,4 +1,5 @@
 define(['mithril','titar','controllers/Project','controllers/Task','models/Project','models/Task'], function(n,t,ProjectController,TaskController,Project, Task){
+	
     var ProjectModalNewTaskView = {
         oninit: function(vnode){
 					Task.current.statusId = 1;
@@ -34,7 +35,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 											])
 										]),
 										m("div",[
-											m("button.uk-button uk-button-primary",{onclick:function(){TaskController.add()}},"Добавить")
+											m("button.uk-button uk-button-primary uk-modal-close",{onclick:function(){TaskController.add()}},"Добавить")
 										]),
 									])
 								])

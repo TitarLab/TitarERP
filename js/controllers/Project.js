@@ -115,6 +115,24 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 						});
 					}
 				},
+				removeCategory:function(id, index = -1){
+					if(id != null){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"removeCategory", id:id, projectId: Project.current.id},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									if(index >= 0){
+										Project.current.categoryList.splice(index,1);
+									}
+								}else{
+
+								}
+						});
+					}
+				},
 				remove:function(id){
 					if(id != null){
 						m.request({
