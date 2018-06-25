@@ -15,13 +15,13 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 									m("div.uk-form-stacked",{"uk-margin":""},[
 										m("h4","Новая задача"),
 										m("div.uk-margin",[
-											m("label.uk-form-label","Название"),
+											m("label.uk-form-label",t.localisation.dictionary.TITUL),
 											m("input.uk-input",{placeholder:"Название",oninput: m.withAttr("value",function(value){Task.current.name = value;})})
 										]),
 										m("div.uk-margin",[
-											m("label.uk-form-label","Назначить задачу"),
+											m("label.uk-form-label",t.localisation.dictionary.EMPLOYEE_ATTACH),
 											m("div.uk-button-group",[
-												m("input.uk-input",{placeholder:"Название", oninput: m.withAttr("value",function(value){
+												m("input.uk-input",{placeholder:t.localisation.dictionary.EMPLOYEE, oninput: m.withAttr("value",function(value){
 													if(value.length >= 3){
 														EmployeeController.search(value);
 														UIkit.dropdown(t.getById("new-member-dropdown")).show();
@@ -50,7 +50,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 											])
 										]),
 										m("div.uk-margin",[
-											m("label.uk-form-label","Статус"),
+											m("label.uk-form-label",t.localisation.dictionary.STATUS),
 											m("select.uk-select",{oninput: m.withAttr("value",function(value){Task.current.statusId = value;})},[
 												m("option",{value:"1",selected:true},"Новая"),
 												m("option",{value:"2"},"В процессе"),
@@ -67,7 +67,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 										// 	])
 										// ]),
 										m("div.uk-margin",[
-											m("button.uk-button uk-button-primary uk-modal-close",{onclick:function(){TaskController.add()}},"Добавить")
+											m("button.uk-button uk-button-primary uk-modal-close",{onclick:function(){TaskController.add()}},t.localisation.dictionary.ADD)
 										]),
 									])
 								])

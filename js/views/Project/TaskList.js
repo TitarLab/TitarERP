@@ -15,7 +15,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
                             m("div.uk-button-group",[
                                 m("div.uk-search uk-search-default",[
                                     m("span",{"uk-search-icon":""}),
-                                    m("input.uk-search-input",{"type":"search", "placeholder":"Поиск..."})
+                                    m("input.uk-search-input",{"type":"search", "placeholder":t.localisation.dictionary.SEARCH})
                                 ])
                             ])
                         ])
@@ -42,7 +42,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																					m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
 																						m("li.uk-margin-small-bottom"),
 																						m("li",[
-																							m("a",{onclick:()=>{ProjectController.removeCategory(category.id, categoryIndex)}},"Удалить"),
+																							m("a",{onclick:()=>{ProjectController.removeCategory(category.id, categoryIndex)}},t.localisation.dictionary.REMOVE),
 																						]),
 																						// m("li",[
 																						// 	m("a",{href:"#"},"Закрыть"),
@@ -83,15 +83,15 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																											m("div",[
 																												m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
 																													m("li",[
-																														m("a","Подробнее"),
+																														m("a",t.localisation.dictionary.MORE),
 																													]),
 																													m("li",[
-																														m("a",{"uk-toggle":"target: #modal",onclick:()=>{Task.current = task;ModalController.setType("editTask");}},"Редактировать"),
+																														m("a",{"uk-toggle":"target: #modal",onclick:()=>{Task.current = task;ModalController.setType("editTask");}},t.localisation.dictionary.EDIT),
 																													]),
 																													m("li.uk-width-1-1",[
 																														m("a",[
 																															m("div.uk-width-1-1 uk-flex uk-flex-between",[
-																																m("span","Изменить статус"),
+																																m("span",t.localisation.dictionary.STATUS_CHANGE),
 																																m("span",{"uk-icon":"icon:triangle-right"})
 																															])
 																														]),
@@ -115,7 +115,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																													]),
 																													m("li.uk-margin-small-bottom"),
 																													m("li",[
-																														m("a",{onclick:()=>{TaskController.remove(task.id, categoryIndex)}},"Удалить"),
+																														m("a",{onclick:()=>{TaskController.remove(task.id, categoryIndex)}},t.localisation.dictionary.REMOVE),
 																													]),
 																													// m("li",[
 																													// 	m("a",{href:"#"},"Закрыть"),
@@ -165,11 +165,11 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 														m("div.uk-flex uk-flex-middle uk-margin-small-bottom",[
 															m("a.uk-flex uk-flex-middle",[
 																// m("span.uk-margin-small-right",{"uk-icon":"icon:plus"}),
-																m("h3.uk-margin-remove", "Новая колонка"),
+																m("h3.uk-margin-remove", t.localisation.dictionary.NEW_COLUMN),
 															])
 														]),
 														m("div.uk-button-group",[
-															m("input.uk-input",{placeholder:"Название",value:Task.status.new.name, oninput: m.withAttr("value",function(value){
+															m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL,value:Task.status.new.name, oninput: m.withAttr("value",function(value){
 																if(value.length >= 3){
 																	TaskController.search.byName(value);
 																	UIkit.dropdown(t.getById("input-dropdown")).show();
@@ -188,7 +188,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																	})
 																])
 															]),
-															m("button.uk-button uk-button-primary",{onclick:function(){{ProjectController.addCategory();}}},"Добавить"),
+															m("button.uk-button uk-button-primary",{onclick:function(){{ProjectController.addCategory();}}},t.localisation.dictionary.ADD),
 
 														]),
 

@@ -42,13 +42,13 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Имя"),
+														m('dt',t.localisation.dictionary.FIRSTNAME),
 														m('dd',Employee.current.firstname)
 													]),
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Фамилия"),
+														m('dt',t.localisation.dictionary.LASTNAME),
 														m('dd',Employee.current.lastname)
 													]),
 												])
@@ -56,13 +56,13 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Почта"),
+														m('dt',t.localisation.dictionary.EMAIL),
 														m('dd',Employee.current.email)
 													]),
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Телефон"),
+														m('dt',t.localisation.dictionary.PHONE),
 														m('dd',Employee.current.phone)
 													]),
 												])

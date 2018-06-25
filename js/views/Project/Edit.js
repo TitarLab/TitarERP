@@ -42,8 +42,8 @@ define(['mithril','titar','controllers/Project','models/Project','controllers/Cl
 												m("ul.uk-list",[
 													m("label.uk-form-label","TAGS"),
 													m("div",[
-														m("button.uk-button uk-button-primary uk-width-1-1",{onclick:function(){{ProjectController.addTag();}}},"Добавить"),
-														m("input.uk-input uk-width-1-1",{placeholder:"Название",value:Project.tag.new.name, oninput: m.withAttr("value",function(value){
+														m("button.uk-button uk-button-primary uk-width-1-1",{onclick:function(){{ProjectController.addTag();}}},t.localisation.dictionary.ADD),
+														m("input.uk-input uk-width-1-1",{placeholder:t.localisation.dictionary.TITUL,value:Project.tag.new.name, oninput: m.withAttr("value",function(value){
 															if(value.length >= 3){
 																ProjectController.search.tag.byName(value);
 																UIkit.dropdown(t.getById("input-dropdown")).show();
@@ -84,7 +84,7 @@ define(['mithril','titar','controllers/Project','models/Project','controllers/Cl
 															m("div.uk-margin",[
 																m("label.uk-form-label",t.localisation.dictionary.CLIENT),
 																m("select.uk-select",{oninput: m.withAttr("value",function(value){Project.current.clientId = value;})},[
-																	m("option",{value:0},"Отсутствует"),
+																	m("option",{value:0},t.localisation.dictionary.ABSENT),
 																	[{}].map(() => {
 																		if(Client.list != null){
 																			return Client.list.map((item) => {

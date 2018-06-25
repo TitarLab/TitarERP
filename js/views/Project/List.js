@@ -7,7 +7,7 @@ define(['mithril','titar','controllers/Project','models/Project'], function(n,t,
             return m("div.uk-width-expand uk-padding-small",[
                 m("div.uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between",[
                     m("div",[
-                        m("h3","Проекты")
+                        m("h3",t.localisation.dictionary.PROJECTS)
                     ]),
                     m("div",[
                         m("div.uk-button-group",[

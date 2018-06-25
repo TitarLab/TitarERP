@@ -7,7 +7,7 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
             return m("div.uk-width-expand uk-padding-small",[
                 m("div.uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between",[
                     m("div",[
-                        m("h3","Работники")
+                        m("h3",t.localisation.dictionary.EMPLOYEES)
                     ]),
                     m("div",[
                         m("div.uk-button-group",[
@@ -15,7 +15,7 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
                             //     m("span",{"uk-search-icon":""}),
                             //     m("input.uk-search-input",{type:"search", placeholder:"Поиск"})
                             // ]),
-                            m("a.uk-button uk-button-primary",{href:"#!/employee/new"},"Новый работник")
+                            m("a.uk-button uk-button-primary",{href:"#!/employee/new"},t.localisation.dictionary.EMPLOYEE_NEW)
                         ])
                     ])
                 ]),
@@ -23,8 +23,8 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
                     m("table.uk-table uk-table-striped",[
                         m("thead",[
                             m("tr",[
-                                m("th","Имя"),
-                                m("th.uk-flex uk-flex-right","Управление"),
+                                m("th",t.localisation.dictionary.NAME),
+                                m("th.uk-flex uk-flex-right",t.localisation.dictionary.MANAGE),
                             ])
                         ]),
                         m("tbody",[
@@ -46,7 +46,7 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
 												])
                                               ])
                                             ]),
-                                            m("a.uk-button uk-button-default",{href:"#!/employee/edit/"+employee.id},"Редактировать")
+                                            m("a.uk-button uk-button-default",{href:"#!/employee/edit/"+employee.id},t.localisation.dictionary.EDIT)
                                         ])
                                     ]),
                                 ])

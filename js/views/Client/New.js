@@ -7,36 +7,36 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
             return m("div.uk-width-expand uk-padding-small",[
                 m("div.uk-margin-small-left uk-margin-small-bottom uk-margin-small-top uk-margin-small-right uk-flex uk-flex-row uk-flex-middle uk-flex-between",[
                     m("div",[
-                        m("h3","Новый клиент")
+                        m("h3",t.localisation.dictionary.CLIENT_NEW)
                     ]),
                     m("div",[
                         m("div.uk-button-group",[
-                            m("button.uk-button uk-button-primary",{onclick:function(){ClientController.add();}},"Добавить клиента")
+                            m("button.uk-button uk-button-primary",{onclick:function(){ClientController.add();}},t.localisation.dictionary.ADD)
                         ])
                     ])
                 ]),
                 m("div.uk-flex uk-flex-row uk-flex-top",[
 									m("div.uk-card uk-card-default uk-width-1-1",[
 										m("div.uk-card-header",[
-											m("h3","Профиль")
+											m("h3",t.localisation.dictionary.PROFILE)
 										]),
 										m("div.uk-card-body",[
 											m("div.uk-form-stacked",[
 												m("div.uk-margin",[
-													m("label.uk-form-label","Имя"),
-													m("input.uk-input",{placeholder:"Имя", oninput: m.withAttr("value",function(value){Client.current.firstname = value;}),value:Client.current.firstname})
+													m("label.uk-form-label",t.localisation.dictionary.FIRSTNAME),
+													m("input.uk-input",{placeholder:t.localisation.dictionary.FIRSTNAME, oninput: m.withAttr("value",function(value){Client.current.firstname = value;}),value:Client.current.firstname})
 												]),
 												m("div.uk-margin",[
-													m("label.uk-form-label","Фамилия"),
-													m("input.uk-input",{placeholder:"Фамилия", oninput: m.withAttr("value",function(value){Client.current.lastname = value;}),value:Client.current.lastname})
+													m("label.uk-form-label",t.localisation.dictionary.LASTNAME),
+													m("input.uk-input",{placeholder:t.localisation.dictionary.LASTNAME, oninput: m.withAttr("value",function(value){Client.current.lastname = value;}),value:Client.current.lastname})
 												]),
 												m("div.uk-margin",[
-													m("label.uk-form-label","Почта"),
-													m("input.uk-input",{placeholder:"Почта", oninput: m.withAttr("value",function(value){Client.current.email = value;}),value:Client.current.email})
+													m("label.uk-form-label",t.localisation.dictionary.EMAIL),
+													m("input.uk-input",{placeholder:t.localisation.dictionary.EMAIL, oninput: m.withAttr("value",function(value){Client.current.email = value;}),value:Client.current.email})
 												]),
 												m("div.uk-margin",[
-													m("label.uk-form-label","Телефон"),
-													m("input.uk-input",{placeholder:"Телефон", oninput: m.withAttr("value",function(value){Client.current.phone = value;}),value:Client.current.phone})
+													m("label.uk-form-label",t.localisation.dictionary.PHONE),
+													m("input.uk-input",{placeholder:t.localisation.dictionary.PHONE, oninput: m.withAttr("value",function(value){Client.current.phone = value;}),value:Client.current.phone})
 												]),
 												m("div.uk-margin",[
 													m("label.uk-form-label","Статус"),
@@ -50,12 +50,12 @@ define(['mithril','controllers/Client','models/Client'], function(n,ClientContro
 													])
 												]),
 												m("div.uk-margin",[
-													m("label.uk-form-label","Дата контакта"),
+													m("label.uk-form-label",t.localisation.dictionary.LAST_CONTACT),
 													m("input.uk-input",{type:"date", value:Client.current.lastContact, oninput: m.withAttr("value",function(value){Client.current.lastContact = value;})})
 												]),
 												m("div.uk-margin",[
-													m("label.uk-form-label","Примечание"),
-													m("input.uk-input",{placeholder:"Примечание", oninput: m.withAttr("value",function(value){Client.current.note = value;}),value:Client.current.note})
+													m("label.uk-form-label",t.localisation.dictionary.NOTE),
+													m("input.uk-input",{placeholder:t.localisation.dictionary.NOTE, oninput: m.withAttr("value",function(value){Client.current.note = value;}),value:Client.current.note})
 												]),
 											])
 										])

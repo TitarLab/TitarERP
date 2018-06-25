@@ -1,5 +1,5 @@
 {
-	"NAME":"Tytuł",
+	"NAME":"Imię",
 	"STATUS":"Status",
 	"LAST_CONTACT":"Ostatni kontakt",
 	"NOTE":"Uwaga",
@@ -15,6 +15,22 @@
 	"PASSWORD":"Hasło",
 	"SAVE":"Zapisz",
 	"BACK":"Wróć",
+	"FIRSTNAME":"Imię",
+	"LASTNAME":"Nazwisko",
+	"EMAIL":"Email",
+	"PHONE":"Telefon",
+	"ADD":"Dodać",
+	"DATE_OF_CONTACT":"Data kontaktu",
+	"PROFILE":"Konto",
+	"COMMENTS":"Komentarze",
+	"SEND":"Wyślij",
+	"WRITE_A_COMMENT":"Napisz komentarz",
+	"TITUL":"Nazwa",
+	"NONE":"Żaden",
+	"ABSENT":"Brakujące",
+	"REMOVE":"Usuń",
+	"MORE":"Więcej",
+	"STATUS_CHANGE":"Zmień status",
 
 	"CLIENT_NAME":"Imę",
 	"CLIENT_NEW":"Nowy klient",
@@ -31,6 +47,12 @@
 
 	"TASK":"Cel",
 	"TASKS":"Cele",
+	"MY_TASKS":"Moje cele",
 
-	"EMPLOYEE_DELETE":"Usuń pracownika"
+	"TAGS":"Tagi",
+
+	"EMPLOYEE_DELETE":"Usuń pracownika",
+	"EMPLOYEES":"Pracownice",
+	"EMPLOYEE_NEW":"Nowy pracownik",
+	"EMPLOYEE_ATTACH":"Dołącz pracownika"
 }

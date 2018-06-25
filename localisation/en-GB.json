@@ -15,6 +15,22 @@
 	"PASSWORD":"Password",
 	"SAVE":"Save",
 	"BACK":"Back",
+	"FIRSTNAME":"Firstname",
+	"LASTNAME":"Lastname",
+	"EMAIL":"Email",
+	"PHONE":"Phone",
+	"ADD":"Add",
+	"DATE_OF_CONTACT":"Date of contact",
+	"PROFILE":"Profile",
+	"COMMENTS":"Comments",
+	"SEND":"Send",
+	"WRITE_A_COMMENT":"Write a comment",
+	"TITUL":"Tittul",
+	"NONE":"None",
+	"ABSENT":"Absent",
+	"REMOVE":"Remove",
+	"MORE":"More",
+	"STATUS_CHANGE":"Change status",
 
 	"CLIENT_NAME":"Name",
 	"CLIENT_NEW":"New client",
@@ -31,6 +47,12 @@
 
 	"TASK":"Task",
 	"TASKS":"Tasks",
+	"MY_TASKS":"My tasks",
 
-	"EMPLOYEE_DELETE":"Delete employee"
+	"TAGS":"Tags",
+
+	"EMPLOYEE_DELETE":"Delete employee",
+	"EMPLOYEES":"Employees",
+	"EMPLOYEE_NEW":"New employee",
+	"EMPLOYEE_ATTACH":"Attach employee"
 }
