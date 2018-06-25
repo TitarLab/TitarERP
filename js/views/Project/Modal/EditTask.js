@@ -20,7 +20,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.EMPLOYEE_ATTACH),
 											m("div.uk-button-group",[
-												m("input.uk-input",{placeholder:"t.localisation.dictionary.EMPLOYEE", oninput: m.withAttr("value",function(value){
+												m("input.uk-input",{placeholder:t.localisation.dictionary.EMPLOYEE, oninput: m.withAttr("value",function(value){
 													if(value.length >= 3){
 														EmployeeController.search(value);
 														UIkit.dropdown(t.getById("new-member-dropdown")).show();
