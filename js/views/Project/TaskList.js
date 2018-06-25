@@ -131,11 +131,11 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																									// 	m("span",{"uk-icon":"icon:clock"}),
 																									// 	m("span.uk-margin-small-left",task.deadline),
 																									// ]),
-																									// m("div.uk-flex uk-flex-middle",[
-																									// 	m("span",{"uk-icon":"icon:star"}),
-																									// 	m("span.uk-badge uk-margin-left"),
-																									// 	m("span.uk-margin-left",task.status)
-																									// ]),
+																									m("div.uk-flex uk-flex-middle",[
+																										// m("span",{"uk-icon":"icon:star"}),
+																										// m("span.uk-badge uk-margin-left"),
+																										// m("span.uk-margin-left",task.status)
+																									]),
 																									m("div.uk-flex uk-flex-middle",[
 																										[{}].map(()=>{
 																											if(task.memberList != null){
@@ -144,7 +144,9 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 																													return m("div",{style:"width:25px;height:25px; background:black; border-radius:100%; background-image:url("+employee.photo+"); background-size:cover"})
 																												})
 																											}
-																										})
+																										}),
+																										m("span.uk-badge uk-margin-left"),
+																										m("span.uk-margin-left",task.status)
 																									]),
 																								])
 																							])
