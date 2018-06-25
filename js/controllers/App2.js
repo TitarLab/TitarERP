@@ -1,4 +1,4 @@
-define(['mithril','titar'], function(n, t){
+define(['mithril','titar','models/Menu'], function(n, t, Menu){
 
     var App2 = {
 		setLanguage(language){
@@ -10,6 +10,7 @@ define(['mithril','titar'], function(n, t){
 			}).then(function(report){
 				t.localisation.dictionary = report;
 				t.localisation.currentLanguage = t.localisation.list[language];
+				Menu.reload();
 				document.cookie = "language="+language+"; path=/; expires=" + new Date(new Date().getTime() + 60 * 10000000).toUTCString();
 			});
 		}
