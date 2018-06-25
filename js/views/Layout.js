@@ -13,6 +13,22 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'con
 													m("div",[
 														m("ul.uk-nav uk-dropdown-nav uk-flex uk-flex-row uk-flex-wrap",[
 															m("li.uk-margin-small-right",[
+																m("a",{href:"#!/task/my",onclick:function(){m.route.set("/client/list")}},[
+																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
+																		m("img",{src:"../img/icons/menu/clients.svg", width:64, height:64, "uk-svg":""}),
+																		m("span",t.localisation.dictionary.CLIENTS)
+																	])
+																])
+															]),
+															m("li.uk-margin-small-right",[
+																m("a",{href:"#!/task/my",onclick:function(){m.route.set("/employee/list")}},[
+																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
+																		m("img",{src:"../img/icons/menu/employee.svg", width:64, height:64, "uk-svg":""}),
+																		m("span",t.localisation.dictionary.EMPLOYEES)
+																	])
+																])
+															]),
+															m("li.uk-margin-small-right",[
 																m("a",{href:"#!/project/list", onclick:function(){m.route.set("/project/list")}},[
 																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
 																		m("img",{src:"../img/icons/menu/project.svg", width:64, height:64, "uk-svg":""}),
