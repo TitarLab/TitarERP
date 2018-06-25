@@ -13,10 +13,10 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
                 m("div.uk-modal-dialog uk-modal-body",[
 									m("button.uk-modal-close-outside",{"uk-close":""}),
 									m("div.uk-form-stacked",{"uk-margin":""},[
-										m("h4","Новая задача"),
+										m("h4",t.localisation.dictionary.TASK_NEW),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.TITUL),
-											m("input.uk-input",{placeholder:"Название",oninput: m.withAttr("value",function(value){Task.current.name = value;})})
+											m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL,oninput: m.withAttr("value",function(value){Task.current.name = value;})})
 										]),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.EMPLOYEE_ATTACH),
