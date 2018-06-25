@@ -3,13 +3,15 @@ define(['mithril','titar','controllers/Auth','views/Layout',
 'views/Employee/List','views/Employee/New', 'views/Employee/View', 'views/Employee/Edit',
 'views/Project/List','views/Project/New', 'views/Project/View', 'views/Project/TaskList', 'views/Project/Edit',
 'views/Task/My/List',
-'views/App/Login'
+'views/App/Login',
+'models/Menu'
 ], function(n, t, AuthController, Layout,
 ClientList, ClientNew, ClientView, ClientEdit,
 EmployeeList, EmployeeNew, EmployeeView, EmployeeEdit,
 ProjectList, ProjectNew, ProjectView, ProjectTaskList, ProjectEdit,
 TaskMyListView,
-LoginView){
+LoginView,
+Menu){
 
     var App = {
         init:function(){
@@ -38,6 +40,7 @@ LoginView){
 			}).then(function(report){
 				t.localisation.dictionary = report;
 				t.localisation.currentLanguage = t.localisation.list[language];
+				Menu.reload();
 				document.cookie = "language="+language+"; path=/; expires=" + new Date(new Date().getTime() + 60 * 10000000).toUTCString();
 			});
 		},
