@@ -68,7 +68,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 										// 	])
 										// ]),
 										m("div.uk-margin",[
-											m("button.uk-button uk-button-primary uk-modal-close",{onclick:function(){TaskController.add()}},t.localisation.dictionary.ADD)
+											m("button.uk-button uk-button-primary uk-modal-close",{onclick:function(){TaskController.add()}},t.localisation.dictionary.SAVE)
 										]),
 									])
 								])
