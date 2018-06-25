@@ -31,7 +31,7 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 										}),
 										m("div",[
 											m("ul.uk-list",[
-												m("li.uk-nav-header","Проекты"),
+												m("li.uk-nav-header",t.localisation.dictionary.PROJECTS),
 												[{}].map(function(){
 													if(Client.current.projectList != null){
 														return Client.current.projectList.map(function(project){
@@ -52,13 +52,13 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Имя"),
+														m('dt',t.localisation.dictionary.FIRSTNAME),
 														m('dd',Client.current.firstname)
 													]),
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Фамилия"),
+														m('dt',t.localisation.dictionary.LASTNAME),
 														m('dd',Client.current.lastname)
 													]),
 												])
@@ -66,13 +66,13 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Почта"),
+														m('dt',t.localisation.dictionary.EMAIL),
 														m('dd',Client.current.email)
 													]),
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Телефон"),
+														m('dt',t.localisation.dictionary.PHONE),
 														m('dd',Client.current.phone)
 													]),
 												])
@@ -80,13 +80,13 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 											m("div.uk-flex uk-flex-row uk-flex-wrap uk-margin",[
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Последний контакт"),
+														m('dt',t.localisation.dictionary.LAST_CONTACT),
 														m('dd',Client.current.lastContact)
 													]),
 												]),
 												m("div.uk-width-1-2 uk-padding-small uk-padding-remove-vertical",[
 													m('dl.uk-description-list',[
-														m('dt',"Примечение"),
+														m('dt',t.localisation.dictionary.NOTE),
 														m('dd',Client.current.note)
 													]),
 												])
@@ -94,7 +94,7 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 										])
 									]),
 									m("div.uk-flex uk-flex-column uk-padding-small",[
-										m("h3","Комментарии"),
+										m("h3",t.localisation.dictionary.COMMENTS),
 										m('ul.uk-comment-list',[
 											[{}].map(() => {
 												if(Client.current.commentList != null){
@@ -123,8 +123,8 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 												}
 											}),
 											m('div',[
-												m("textarea.uk-textarea uk-margin-small-bottom",{oninput: m.withAttr("value",function(value){Client.current.commentNew = value;}), value:Client.current.commentNew,placeholder:"Написать комментарий"}),
-													m("button.uk-button uk-button-primary",{onclick:()=> {ClientController.addComment();}},"Отправить")
+												m("textarea.uk-textarea uk-margin-small-bottom",{oninput: m.withAttr("value",function(value){Client.current.commentNew = value;}), value:Client.current.commentNew,placeholder:t.localisation.dictionary.WRITE_A_COMMENT}),
+													m("button.uk-button uk-button-primary",{onclick:()=> {ClientController.addComment();}},t.localisation.dictionary.SEND)
 											])
 
 										])

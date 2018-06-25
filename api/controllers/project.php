@@ -63,6 +63,26 @@ if($data->action == "get"){
 			$taskTemp = json_decode(json_encode($taskTemp));
 			$category->list = array();
 			foreach ($taskTemp as $task) {
+				$memberList = $db->select("task_member",[
+					"[>]employee" => ["employee_id" => "id"]
+				],[
+					"employee.id(id)",
+					"employee.firstname",
+					"employee.lastname",
+					"employee.photo"
+				],[
+					"ORDER" => ["employee.id" => "ASC"],
+					"task_member.task_id" => $task->id
+				]);
+				$memberList = json_decode(json_encode($memberList));
+				$task->memberList = array();
+				foreach ($memberList as $employee) {
+					$task->memberList += array($employee->id => $employee);
+				}
+				if(count($task->memberList) == 0){
+					$task->memberList = (object)$task->memberList;
+				}
+
 				$category->list += array($task->id => $task);
 			}
 			if(count($category->list) == 0){
@@ -137,6 +157,25 @@ if($data->action == "get"){
 			$taskTemp = json_decode(json_encode($taskTemp));
 			$category->list = array();
 			foreach ($taskTemp as $task) {
+				$memberList = $db->select("task_member",[
+					"[>]employee" => ["employee_id" => "id"]
+				],[
+					"employee.id(id)",
+					"employee.firstname",
+					"employee.lastname",
+					"employee.photo"
+				],[
+					"ORDER" => ["employee.id" => "ASC"],
+					"task_member.task_id" => $task->id
+				]);
+				$memberList = json_decode(json_encode($memberList));
+				$task->memberList = array();
+				foreach ($memberList as $employee) {
+					$task->memberList += array($employee->id => $employee);
+				}
+				if(count($task->memberList) == 0){
+					$task->memberList = (object)$task->memberList;
+				}
 				$category->list += array($task->id => $task);
 			}
 			if(count($category->list) == 0){
@@ -198,6 +237,23 @@ if($data->action == "get"){
 	]);
 	$report->code = 200;
 	$report->info = "проект успешно удалён!";
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "removeCategory"){
+	$db->delete("project_task_category", [
+		"AND" => [
+			"id_task_category" => $data->id,
+			"id_project" => $data->projectId
+		]
+	]);
+	//echo json_encode($db->error());
+	$db->delete("task", [
+		"AND" => [
+			"category_id" => $data->id,
+			"project_id" => $data->projectId
+		]
+	]);
+	$report->code = 200;
+	$report->info = "Категория успешно удалена!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else if($data->action == "addCategory"){
 		$id = -1;

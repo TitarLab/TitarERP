@@ -1,14 +1,14 @@
 define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Project){
-
+	var BreakException = {};
     var TaskController = {
 			init:{
 					default:function(){
 							//TaskController.clearCurrent();
 							TaskController.load.list();
+							TaskController.load.statusList();
 					},
 					new:function(){
-						TaskController.init.default();
-						TaskController.load.nextId();
+						TaskController.clearCurrent();
 					},
 					current:function(id){
 						TaskController.init.default();
@@ -67,6 +67,20 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									}
 							});
 						},
+						statusList:() => {
+							m.request({
+									method: "POST",
+									url:"../api/api.php",
+									data:{model:"task",action:"getStatusList"},
+									withCredentials:true,
+							}).then(function(report){
+									if(report.code == 200){
+											Task.statusList = report.result;
+									}else{
+
+									}
+							});
+						}
 					},
 						add:function(){
 							m.request({
@@ -76,13 +90,17 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
-										Project.current.categoryList.forEach((item) => {
-											if(item.id == report.result.categoryId){
-												item.list[report.result.id] = report.result;
-												throw BreakException;
-											}
-										})
-										Project.current.categoryList.
+										try{
+											Project.current.categoryList.forEach((item) => {
+												if(item.id == report.result.categoryId){
+													item.list[report.result.id] = report.result;
+													throw BreakException;
+												}
+											})
+										}catch(e){
+											 if (e !== BreakException) throw e;
+										}
+										//Project.current.categoryList.
 										UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 									}else{
 
@@ -106,7 +124,42 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							}
 
 						},
-						remove:function(id){
+						addMember:function(employee, addToTask = true){
+								if(addToTask == false){
+									Task.current.memberList[employee.id] = employee;
+								}else{
+									m.request({
+											method: "POST",
+											url:"../api/api.php",
+											data:{model:"task",action:"addMember", id:Task.current.id, value:employee.id},
+											withCredentials:true,
+									}).then(function(report){
+											if(report.code == 200){
+												Task.current.memberList[employee.id] = employee;
+
+											}else{
+
+											}
+									});
+								}
+						},
+						removeMember:function(employeeId){
+							if(employeeId != null){
+								m.request({
+										method: "POST",
+										url:"../api/api.php",
+										data:{model:"task",action:"removeMember", id:Task.current.id, value:employeeId},
+										withCredentials:true,
+								}).then(function(report){
+										if(report.code == 200){
+											delete Task.current.memberList[employeeId];
+										}else{
+
+										}
+								});
+							}
+						},
+						remove:function(id, catId = -1){
 							if(id != null){
 								m.request({
 										method: "POST",
@@ -116,6 +169,10 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								}).then(function(report){
 										if(report.code == 200){
 											UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
+											if(catId >= 0){
+												delete Project.current.categoryList[catId].list[id];
+											}
+
 										}else{
 
 										}
@@ -141,9 +198,29 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							},
 
 						},
+						setStatus:(taskId,statusId)=>{
+							if(taskId != null && statusId != null){
+								m.request({
+									method: "POST",
+									url:"../api/api.php",
+									data:{model:"task",action:"setStatus",id:taskId, value:statusId},
+									withCredentials:true,
+
+								}).then(function(report){
+									if(report.code == 200){
+
+									}else{
+
+									}
+								});
+							}
+						},
 					clearCurrent:function(){
 							Object.keys(Task.current).forEach(function(item){
 								Task.current[item] = null;
+								if(item == "memberList"){
+									Task.current[item] = {}
+								}
 							});
 						},
 						render:{

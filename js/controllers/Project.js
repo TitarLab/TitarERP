@@ -1,10 +1,11 @@
-define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,Task){
+define(['mithril','titar','controllers/Task','models/Project','models/Task'], function(n,t,TaskController,Project,Task){
 
     var ProjectController = {
         init:{
             default:function(){
 							ProjectController.clearCurrent();
               ProjectController.load.list();
+			  TaskController.load.statusList();
             },
 						new:function(){
 							ProjectController.init.default();
@@ -109,6 +110,24 @@ define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,
 						}).then(function(report){
 								if(report.code == 200){
 									delete Project.current.tagList[id];
+								}else{
+
+								}
+						});
+					}
+				},
+				removeCategory:function(id, index = -1){
+					if(id != null){
+						m.request({
+								method: "POST",
+								url:"../api/api.php",
+								data:{model:"project",action:"removeCategory", id:id, projectId: Project.current.id},
+								withCredentials:true,
+						}).then(function(report){
+								if(report.code == 200){
+									if(index >= 0){
+										Project.current.categoryList.splice(index,1);
+									}
 								}else{
 
 								}

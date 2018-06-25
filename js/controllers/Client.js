@@ -102,7 +102,7 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
-									m.route.set("client/list");
+									m.route.set("/client/view/"+Client.current.id);
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
 

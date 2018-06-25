@@ -1,4 +1,4 @@
-define(['mithril','titar','controllers/Project','controllers/Task','models/Project','models/Task'], function(n,t,ProjectController,TaskController,Project, Task){
+define(['mithril','titar','controllers/Project','controllers/Task','controllers/Modal','models/Project','models/Task'], function(n,t,ProjectController,TaskController,ModalController,Project, Task){
     var ProjectTaskListView = {
         oninit: function(vnode){
   				ProjectController.init.current(vnode.attrs.id);
@@ -15,7 +15,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
                             m("div.uk-button-group",[
                                 m("div.uk-search uk-search-default",[
                                     m("span",{"uk-search-icon":""}),
-                                    m("input.uk-search-input",{"type":"search", "placeholder":"Поиск..."})
+                                    m("input.uk-search-input",{"type":"search", "placeholder":t.localisation.dictionary.SEARCH})
                                 ])
                             ])
                         ])
@@ -35,6 +35,22 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																m("div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
 																	m("div.uk-flex uk-flex-middle",[
 																		m("h3.uk-margin-remove uk-sortable-handle", category.name),
+																		m("span.uk-link",{"uk-icon":"icon: more-vertical"}),
+																		m("div.uk-width-medium",{"uk-dropdown":"mode: click"},[
+																			m("div",[
+																				m("div",[
+																					m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
+																						m("li.uk-margin-small-bottom"),
+																						m("li",[
+																							m("a",{onclick:()=>{ProjectController.removeCategory(category.id, categoryIndex)}},t.localisation.dictionary.REMOVE),
+																						]),
+																						// m("li",[
+																						// 	m("a",{href:"#"},"Закрыть"),
+																						// ]),
+																					])
+																				])
+																			])
+																		]),
 
 
 
@@ -42,7 +58,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																	m('div.uk-flex uk-flex-middle',[
 
 																		m("a",[
-																			m("span",{"uk-icon":"icon:plus","uk-toggle":"target: #modal", onclick:function(){Task.current.categoryId = category.id}}),
+																			m("span",{"uk-icon":"icon:plus","uk-toggle":"target: #modal", onclick:function(){ModalController.setType("newTask");Task.current.categoryId = category.id}}),
 																		])
 																	])
 
@@ -67,36 +83,43 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																											m("div",[
 																												m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
 																													m("li",[
-																														m("a","Подробнее"),
+																														m("a",t.localisation.dictionary.MORE),
 																													]),
 																													m("li",[
-																														m("a","Редактировать"),
+																														m("a",{"uk-toggle":"target: #modal",onclick:()=>{Task.current = task;ModalController.setType("editTask");}},t.localisation.dictionary.EDIT),
 																													]),
 																													m("li.uk-width-1-1",[
 																														m("a",[
 																															m("div.uk-width-1-1 uk-flex uk-flex-between",[
-																																m("span","Изменить статус"),
+																																m("span",t.localisation.dictionary.STATUS_CHANGE),
 																																m("span",{"uk-icon":"icon:triangle-right"})
 																															])
 																														]),
 																														m("div",{"uk-dropdown":"pos: right-center; offset: 0"},[
 																															m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
-																																m("li.uk-active",[
-																																	m("a","Новая")
-																																]),
-																																m("li",[
-																																	m("a","В процессе")
-																																]),
+																																[{}].map(() =>{
+																																	if(Task.statusList != null){
+																																		return Task.statusList.map((item) => {
+																																			let actived = "";
+																																			if(task.status == item.name){
+																																				actived = "uk-active"
+																																			}
+																																			return m("li"+actived,{class:actived},[
+																																				m("a",{onclick:()=>{TaskController.setStatus(task.id,item.id);task.status = item.name;}},item.name)
+																																			])
+																																		})
+																																	}
+																																})
 																															])
 																														])
 																													]),
 																													m("li.uk-margin-small-bottom"),
 																													m("li",[
-																														m("a","Удалить"),
+																														m("a",{onclick:()=>{TaskController.remove(task.id, categoryIndex)}},t.localisation.dictionary.REMOVE),
 																													]),
-																													m("li",[
-																														m("a","Закрыть"),
-																													]),
+																													// m("li",[
+																													// 	m("a",{href:"#"},"Закрыть"),
+																													// ]),
 																												])
 																											])
 																										])
@@ -104,15 +127,25 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																								]),
 																								// m("h5.uk-margin-remove",task.project),
 																								m("div.uk-flex uk-margin-small-top uk-flex-column",[
+																									// m("div.uk-flex uk-flex-middle",[
+																									// 	m("span",{"uk-icon":"icon:clock"}),
+																									// 	m("span.uk-margin-small-left",task.deadline),
+																									// ]),
+																									// m("div.uk-flex uk-flex-middle",[
+																									// 	m("span",{"uk-icon":"icon:star"}),
+																									// 	m("span.uk-badge uk-margin-left"),
+																									// 	m("span.uk-margin-left",task.status)
+																									// ]),
 																									m("div.uk-flex uk-flex-middle",[
-																										m("span",{"uk-icon":"icon:clock"}),
-																										m("span.uk-margin-small-left",task.deadline),
+																										[{}].map(()=>{
+																											if(task.memberList != null){
+																												return Object.keys(task.memberList).map((id) => {
+																													let employee = task.memberList[id];
+																													return m("div",{style:"width:25px;height:25px; background:black; border-radius:100%; background-image:url("+employee.photo+"); background-size:cover"})
+																												})
+																											}
+																										})
 																									]),
-																									m("div.uk-flex uk-flex-middle",[
-																										m("span",{"uk-icon":"icon:star"}),
-																										m("span.uk-badge uk-margin-left"),
-																										m("span.uk-margin-left",task.status)
-																									])
 																								])
 																							])
 																						])
@@ -131,12 +164,12 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 													m("div.uk-width-medium uk-padding-small  ",[
 														m("div.uk-flex uk-flex-middle uk-margin-small-bottom",[
 															m("a.uk-flex uk-flex-middle",[
-																m("span.uk-margin-small-right",{"uk-icon":"icon:plus"}),
-																m("h3.uk-margin-remove", "Новая колонка"),
+																// m("span.uk-margin-small-right",{"uk-icon":"icon:plus"}),
+																m("h3.uk-margin-remove", t.localisation.dictionary.NEW_COLUMN),
 															])
 														]),
 														m("div.uk-button-group",[
-															m("input.uk-input",{placeholder:"Название",value:Task.status.new.name, oninput: m.withAttr("value",function(value){
+															m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL,value:Task.status.new.name, oninput: m.withAttr("value",function(value){
 																if(value.length >= 3){
 																	TaskController.search.byName(value);
 																	UIkit.dropdown(t.getById("input-dropdown")).show();
@@ -155,7 +188,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																	})
 																])
 															]),
-															m("button.uk-button uk-button-primary",{onclick:function(){{ProjectController.addCategory();}}},"Добавить"),
+															m("button.uk-button uk-button-primary",{onclick:function(){{ProjectController.addCategory();}}},t.localisation.dictionary.ADD),
 
 														]),
 

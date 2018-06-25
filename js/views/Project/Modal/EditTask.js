@@ -2,7 +2,6 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 
     var ProjectModalNewTaskView = {
         oninit: function(vnode){
-			TaskController.init.new();
 					Task.current.statusId = 1;
         },
 				oncreate:function(vnode){
@@ -13,15 +12,15 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
                 m("div.uk-modal-dialog uk-modal-body",[
 									m("button.uk-modal-close-outside",{"uk-close":""}),
 									m("div.uk-form-stacked",{"uk-margin":""},[
-										m("h4","Новая задача"),
+										m("h4",t.localisation.dictionary.TASK_EDIT),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.TITUL),
-											m("input.uk-input",{placeholder:"Название",oninput: m.withAttr("value",function(value){Task.current.name = value;})})
+											m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL, value:Task.current.name ,oninput: m.withAttr("value",function(value){Task.current.name = value;})})
 										]),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.EMPLOYEE_ATTACH),
 											m("div.uk-button-group",[
-												m("input.uk-input",{placeholder:t.localisation.dictionary.EMPLOYEE, oninput: m.withAttr("value",function(value){
+												m("input.uk-input",{placeholder:"t.localisation.dictionary.EMPLOYEE", oninput: m.withAttr("value",function(value){
 													if(value.length >= 3){
 														EmployeeController.search(value);
 														UIkit.dropdown(t.getById("new-member-dropdown")).show();
@@ -34,7 +33,8 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 													m("ul.uk-nav uk-iconnav uk-dropdown-nav uk-padding-remove-left",[
 														Employee.searchList.map(function(item){
 															return m("li",[
-																m("a",{onclick:function(){TaskController.addMember(item,false);}},item.firstname + " " + item.lastname)
+
+																m("a",{onclick:function(){TaskController.addMember(item);}},item.firstname + " " + item.lastname)
 															])
 														})
 													])
@@ -42,9 +42,10 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 											]),
 											m('ul.uk-list',[
 												Object.keys(Task.current.memberList).map((id) => {
-													return m("li", [
+													return m("li.uk-flex uk-flex-middle", [
+														m("div.uk-margin-small-right",{style:"width:25px;height:25px; background:black; border-radius:100%; background-image:url("+Task.current.memberList[id].photo+"); background-size:cover"}),
 														m("span",Task.current.memberList[id].firstname + " " + Task.current.memberList[id].lastname),
-														m("span.uk-link",{"uk-icon":"icon:close", onclick:() => {delete Task.current.memberList[id]}})
+														m("span.uk-link",{"uk-icon":"icon:close", onclick:() => {TaskController.removeMember(id)}})
 													])
 												})
 											])

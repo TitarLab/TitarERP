@@ -1,4 +1,4 @@
-define(['mithril','controllers/Task','models/Task'], function(n,TaskController,Task){
+define(['mithril','titar','controllers/Task','models/Task'], function(n,t,TaskController,Task){
     var TaskMyListView = {
 				start: 0,
         oninit: function(){
@@ -12,12 +12,12 @@ define(['mithril','controllers/Task','models/Task'], function(n,TaskController,T
             return[
                 m("div.uk-flex uk-flex-column uk-width-expand",[
                     m("div.uk-flex uk-flex-between uk-flex-middle uk-width-1-1 uk-padding-small t-border-bottom",[
-                        m("h3.uk-margin-remove","Мои задачи"),
+                        m("h3.uk-margin-remove",t.localisation.dictionary.MY_TASKS),
                         m("div.uk-flex uk-flex-right",[
                             m("div.uk-button-group",[
                                 m("div.uk-search uk-search-default",[
                                     m("span",{"uk-search-icon":""}),
-                                    m("input.uk-search-input",{"type":"search", "placeholder":"Поиск..."})
+                                    m("input.uk-search-input",{"type":"search", "placeholder":t.localisation.dictionary.SEARCH})
                                 ])
                             ])
                         ])
