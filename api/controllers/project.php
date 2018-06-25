@@ -63,6 +63,26 @@ if($data->action == "get"){
 			$taskTemp = json_decode(json_encode($taskTemp));
 			$category->list = array();
 			foreach ($taskTemp as $task) {
+				$memberList = $db->select("task_member",[
+					"[>]employee" => ["employee_id" => "id"]
+				],[
+					"employee.id(id)",
+					"employee.firstname",
+					"employee.lastname",
+					"employee.photo"
+				],[
+					"ORDER" => ["employee.id" => "ASC"],
+					"task_member.task_id" => $task->id
+				]);
+				$memberList = json_decode(json_encode($memberList));
+				$task->memberList = array();
+				foreach ($memberList as $employee) {
+					$task->memberList += array($employee->id => $employee);
+				}
+				if(count($task->memberList) == 0){
+					$task->memberList = (object)$task->memberList;
+				}
+
 				$category->list += array($task->id => $task);
 			}
 			if(count($category->list) == 0){
@@ -137,6 +157,25 @@ if($data->action == "get"){
 			$taskTemp = json_decode(json_encode($taskTemp));
 			$category->list = array();
 			foreach ($taskTemp as $task) {
+				$memberList = $db->select("task_member",[
+					"[>]employee" => ["employee_id" => "id"]
+				],[
+					"employee.id(id)",
+					"employee.firstname",
+					"employee.lastname",
+					"employee.photo"
+				],[
+					"ORDER" => ["employee.id" => "ASC"],
+					"task_member.task_id" => $task->id
+				]);
+				$memberList = json_decode(json_encode($memberList));
+				$task->memberList = array();
+				foreach ($memberList as $employee) {
+					$task->memberList += array($employee->id => $employee);
+				}
+				if(count($task->memberList) == 0){
+					$task->memberList = (object)$task->memberList;
+				}
 				$category->list += array($task->id => $task);
 			}
 			if(count($category->list) == 0){

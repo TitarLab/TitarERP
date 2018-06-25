@@ -1,4 +1,4 @@
-define(['mithril','titar','controllers/Project','controllers/Task','models/Project','models/Task'], function(n,t,ProjectController,TaskController,Project, Task){
+define(['mithril','titar','controllers/Project','controllers/Task','controllers/Modal','models/Project','models/Task'], function(n,t,ProjectController,TaskController,ModalController,Project, Task){
     var ProjectTaskListView = {
         oninit: function(vnode){
   				ProjectController.init.current(vnode.attrs.id);
@@ -58,7 +58,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																	m('div.uk-flex uk-flex-middle',[
 
 																		m("a",[
-																			m("span",{"uk-icon":"icon:plus","uk-toggle":"target: #modal", onclick:function(){Task.current.categoryId = category.id}}),
+																			m("span",{"uk-icon":"icon:plus","uk-toggle":"target: #modal", onclick:function(){ModalController.setType("newTask");Task.current.categoryId = category.id}}),
 																		])
 																	])
 
@@ -86,7 +86,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																														m("a","Подробнее"),
 																													]),
 																													m("li",[
-																														m("a","Редактировать"),
+																														m("a",{"uk-toggle":"target: #modal",onclick:()=>{Task.current = task;ModalController.setType("editTask");}},"Редактировать"),
 																													]),
 																													m("li.uk-width-1-1",[
 																														m("a",[
@@ -97,12 +97,19 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																														]),
 																														m("div",{"uk-dropdown":"pos: right-center; offset: 0"},[
 																															m("ul.uk-nav uk-dropdown-nav uk-padding-remove-left",[
-																																m("li.uk-active",[
-																																	m("a","Новая")
-																																]),
-																																m("li",[
-																																	m("a","В процессе")
-																																]),
+																																[{}].map(() =>{
+																																	if(Task.statusList != null){
+																																		return Task.statusList.map((item) => {
+																																			let actived = "";
+																																			if(task.status == item.name){
+																																				actived = "uk-active"
+																																			}
+																																			return m("li"+actived,{class:actived},[
+																																				m("a",{onclick:()=>{TaskController.setStatus(task.id,item.id);task.status = item.name;}},item.name)
+																																			])
+																																		})
+																																	}
+																																})
 																															])
 																														])
 																													]),
@@ -120,15 +127,25 @@ define(['mithril','titar','controllers/Project','controllers/Task','models/Proje
 																								]),
 																								// m("h5.uk-margin-remove",task.project),
 																								m("div.uk-flex uk-margin-small-top uk-flex-column",[
+																									// m("div.uk-flex uk-flex-middle",[
+																									// 	m("span",{"uk-icon":"icon:clock"}),
+																									// 	m("span.uk-margin-small-left",task.deadline),
+																									// ]),
+																									// m("div.uk-flex uk-flex-middle",[
+																									// 	m("span",{"uk-icon":"icon:star"}),
+																									// 	m("span.uk-badge uk-margin-left"),
+																									// 	m("span.uk-margin-left",task.status)
+																									// ]),
 																									m("div.uk-flex uk-flex-middle",[
-																										m("span",{"uk-icon":"icon:clock"}),
-																										m("span.uk-margin-small-left",task.deadline),
+																										[{}].map(()=>{
+																											if(task.memberList != null){
+																												return Object.keys(task.memberList).map((id) => {
+																													let employee = task.memberList[id];
+																													return m("div",{style:"width:25px;height:25px; background:black; border-radius:100%; background-image:url("+employee.photo+"); background-size:cover"})
+																												})
+																											}
+																										})
 																									]),
-																									m("div.uk-flex uk-flex-middle",[
-																										m("span",{"uk-icon":"icon:star"}),
-																										m("span.uk-badge uk-margin-left"),
-																										m("span.uk-margin-left",task.status)
-																									])
 																								])
 																							])
 																						])

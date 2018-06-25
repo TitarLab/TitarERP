@@ -5,6 +5,7 @@ define(['mithril','titar'], function(n,t){
 				current:{
 					id:0,
 					name:"",
+					memberList:{}
 				},
 				categoryElems:[],
 				tempCategoryId:0,

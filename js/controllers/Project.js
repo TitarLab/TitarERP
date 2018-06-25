@@ -1,10 +1,11 @@
-define(['mithril','titar','models/Project','models/Task'], function(n,t,Project,Task){
+define(['mithril','titar','controllers/Task','models/Project','models/Task'], function(n,t,TaskController,Project,Task){
 
     var ProjectController = {
         init:{
             default:function(){
 							ProjectController.clearCurrent();
               ProjectController.load.list();
+			  TaskController.load.statusList();
             },
 						new:function(){
 							ProjectController.init.default();

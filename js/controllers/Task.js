@@ -5,10 +5,10 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 					default:function(){
 							//TaskController.clearCurrent();
 							TaskController.load.list();
+							TaskController.load.statusList();
 					},
 					new:function(){
-						TaskController.init.default();
-						TaskController.load.nextId();
+						TaskController.clearCurrent();
 					},
 					current:function(id){
 						TaskController.init.default();
@@ -67,6 +67,20 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									}
 							});
 						},
+						statusList:() => {
+							m.request({
+									method: "POST",
+									url:"../api/api.php",
+									data:{model:"task",action:"getStatusList"},
+									withCredentials:true,
+							}).then(function(report){
+									if(report.code == 200){
+											Task.statusList = report.result;
+									}else{
+
+									}
+							});
+						}
 					},
 						add:function(){
 							m.request({
@@ -110,6 +124,41 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							}
 
 						},
+						addMember:function(employee, addToTask = true){
+								if(addToTask == false){
+									Task.current.memberList[employee.id] = employee;
+								}else{
+									m.request({
+											method: "POST",
+											url:"../api/api.php",
+											data:{model:"task",action:"addMember", id:Task.current.id, value:employee.id},
+											withCredentials:true,
+									}).then(function(report){
+											if(report.code == 200){
+												Task.current.memberList[employee.id] = employee;
+
+											}else{
+
+											}
+									});
+								}
+						},
+						removeMember:function(employeeId){
+							if(employeeId != null){
+								m.request({
+										method: "POST",
+										url:"../api/api.php",
+										data:{model:"task",action:"removeMember", id:Task.current.id, value:employeeId},
+										withCredentials:true,
+								}).then(function(report){
+										if(report.code == 200){
+											delete Task.current.memberList[employeeId];
+										}else{
+
+										}
+								});
+							}
+						},
 						remove:function(id, catId = -1){
 							if(id != null){
 								m.request({
@@ -149,9 +198,29 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							},
 
 						},
+						setStatus:(taskId,statusId)=>{
+							if(taskId != null && statusId != null){
+								m.request({
+									method: "POST",
+									url:"../api/api.php",
+									data:{model:"task",action:"setStatus",id:taskId, value:statusId},
+									withCredentials:true,
+
+								}).then(function(report){
+									if(report.code == 200){
+
+									}else{
+
+									}
+								});
+							}
+						},
 					clearCurrent:function(){
 							Object.keys(Task.current).forEach(function(item){
 								Task.current[item] = null;
+								if(item == "memberList"){
+									Task.current[item] = {}
+								}
 							});
 						},
 						render:{

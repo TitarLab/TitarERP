@@ -128,7 +128,22 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 					Object.keys(Employee.current).forEach(function(item){
 						Employee.current[item] = null;
 					});
-				}
+				},
+				search:function(value){
+					m.request({
+							method: "POST",
+							url:"../api/api.php",
+							data:{model:"employee",action:"search", value:value},
+							withCredentials:true,
+
+					}).then(function(report){
+							if(report.code == 200){
+								Employee.searchList = report.result;
+							}else{
+
+							}
+					});
+				},
     }
 
     return EmployeeController;

@@ -54,15 +54,13 @@ define(['mithril','titar','controllers/Project','models/Project'], function(n,t,
                                             ]),
 											m("div",{"uk-dropdown":""},[
                                               m("ul.uk-nav uk-dropdown-nav",[
-												  m('li',[
-													  m('a',{href:"#!/project/view/"+project.id+"/task/list"},t.localisation.dictionary.TASKS)
-												  ]),
 												  m("li.uk-nav-divider"),
 												  m("li",[
 													  m("a",{onclick:function(){ProjectController.remove(project.id);Project.list.splice(i,1);}},t.localisation.dictionary.PROJECT_DELETE)
 												  ])
                                               ])
                                             ]),
+                                            m("a.uk-button uk-button-default",{href:"#!/project/view/"+project.id+"/task/list"},t.localisation.dictionary.TASKS),
                                             m("a.uk-button uk-button-default",{href:"#!/project/edit/"+project.id},t.localisation.dictionary.EDIT)
                                         ])
                                     ]),

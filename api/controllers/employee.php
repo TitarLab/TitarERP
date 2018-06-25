@@ -49,6 +49,20 @@ if($data->action == "get"){
 	]);
 	$report->info = "Работник успешно удалён!";
 	echo json_encode($report, JSON_UNESCAPED_UNICODE);
+}else if($data->action == "search"){
+	$result = $db->select("employee","*",[
+		"ORDER" => ["id" => "ASC"],
+		"OR" =>[
+			"firstname[~]" => $data->value,
+			"lastname[~]" => $data->value
+		]
+
+	]);
+	$result = json_decode(json_encode($result));
+	$report->code = 200;
+	$report->info = "Поиск завершён. Найдено ".count($result)." результатов";
+	$report->result = $result;
+	echo json_encode($report, JSON_UNESCAPED_UNICODE);
 }else{
 		$report->code = "Некорректное действие";
 		echo $report;
