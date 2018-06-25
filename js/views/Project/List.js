@@ -52,7 +52,7 @@ define(['mithril','titar','controllers/Project','models/Project'], function(n,t,
                                             m("button.uk-button uk-button-default",{},[
                                                 m("span",{"uk-icon":"icon:more"})
                                             ]),
-											m("div",{"uk-dropdown":""},[
+											m("div",{"uk-dropdown":"mode:click"},[
                                               m("ul.uk-nav uk-dropdown-nav",[
 												  m("li.uk-nav-divider"),
 												  m("li",[

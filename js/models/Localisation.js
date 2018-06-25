@@ -59,6 +59,7 @@ define(['mithril','titar'], function(n,t){
 			"TASKS":"TASKS",
 			"MY_TASKS":"MY_TASKS",
 			"TASK_EDIT":"TASK_EDIT",
+			"TASK_NEW":"TASK_NEW",
 
 			"TAGS":"TAGS",
 
