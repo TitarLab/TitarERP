@@ -16,7 +16,7 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'con
 																m("a",{href:"#!/project/list", onclick:function(){m.route.set("/project/list")}},[
 																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
 																		m("img",{src:"../img/icons/menu/project.svg", width:64, height:64, "uk-svg":""}),
-																		m("span","Проекты")
+																		m("span",t.localisation.dictionary.PROJECTS)
 																	])
 																])
 															]),
@@ -24,15 +24,7 @@ define(['mithril','titar','views/Menu', 'views/Notification','views/Modal', 'con
 																m("a",{href:"#!/task/my",onclick:function(){m.route.set("/task/my")}},[
 																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
 																		m("img",{src:"../img/icons/menu/checklist.svg", width:64, height:64, "uk-svg":""}),
-																		m("span","Мои задачи")
-																	])
-																])
-															]),
-															m("li.uk-margin-small-right",[
-																m("a",{href:"#!/task/my",onclick:function(){m.route.set("/task/my")}},[
-																	m("div.uk-flex uk-flex-column uk-flex-center uk-flex-middle",[
-																		m("img",{src:"../img/icons/menu/checklist.svg", width:64, height:64, "uk-svg":""}),
-																		m("span","Мои задачи")
+																		m("span",t.localisation.dictionary.MY_TASKS)
 																	])
 																])
 															]),
