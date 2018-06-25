@@ -1,4 +1,4 @@
-define(['mithril','controllers/Client','models/Client'], function(n,ClientController,Client){
+define(['mithril',"titar",'controllers/Client','models/Client'], function(n,t,ClientController,Client){
     var ClientNewView = {
         oninit: function(){
             ClientController.init.new();

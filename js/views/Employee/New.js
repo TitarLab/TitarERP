@@ -1,4 +1,4 @@
-define(['mithril','controllers/Employee','models/Employee'], function(n,EmployeeController,Employee){
+define(['mithril','titar','controllers/Employee','models/Employee'], function(n,t,EmployeeController,Employee){
     var EmployeeNewView = {
         oninit: function(){
             EmployeeController.init.new();

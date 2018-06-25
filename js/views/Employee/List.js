@@ -38,7 +38,7 @@ define(['mithril','titar','controllers/Employee','models/Employee'], function(n,
                                             m("button.uk-button uk-button-default",{},[
                                                 m("span",{"uk-icon":"icon:more"})
                                             ]),
-											m("div",{"uk-dropdown":""},[
+											m("div",{"uk-dropdown":"mode: click"},[
                                               m("ul.uk-nav uk-dropdown-nav",[
 												m("li.uk-nav-divider"),
 												m("li",[

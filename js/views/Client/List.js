@@ -57,7 +57,7 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
                                             m("button.uk-button uk-button-default",{},[
                                                 m("span",{"uk-icon":"icon:more"})
                                             ]),
-                                            m("div",{"uk-dropdown":""},[
+                                            m("div",{"uk-dropdown":"mode: click"},[
                                               m("ul.uk-nav uk-dropdown-nav",[
                                                 m("li.uk-nav-header",t.localisation.dictionary.CLIENT_UPDATE_LAST_CONTACT),
                                                 m("li",[
