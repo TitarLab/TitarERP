@@ -24,43 +24,43 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
         load:{
             list:function(){
                 m.request({
-                    method: "POST",
-                    url:"../api/api.php",
-                    data:{model:"client",action:"get"},
+                    method: "GET",
+                    url:"../api/client/list",
                     withCredentials:true,
                 }).then(function(report){
-                    if(report.code == 200){
-                        Client.list = report.result;
-												if(Client.list != null){
-													Client.list.forEach(function(client){
-														if(client.contacts != null && client.contacts != ""){
-															client.contacts = JSON.parse(client.contacts);
-														}
-
-													});
-												}
-
-                    }else{
-
-                    }
+					Client.list = report;
+                    // if(report.code == 200){
+                    //     Client.list = report.result;
+					// 							if(Client.list != null){
+					// 								Client.list.forEach(function(client){
+					// 									if(client.contacts != null && client.contacts != ""){
+					// 										client.contacts = JSON.parse(client.contacts);
+					// 									}
+					//
+					// 								});
+					// 							}
+					//
+                    // }else{
+					//
+                    // }
                 });
             },
 						current:function(id){
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"client",action:"getCurrent", id:id},
+									method: "GET",
+									url:"../api/client/"+id,
 									withCredentials:true,
 							}).then(function(report){
-									if(report.code == 200){
-											Client.current = report.result
-											if(Client.current.contacts != null && Client.current.contacts != ""){
-												Client.current.contacts = JSON.parse(Client.current.contacts);
-											}
-
-									}else{
-
-									}
+								Client.current = report;
+									// if(report.code == 200){
+									// 		Client.current = report.result
+									// 		if(Client.current.contacts != null && Client.current.contacts != ""){
+									// 			Client.current.contacts = JSON.parse(Client.current.contacts);
+									// 		}
+									//
+									// }else{
+									//
+									// }
 							});
 						},
 						nextId:function(){
@@ -81,11 +81,13 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 				add:function(){
 					m.request({
 							method: "POST",
-							url:"../api/api.php",
-							data:{model:"client",action:"add", client:Client.current},
+							url:"../api/client/add",
+							data:{client:Client.current},
 							withCredentials:true,
 					}).then(function(report){
+						console.log(report);
 							if(report.code == 200){
+
 								m.route.set("client/list");
 								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
