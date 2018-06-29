@@ -9,7 +9,6 @@ class Client extends Model
 {
 
     protected $table = 'client';
-	public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -19,14 +18,7 @@ class Client extends Model
     protected $fillable = [
 		"id",
 		"firstname",
-		"lastname",
-		"status",
-		"last_contact",
-		"contacts",
-		"note",
-		"photo",
-		"email",
-		"phone",
+		"lastname"
     ];
 
     /**

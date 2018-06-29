@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ClientComment extends Model
+class Task extends Model
 {
 
-    protected $table = 'client_comment';
+    protected $table = 'task';
 
     /**
      * The attributes that are mass assignable.
@@ -27,10 +27,12 @@ class ClientComment extends Model
     protected $hidden = [
 		//'password',
     ];
-	public function employee(){
-		return $this->hasOne('App\Models\Employee');
+
+	public function status(){
+		return $this->belongsTo('App\Models\TaskStatus');
 	}
-	public function user(){
-		return $this->belongsTo('App\Models\User');
+	public function members(){
+		return $this->hasMany('App\Models\TaskMember');
 	}
+
 }

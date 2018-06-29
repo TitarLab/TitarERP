@@ -11,23 +11,29 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
 
 $router->group(['prefix' => 'client'], function () use ($router) {
 	$router->get('list', [
 	    'as' => 'clientList', 'uses' => 'ClientController@showList'
 	]);
+	$router->get('next/id', [
+	    'uses' => 'ClientController@showNextId'
+	]);
 	$router->post('add', [
 	    'as' => 'add', 'uses' => 'ClientController@add'
 	]);
-	$router->delete('remove/{id}', [
-	    'as' => 'remove', 'uses' => 'ClientController@remove'
-	]);
 	$router->group(['prefix' => '{id}'], function () use ($router) {
 		$router->get('/', [
-		    'as' => 'client', 'uses' => 'ClientController@showClient'
+		    'as' => 'client', 'uses' => 'ClientController@showCurrent'
+		]);
+		$router->post('save', [
+		    'as' => 'add', 'uses' => 'ClientController@save'
+		]);
+		$router->delete('remove', [
+			'as' => 'remove', 'uses' => 'ClientController@remove'
 		]);
 		$router->group(['prefix' => 'comment'], function () use ($router) {
 			$router->get('list', [
@@ -39,10 +45,83 @@ $router->group(['prefix' => 'client'], function () use ($router) {
 			$router->get('test', [
 			    'as' => 'add', 'uses' => 'ClientCommentController@test'
 			]);
-			$router->delete('remove/{idComment}', [
+			$router->delete('{idComment}/remove', [
 			    'as' => 'remove', 'uses' => 'ClientCommentController@remove'
 			]);
 		});
 	});
+
+});
+
+$router->group(['prefix' => 'employee'], function () use ($router) {
+	$router->get('list', [
+	    'uses' => 'EmployeeController@showList'
+	]);
+	$router->get('next/id', [
+	    'uses' => 'EmployeeController@showNextId'
+	]);
+	$router->post('add', [
+	    'uses' => 'EmployeeController@add'
+	]);
+	$router->post('search', [
+	    'uses' => 'EmployeeController@search'
+	]);
+	$router->group(['prefix' => '{id}'], function () use ($router) {
+		$router->get('/', [
+		 	'uses' => 'EmployeeController@showCurrent'
+		]);
+		$router->post('save', [
+		    'uses' => 'EmployeeController@save'
+		]);
+		$router->delete('remove', [
+			'uses' => 'EmployeeController@remove'
+		]);
+	});
+
+});
+
+$router->group(['prefix' => 'project'], function () use ($router) {
+	$router->get('list', [
+	    'uses' => 'ProjectController@showList'
+	]);
+	$router->get('next/id', [
+	    'uses' => 'ProjectController@showNextId'
+	]);
+	$router->post('add', [
+	    'uses' => 'ProjectController@add'
+	]);
+	$router->post('search', [
+	    'uses' => 'ProjectController@search'
+	]);
+	$router->group(['prefix' => '{id}'], function () use ($router) {
+		$router->get('/', [
+		 	'uses' => 'ProjectController@showCurrent'
+		]);
+		$router->post('save', [
+		    'uses' => 'ProjectController@save'
+		]);
+		$router->delete('remove', [
+			'uses' => 'ProjectController@remove'
+		]);
+		$router->delete('tag/{projectTagId}/remove', [
+			'uses' => 'ProjectController@removeTag'
+		]);
+		$router->post('tag/add', [
+			'uses' => 'ProjectController@addTag'
+		]);
+		$router->delete('category/{projectTaskCategoryId}/remove', [
+			'uses' => 'ProjectController@removeCategory'
+		]);
+		$router->post('category/add', [
+			'uses' => 'ProjectController@addCategory'
+		]);
+	});
+
+});
+
+$router->group(['prefix' => 'tag'], function () use ($router) {
+	$router->post('search', [
+	    'uses' => 'TagController@search'
+	]);
 
 });

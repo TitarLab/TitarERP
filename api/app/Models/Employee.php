@@ -9,7 +9,6 @@ class Employee extends Model
 {
 
     protected $table = 'employee';
-	public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -17,12 +16,7 @@ class Employee extends Model
      * @var array
      */
     protected $fillable = [
-		"id",
-		"firstname",
-		"lastname",
-		"photo",
-		"email",
-		"phone",
+
     ];
 
     /**
@@ -33,4 +27,6 @@ class Employee extends Model
     protected $hidden = [
 		//'password',
     ];
+
+	
 }

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ClientComment extends Model
+class Tag extends Model
 {
 
-    protected $table = 'client_comment';
+    protected $table = 'tag';
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +16,7 @@ class ClientComment extends Model
      * @var array
      */
     protected $fillable = [
-
+		"name"
     ];
 
     /**
@@ -27,10 +27,6 @@ class ClientComment extends Model
     protected $hidden = [
 		//'password',
     ];
-	public function employee(){
-		return $this->hasOne('App\Models\Employee');
-	}
-	public function user(){
-		return $this->belongsTo('App\Models\User');
-	}
+
+
 }

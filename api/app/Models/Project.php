@@ -9,7 +9,6 @@ class Project extends Model
 {
 
     protected $table = 'project';
-	public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +16,7 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-		"id",
-		"client_id",
-		"name",
-		"url",
+
     ];
 
     /**
@@ -31,4 +27,14 @@ class Project extends Model
     protected $hidden = [
 		//'password',
     ];
+
+	public function client(){
+		return $this->belongsTo('App\Models\Client');
+	}
+	public function tags(){
+		return $this->hasMany('App\Models\ProjectTag');
+	}
+	public function projectTaskCategories(){
+		return $this->hasMany('App\Models\ProjectTaskCategory');
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,9 +16,9 @@ class Project extends JsonResource
     {
         return [
 			"id" => $this->id,
-			"clientId" => $this->client_id,
 			"name" => $this->name,
 			"url" => $this->url,
+			"clientId" => $this->client_id,
         ];
     }
 }

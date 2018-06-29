@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Client\User as UserResource;
 
 class ClientComment extends JsonResource
 {
@@ -20,7 +20,7 @@ class ClientComment extends JsonResource
         return [
 			"id" => $this->id,
 			"text" => $this->text,
-			"dateCreated" => $this->date_created,
+			"dateCreated" => $this->created_at,
 			"userId" => $this->user_id,
 			"clientId" => $this->client_id,
 			"employeeId" => $this->user_id,

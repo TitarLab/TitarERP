@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Employee as EmployeeResource;
+use App\Http\Resources\Client\Employee as EmployeeResource;
 
 class User extends JsonResource
 {

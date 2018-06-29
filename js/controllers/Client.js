@@ -65,50 +65,38 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 						},
 						nextId:function(){
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"client",action:"getNextId"},
+									method: "GET",
+									url:"../api/client/next/id",
 									withCredentials:true,
 							}).then(function(report){
-									if(report.code == 200){
-											Client.current.id = report.result;
-									}else{
 
-									}
+								Client.current.id = report.result;
+
 							});
 						}
         },
 				add:function(){
+					let client = Client.current;
 					m.request({
 							method: "POST",
 							url:"../api/client/add",
-							data:{client:Client.current},
+							data:Client.current,
 							withCredentials:true,
 					}).then(function(report){
-						console.log(report);
-							if(report.code == 200){
-
-								m.route.set("client/list");
-								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
-							}else{
-
-							}
+						m.route.set("client/list");
+						UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 					});
 				},
 				save:function(){
 					if(Client.current != null){
 						m.request({
 								method: "POST",
-								url:"../api/api.php",
-								data:{model:"client",action:"save", client:Client.current},
+								url:"../api/client/"+Client.current.id+"/save",
+								data:Client.current,
 								withCredentials:true,
 						}).then(function(report){
-								if(report.code == 200){
-									m.route.set("/client/view/"+Client.current.id);
-									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
-								}else{
-
-								}
+							m.route.set("/client/view/"+Client.current.id);
+							UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 						});
 					}
 
@@ -116,16 +104,11 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 				remove:function(id){
 					if(id != null){
 						m.request({
-								method: "POST",
-								url:"../api/api.php",
-								data:{model:"client",action:"remove", id:id},
+								method: "DELETE",
+								url:"../api/client/"+id+"/remove",
 								withCredentials:true,
 						}).then(function(report){
-								if(report.code == 200){
-									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
-								}else{
-
-								}
+								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 						});
 					}
 
@@ -140,30 +123,23 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 				addComment:function(){
 					m.request({
 							method: "POST",
-							url:"../api/api.php",
-							data:{model:"client",action:"addComment", comment:{text:Client.current.commentNew, userId:t.userId},id:Client.current.id},
+							url:"../api/client/"+Client.current.id+"/comment/add",
+							data:{text:Client.current.commentNew, userId:t.userId},
 							withCredentials:true,
 					}).then(function(report){
-							if(report.code == 200){
 								Client.current.commentList[report.result.id] = report.result;
 								Client.current.commentNew = '';
-							}else{
-
-							}
 					});
 				},
 				removeComment:function(id){
 					m.request({
-							method: "POST",
-							url:"../api/api.php",
-							data:{model:"client",action:"removeComment", id:id},
+							method: "DELETE",
+							url:"../api/client/"+Client.current.id+"/comment/"+id+"/remove",
 							withCredentials:true,
 					}).then(function(report){
-							if(report.code == 200){
-								delete Client.current.commentList[id];
-							}else{
 
-							}
+								delete Client.current.commentList[id];
+
 					});
 				},
 				clearCurrent:function(){
