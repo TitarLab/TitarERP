@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\ProjectTag;
 use App\Models\Tag;
+use App\Models\Task;
+use App\Models\TaskMember;
 use App\Models\ProjectTaskCategory;
 use App\Models\TaskCategory;
 use App\Http\Resources\Project\Project as ProjectResource;
@@ -140,6 +142,11 @@ class ProjectController extends Controller
 		if($id > 0){
 			Project::destroy($id);
 			ProjectTag::where('project_id', $id)->delete();
+			ProjectTaskCategory::where('project_id', $id)->delete();
+			foreach (Task::where('project_id', $id)->get() as $task) {
+				TaskMember::where('task_id', $task->id)->delete();
+			}
+			Task::where('project_id', $id)->delete();
 			return  response()->json(new Report("200",null,"Проект успешно удалён"));
 		}
 	}

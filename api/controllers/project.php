@@ -130,12 +130,12 @@ if($data->action == "get"){
 		}
 
 		$categories = $db->select("project_task_category",[
-			"[>]task_category" => ["id_task_category" => "id"]
+			"[>]task_category" => ["task_category_id" => "id"]
 		],[
 			"task_category.name",
 			"task_category.id"
 		],[
-			"project_task_category.id_project" => $project->id
+			"project_task_category.project_id" => $project->id
 		]);
 		$categories = json_decode(json_encode($categories));
 		foreach ($categories as $category) {

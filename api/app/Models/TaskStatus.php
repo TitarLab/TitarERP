@@ -27,5 +27,10 @@ class TaskStatus extends Model
     protected $hidden = [
 		//'password',
     ];
-
+	public function tasks(){
+		return $this->hasMany('App\Models\Task');
+	}
+	public function tasks2(){
+		return $this->hasMany('App\Models\Task', 'status_id');
+	}
 }

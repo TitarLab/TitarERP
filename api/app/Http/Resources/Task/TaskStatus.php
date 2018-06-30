@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Project;
+namespace App\Http\Resources\Task;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Project\Task as TaskResource;
+use App\Http\Resources\Task\Task as TaskResource;
 
-class TaskCategory extends JsonResource
+class TaskStatus extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,15 +15,15 @@ class TaskCategory extends JsonResource
      */
     public function toArray($request)
     {
-		$tempTaskList = TaskResource::collection($this->tasks);
+		$tempList = TaskResource::collection($this->tasks2);
 		$list = array();
-		foreach ($tempTaskList as $task) {
-			$task = $task->toArray($task);
-			$list += array($task["id"] => $task);
+		foreach ($tempList as $task) {
+			$list += array($task->id => $task);
 		}
         return [
 			"name" => $this->name,
 			"id" => $this->id,
+			"listName" => $this->list_name,
 			"list" => (object)$list
         ];
     }

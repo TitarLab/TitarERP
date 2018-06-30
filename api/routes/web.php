@@ -115,6 +115,9 @@ $router->group(['prefix' => 'project'], function () use ($router) {
 		$router->post('category/add', [
 			'uses' => 'ProjectController@addCategory'
 		]);
+		$router->post('task/add', [
+		    'uses' => 'TaskController@add'
+		]);
 	});
 
 });
@@ -123,5 +126,13 @@ $router->group(['prefix' => 'tag'], function () use ($router) {
 	$router->post('search', [
 	    'uses' => 'TagController@search'
 	]);
+
+});
+
+$router->group(['prefix' => 'task'], function () use ($router) {
+	$router->get('list', [
+	    'uses' => 'TaskController@showList'
+	]);
+
 
 });

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Project;
+namespace App\Http\Resources\Task;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Project\TaskMember as TaskMemberResource;
+use App\Http\Resources\Task\Task as TaskResource;
+use App\Http\Resources\Task\TaskMember as TaskMemberResource;
+
 class Task extends JsonResource
 {
     /**
@@ -21,11 +23,17 @@ class Task extends JsonResource
 			$memberList += array($employee["id"] => $employee);
 		}
         return [
-			"name" => $this->name,
 			"id" => $this->id,
+			"project_id" => $this->project_id,
+			"name" => $this->name,
+			"status_id" => $this->status_id,
+			"category_id" => $this->category_id,
+			"deadline" => $this->deadline,
+			"priority" => $this->priority,
 			"status" => $this->status->name,
-			"memberList" => (object)$memberList,
-			"categoryId" => $this->category_id
+			"category" => $this->category['name'],
+			"project" => $this->project->name,
+			"memberList" => (object)$memberList
         ];
     }
 }

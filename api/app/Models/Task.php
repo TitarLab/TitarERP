@@ -31,6 +31,12 @@ class Task extends Model
 	public function status(){
 		return $this->belongsTo('App\Models\TaskStatus');
 	}
+	public function project(){
+		return $this->belongsTo('App\Models\Project');
+	}
+	public function category(){
+		return $this->belongsTo('App\Models\TaskCategory');
+	}
 	public function members(){
 		return $this->hasMany('App\Models\TaskMember');
 	}

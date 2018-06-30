@@ -22,51 +22,36 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 
 					}
 			},
-				load:{
-            list:function(){
-                m.request({
-                    method: "POST",
-                    url:"../api/api.php",
-                    data:{model:"task",action:"get"},
-                    withCredentials:true,
-										background:true
-                }).then(function(report){
-                    if(report.code == 200){
-                        Task.list = report.result;
-												TaskController.render.category("task-list");
-                    }else{
+			load:{
+	            list:function(){
+					m.request({
+	                    method: "get",
+	                    url:"../api/task/list",
+	                    withCredentials:true,
+											background:true
+	                }).then(function(report){
+	                    if(report.code == 200){
+	                        Task.list = report.result;
+													TaskController.render.category("task-list");
+	                    }else{
 
-                    }
-                });
-            },
-						current:function(id){
-							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getCurrent", id:id},
-									withCredentials:true,
-							}).then(function(report){
-									if(report.code == 200){
-											Task.current = report.result
-									}else{
+	                    }
+	                });
+	            },
+				current:function(id){
+					m.request({
+							method: "POST",
+							url:"../api/api.php",
+							data:{model:"task",action:"getCurrent", id:id},
+							withCredentials:true,
+					}).then(function(report){
+							if(report.code == 200){
+									Task.current = report.result
+							}else{
 
-									}
-							});
-						},
-						nextId:function(){
-							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getNextId"},
-									withCredentials:true,
-							}).then(function(report){
-									if(report.code == 200){
-											Task.current.id = report.result;
-									}else{
-
-									}
-							});
-						},
+							}
+					});
+				},
 						statusList:() => {
 							m.request({
 									method: "POST",
@@ -85,8 +70,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						add:function(){
 							m.request({
 									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"add", task:Task.current, project:Project.current},
+									url:"../api/project/"+Project.current.id+"/task/add",
+									data:Task.current,
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -215,13 +200,11 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								});
 							}
 						},
-					clearCurrent:function(){
-							Object.keys(Task.current).forEach(function(item){
-								Task.current[item] = null;
-								if(item == "memberList"){
-									Task.current[item] = {}
-								}
-							});
+						clearCurrent:function(){
+							if(Task.current.memberList != null){
+								Task.current.memberList = {};
+							}
+							Task.current.name = "";
 						},
 						render:{
 							clear:function(id){
@@ -245,7 +228,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									}
 									return m("div.uk-width-1-4 uk-padding-small",[
 										m("div.div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
-											m("h3.uk-margin-remove", category.list_name),
+											m("h3.uk-margin-remove", category.listName),
 											m("span.uk-badge#category-size-"+categoryIndex)
 										]),
 											m("ul.uk-list",{id:"category-"+categoryIndex,name:"category","data-list-id":categoryIndex,"uk-sortable":"group:tasks",style:"position: relative; min-height:20%;"},[
