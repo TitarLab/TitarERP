@@ -17,36 +17,36 @@
 
 $router->group(['prefix' => 'client'], function () use ($router) {
 	$router->get('list', [
-	    'as' => 'clientList', 'uses' => 'ClientController@showList'
+	    'middleware' => 'token', 'as' => 'clientList', 'uses' => 'ClientController@showList'
 	]);
 	$router->get('next/id', [
-	    'uses' => 'ClientController@showNextId'
+	    'middleware' => 'token','uses' => 'ClientController@showNextId'
 	]);
 	$router->post('add', [
-	    'as' => 'add', 'uses' => 'ClientController@add'
+	    'middleware' => 'token','as' => 'add', 'uses' => 'ClientController@add'
 	]);
 	$router->group(['prefix' => '{id}'], function () use ($router) {
 		$router->get('/', [
-		    'as' => 'client', 'uses' => 'ClientController@showCurrent'
+		    'middleware' => 'token','as' => 'client', 'uses' => 'ClientController@showCurrent'
 		]);
 		$router->post('save', [
-		    'as' => 'add', 'uses' => 'ClientController@save'
+		    'middleware' => 'token','as' => 'add', 'uses' => 'ClientController@save'
 		]);
 		$router->delete('remove', [
-			'as' => 'remove', 'uses' => 'ClientController@remove'
+			'middleware' => 'token','as' => 'remove', 'uses' => 'ClientController@remove'
 		]);
 		$router->group(['prefix' => 'comment'], function () use ($router) {
 			$router->get('list', [
-			    'as' => 'commentList', 'uses' => 'ClientCommentController@showList'
+			    'middleware' => 'token','as' => 'commentList', 'uses' => 'ClientCommentController@showList'
 			]);
 			$router->post('add', [
-			    'as' => 'add', 'uses' => 'ClientCommentController@add'
+			    'middleware' => 'token','as' => 'add', 'uses' => 'ClientCommentController@add'
 			]);
 			$router->get('test', [
-			    'as' => 'add', 'uses' => 'ClientCommentController@test'
+			    'middleware' => 'token','as' => 'add', 'uses' => 'ClientCommentController@test'
 			]);
 			$router->delete('{idComment}/remove', [
-			    'as' => 'remove', 'uses' => 'ClientCommentController@remove'
+			    'middleware' => 'token','as' => 'remove', 'uses' => 'ClientCommentController@remove'
 			]);
 		});
 	});
@@ -55,26 +55,26 @@ $router->group(['prefix' => 'client'], function () use ($router) {
 
 $router->group(['prefix' => 'employee'], function () use ($router) {
 	$router->get('list', [
-	    'uses' => 'EmployeeController@showList'
+	    'middleware' => 'token','uses' => 'EmployeeController@showList'
 	]);
 	$router->get('next/id', [
-	    'uses' => 'EmployeeController@showNextId'
+	    'middleware' => 'token','uses' => 'EmployeeController@showNextId'
 	]);
 	$router->post('add', [
-	    'uses' => 'EmployeeController@add'
+	    'middleware' => 'token','uses' => 'EmployeeController@add'
 	]);
 	$router->post('search', [
-	    'uses' => 'EmployeeController@search'
+	    'middleware' => 'token','uses' => 'EmployeeController@search'
 	]);
 	$router->group(['prefix' => '{id}'], function () use ($router) {
 		$router->get('/', [
-		 	'uses' => 'EmployeeController@showCurrent'
+		 	'middleware' => 'token','uses' => 'EmployeeController@showCurrent'
 		]);
 		$router->post('save', [
-		    'uses' => 'EmployeeController@save'
+		    'middleware' => 'token','uses' => 'EmployeeController@save'
 		]);
 		$router->delete('remove', [
-			'uses' => 'EmployeeController@remove'
+			'middleware' => 'token','uses' => 'EmployeeController@remove'
 		]);
 	});
 
@@ -82,57 +82,57 @@ $router->group(['prefix' => 'employee'], function () use ($router) {
 
 $router->group(['prefix' => 'project'], function () use ($router) {
 	$router->get('list', [
-	    'uses' => 'ProjectController@showList'
+	    'middleware' => 'token','uses' => 'ProjectController@showList'
 	]);
 	$router->get('next/id', [
-	    'uses' => 'ProjectController@showNextId'
+	    'middleware' => 'token','uses' => 'ProjectController@showNextId'
 	]);
 	$router->post('add', [
-	    'uses' => 'ProjectController@add'
+	    'middleware' => 'token','uses' => 'ProjectController@add'
 	]);
 	$router->post('search', [
-	    'uses' => 'ProjectController@search'
+	    'middleware' => 'token','uses' => 'ProjectController@search'
 	]);
 
 	$router->group(['prefix' => '{id}'], function () use ($router) {
 		$router->get('/', [
-		 	'uses' => 'ProjectController@showCurrent'
+		 	'middleware' => 'token','uses' => 'ProjectController@showCurrent'
 		]);
 		$router->post('save', [
-		    'uses' => 'ProjectController@save'
+		    'middleware' => 'token','uses' => 'ProjectController@save'
 		]);
 		$router->delete('remove', [
-			'uses' => 'ProjectController@remove'
+			'middleware' => 'token','uses' => 'ProjectController@remove'
 		]);
 		$router->delete('tag/{projectTagId}/remove', [
-			'uses' => 'ProjectController@removeTag'
+			'middleware' => 'token','uses' => 'ProjectController@removeTag'
 		]);
 		$router->post('tag/add', [
-			'uses' => 'ProjectController@addTag'
+			'middleware' => 'token','uses' => 'ProjectController@addTag'
 		]);
 		$router->delete('category/{projectTaskCategoryId}/remove', [
-			'uses' => 'ProjectController@removeCategory'
+			'middleware' => 'token','uses' => 'ProjectController@removeCategory'
 		]);
 		$router->post('category/add', [
-			'uses' => 'ProjectController@addCategory'
+			'middleware' => 'token','uses' => 'ProjectController@addCategory'
 		]);
 		$router->post('task/add', [
-		    'uses' => 'TaskController@add'
+		    'middleware' => 'token','uses' => 'TaskController@add'
 		]);
 		$router->delete('task/{taskId}/remove', [
-		    'uses' => 'TaskController@remove'
+		    'middleware' => 'token','uses' => 'TaskController@remove'
 		]);
 		$router->post('task/{taskId}/save', [
-		    'uses' => 'TaskController@save'
+		    'middleware' => 'token','uses' => 'TaskController@save'
 		]);
 		$router->post('task/{taskId}/setStatus/', [
-		    'uses' => 'TaskController@setStatus'
+		    'middleware' => 'token','uses' => 'TaskController@setStatus'
 		]);
 		$router->post('task/{taskId}/member/add', [
-		    'uses' => 'TaskController@addMember'
+		    'middleware' => 'token','uses' => 'TaskController@addMember'
 		]);
 		$router->delete('task/{taskId}/member/{employeeId}/remove', [
-		    'uses' => 'TaskController@removeMember'
+		    'middleware' => 'token','uses' => 'TaskController@removeMember'
 		]);
 	});
 
@@ -140,18 +140,18 @@ $router->group(['prefix' => 'project'], function () use ($router) {
 
 $router->group(['prefix' => 'tag'], function () use ($router) {
 	$router->post('search', [
-	    'uses' => 'TagController@search'
+	    'middleware' => 'token','uses' => 'TagController@search'
 	]);
 });
 
 $router->group(['prefix' => 'task'], function () use ($router) {
 	$router->get('list', [
-	    'uses' => 'TaskController@showList'
+	    'middleware' => 'token','uses' => 'TaskController@showList'
 	]);
 	$router->get('status/list', [
-	    'uses' => 'TaskController@showStatusList'
+	    'middleware' => 'token','uses' => 'TaskController@showStatusList'
 	]);
 	$router->post('search/category', [
-	    'uses' => 'TaskController@searchCategory'
+	    'middleware' => 'token','uses' => 'TaskController@searchCategory'
 	]);
 });
