@@ -118,6 +118,9 @@ $router->group(['prefix' => 'project'], function () use ($router) {
 		$router->post('task/add', [
 		    'uses' => 'TaskController@add'
 		]);
+		$router->post('task/{taskId}/save', [
+		    'uses' => 'TaskController@save'
+		]);
 	});
 
 });

@@ -24,6 +24,7 @@ class Task extends JsonResource
 			"name" => $this->name,
 			"id" => $this->id,
 			"status" => $this->status->name,
+			"statusId" => $this->status->id,
 			"memberList" => (object)$memberList,
 			"categoryId" => $this->category_id
         ];

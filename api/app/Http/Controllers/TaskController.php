@@ -61,6 +61,25 @@ class TaskController extends Controller
 			return response()->json(new Report("ERROR",null,"Ошибка в данных"));
 		}
 	}
+	public function save($id,$taskId, Request $request){
+		if($request->filled(['name', 'statusId'])){
+			$task = Task::findOrFail($taskId);
+			if($id == $task->project_id){
+				$task->name = $request->name;
+				$task->status_id = $request->statusId;
+				if($request->filled('priority')){
+					$task->priority = $request->priority;
+				}
+				if($request->filled('deadline')){
+					$task->deadline = $request->deadline;
+				}
+				$task->save();
+				return  response()->json(new Report("200",$task,"Задача успешно сохранена"));
+			}
+		}else{
+			return response()->json(new Report("ERROR",null,"Ошибка"));
+		}
+	}
 	public function search(Request $request){
 		$tagList = TagResource::collection(Tag::where("name","like","%".$request->value."%")->get());
 		return  response()->json(new Report("200",$tagList,"Результат поиска"));

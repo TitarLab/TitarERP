@@ -95,14 +95,14 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							if(Project.current != null){
 								m.request({
 										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"save", task:Task.current},
+										url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/save",
+										data:Task.current,
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){
 											UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
-										}else{
-
+										}else if(report.code == "ERROR"){
+											UIkit.notification(report.info,{status:'danger'});
 										}
 								});
 							}
