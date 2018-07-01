@@ -166,8 +166,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							byName:function(value){
 								m.request({
 										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"searchCategory", value:value},
+										url:"../api/task/search/category",
+										data:{value:value},
 										withCredentials:true,
 
 								}).then(function(report){

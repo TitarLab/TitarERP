@@ -93,6 +93,7 @@ $router->group(['prefix' => 'project'], function () use ($router) {
 	$router->post('search', [
 	    'uses' => 'ProjectController@search'
 	]);
+
 	$router->group(['prefix' => '{id}'], function () use ($router) {
 		$router->get('/', [
 		 	'uses' => 'ProjectController@showCurrent'
@@ -138,7 +139,6 @@ $router->group(['prefix' => 'tag'], function () use ($router) {
 	$router->post('search', [
 	    'uses' => 'TagController@search'
 	]);
-
 });
 
 $router->group(['prefix' => 'task'], function () use ($router) {
@@ -148,6 +148,7 @@ $router->group(['prefix' => 'task'], function () use ($router) {
 	$router->get('status/list', [
 	    'uses' => 'TaskController@showStatusList'
 	]);
-
-
+	$router->post('search/category', [
+	    'uses' => 'TaskController@searchCategory'
+	]);
 });

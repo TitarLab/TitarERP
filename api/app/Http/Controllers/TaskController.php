@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use App\Models\TaskMember;
 use App\Models\Task;
+use App\Models\TaskCategory;
 
 use App\Http\Resources\Task\TaskStatus as TaskStatusResource;
 use App\Http\Resources\Task\TaskStatusWithoutList as TaskStatusWithoutListResource;
@@ -103,8 +104,8 @@ class TaskController extends Controller
 			return  response()->json(new Report("200",null,"Участник задачи успешно удалён"));
 		}
 	}
-	public function search(Request $request){
-		$tagList = TagResource::collection(Tag::where("name","like","%".$request->value."%")->get());
-		return  response()->json(new Report("200",$tagList,"Результат поиска"));
+	public function searchCategory(Request $request){
+		$categoryList = TaskCategory::where("name","like","%".$request->value."%")->get();
+		return  response()->json(new Report("200",$categoryList,"Результат поиска"));
 	}
 }
