@@ -16,7 +16,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
 										m("h4",t.localisation.dictionary.TASK_NEW),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.TITUL),
-											m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL,oninput: m.withAttr("value",function(value){Task.current.name = value;})})
+											m("input.uk-input",{placeholder:t.localisation.dictionary.TITUL,value:Task.current.name,oninput: m.withAttr("value",function(value){Task.current.name = value;})})
 										]),
 										m("div.uk-margin",[
 											m("label.uk-form-label",t.localisation.dictionary.EMPLOYEE_ATTACH),
