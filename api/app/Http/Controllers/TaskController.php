@@ -61,6 +61,17 @@ class TaskController extends Controller
 			return response()->json(new Report("ERROR",null,"Ошибка в данных"));
 		}
 	}
+	public function addMember($id,$taskId,Request $request){
+		if($request->filled(['employeeId'])){
+			$taskMember = new TaskMember;
+			$taskMember->task_id = $taskId;
+			$taskMember->employee_id = $request->employeeId;
+			$taskMember->save();
+			return  response()->json(new Report("200",new TaskMemberResource($taskMember),"Участник задачи успешно добавлен"));
+		}else{
+			return response()->json(new Report("ERROR",null,"Ошибка в данных"));
+		}
+	}
 	public function save($id,$taskId, Request $request){
 		if($request->filled(['name', 'statusId'])){
 			$task = Task::findOrFail($taskId);

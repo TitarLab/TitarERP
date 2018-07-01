@@ -28,7 +28,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 	                    method: "get",
 	                    url:"../api/task/list",
 	                    withCredentials:true,
-											background:true
+						background:true
 	                }).then(function(report){
 	                    if(report.code == 200){
 	                        Task.list = report.result;
@@ -114,15 +114,15 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								}else{
 									m.request({
 											method: "POST",
-											url:"../api/api.php",
-											data:{model:"task",action:"addMember", id:Task.current.id, value:employee.id},
+											url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/member/add",
+											data:{employeeId:employee.id},
 											withCredentials:true,
 									}).then(function(report){
 											if(report.code == 200){
 												Task.current.memberList[employee.id] = employee;
 
-											}else{
-
+											}else if(report.code == "ERROR"){
+												UIkit.notification(report.info,{status:'danger'});
 											}
 									});
 								}
