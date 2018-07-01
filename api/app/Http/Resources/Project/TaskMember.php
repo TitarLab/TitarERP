@@ -18,8 +18,8 @@ class TaskMember extends JsonResource
 		$employee = new EmployeeResource($this->employee);
         return [
 			"id" => $employee["id"],
-			"firstname" => $employee["id"],
-			"lastname" => $employee["firstname"],
+			"firstname" => $employee["firstname"],
+			"lastname" => $employee["lastname"],
 			"photo" => $employee["photo"],
         ];
     }
