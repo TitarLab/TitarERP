@@ -12,7 +12,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 					},
 					current:function(id){
 						TaskController.init.default();
-						TaskController.load.current(id);
+						//TaskController.load.current(id);
 						Task.list.forEach(function(item){
 							if(item.id == id){
 								Task.current = item;
@@ -38,20 +38,20 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 	                    }
 	                });
 	            },
-				current:function(id){
-					m.request({
-							method: "POST",
-							url:"../api/api.php",
-							data:{model:"task",action:"getCurrent", id:id},
-							withCredentials:true,
-					}).then(function(report){
-							if(report.code == 200){
-									Task.current = report.result
-							}else{
-
-							}
-					});
-				},
+				// current:function(id){
+				// 	m.request({
+				// 			method: "POST",
+				// 			url:"../api/api.php",
+				// 			data:{model:"task",action:"getCurrent", id:id},
+				// 			withCredentials:true,
+				// 	}).then(function(report){
+				// 			if(report.code == 200){
+				// 					Task.current = report.result
+				// 			}else{
+				//
+				// 			}
+				// 	});
+				// },
 						statusList:() => {
 							m.request({
 									method: "get",
