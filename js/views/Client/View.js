@@ -107,7 +107,7 @@ define(['mithril','titar','controllers/Client','models/Client'], function(n,t,Cl
 																			m("a",Client.current.commentList[id].firstname + " " + Client.current.commentList[id].lastname)
 																		]),
 																		m("ul.uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top",[
-																			m('li',Client.current.commentList[id].dateCreated),
+																			m('li',new Date(Client.current.commentList[id].dateCreated.date).toLocaleString()),
 																			m("li",[
 																				m("a",{onclick:()=>{ClientController.removeComment(id)},"uk-icon":"icon: trash"})
 																			])

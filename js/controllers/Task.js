@@ -12,7 +12,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 					},
 					current:function(id){
 						TaskController.init.default();
-						TaskController.load.current(id);
+						//TaskController.load.current(id);
 						Task.list.forEach(function(item){
 							if(item.id == id){
 								Task.current = item;
@@ -22,56 +22,40 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 
 					}
 			},
-				load:{
-            list:function(){
-                m.request({
-                    method: "POST",
-                    url:"../api/api.php",
-                    data:{model:"task",action:"get"},
-                    withCredentials:true,
-										background:true
-                }).then(function(report){
-                    if(report.code == 200){
-                        Task.list = report.result;
-												TaskController.render.category("task-list");
-                    }else{
+			load:{
+	            list:function(){
+					m.request({
+	                    method: "get",
+	                    url:"../api/task/list",
+	                    withCredentials:true,
+						background:true
+	                }).then(function(report){
+	                    if(report.code == 200){
+	                        Task.list = report.result;
+													TaskController.render.category("task-list");
+	                    }else{
 
-                    }
-                });
-            },
-						current:function(id){
-							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getCurrent", id:id},
-									withCredentials:true,
-							}).then(function(report){
-									if(report.code == 200){
-											Task.current = report.result
-									}else{
-
-									}
-							});
-						},
-						nextId:function(){
-							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getNextId"},
-									withCredentials:true,
-							}).then(function(report){
-									if(report.code == 200){
-											Task.current.id = report.result;
-									}else{
-
-									}
-							});
-						},
+	                    }
+	                });
+	            },
+				// current:function(id){
+				// 	m.request({
+				// 			method: "POST",
+				// 			url:"../api/api.php",
+				// 			data:{model:"task",action:"getCurrent", id:id},
+				// 			withCredentials:true,
+				// 	}).then(function(report){
+				// 			if(report.code == 200){
+				// 					Task.current = report.result
+				// 			}else{
+				//
+				// 			}
+				// 	});
+				// },
 						statusList:() => {
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getStatusList"},
+									method: "get",
+									url:"../api/task/status/list",
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -85,8 +69,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						add:function(){
 							m.request({
 									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"add", task:Task.current, project:Project.current},
+									url:"../api/project/"+Project.current.id+"/task/add",
+									data:Task.current,
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -100,7 +84,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 										}catch(e){
 											 if (e !== BreakException) throw e;
 										}
-										//Project.current.categoryList.
+										TaskController.init.new();
 										UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 									}else{
 
@@ -111,14 +95,14 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							if(Project.current != null){
 								m.request({
 										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"save", task:Task.current},
+										url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/save",
+										data:Task.current,
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){
 											UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
-										}else{
-
+										}else if(report.code == "ERROR"){
+											UIkit.notification(report.info,{status:'danger'});
 										}
 								});
 							}
@@ -130,15 +114,15 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								}else{
 									m.request({
 											method: "POST",
-											url:"../api/api.php",
-											data:{model:"task",action:"addMember", id:Task.current.id, value:employee.id},
+											url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/member/add",
+											data:{employeeId:employee.id},
 											withCredentials:true,
 									}).then(function(report){
 											if(report.code == 200){
 												Task.current.memberList[employee.id] = employee;
 
-											}else{
-
+											}else if(report.code == "ERROR"){
+												UIkit.notification(report.info,{status:'danger'});
 											}
 									});
 								}
@@ -146,15 +130,14 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						removeMember:function(employeeId){
 							if(employeeId != null){
 								m.request({
-										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"removeMember", id:Task.current.id, value:employeeId},
+										method: "delete",
+										url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/member/"+employeeId+"/remove",
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){
 											delete Task.current.memberList[employeeId];
-										}else{
-
+										}else if(report.code == "ERROR"){
+											UIkit.notification(report.info,{status:'danger'});
 										}
 								});
 							}
@@ -162,9 +145,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						remove:function(id, catId = -1){
 							if(id != null){
 								m.request({
-										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"remove", id:id},
+										method: "delete",
+										url:"../api/project/"+Project.current.id+"/task/"+id+"/remove",
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){
@@ -184,8 +166,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							byName:function(value){
 								m.request({
 										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"searchCategory", value:value},
+										url:"../api/task/search/category",
+										data:{value:value},
 										withCredentials:true,
 
 								}).then(function(report){
@@ -202,10 +184,9 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							if(taskId != null && statusId != null){
 								m.request({
 									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"setStatus",id:taskId, value:statusId},
+									url:"../api/project/"+Project.current.id+"/task/"+taskId+"/setStatus",
+									data:{statusId:statusId},
 									withCredentials:true,
-
 								}).then(function(report){
 									if(report.code == 200){
 
@@ -215,13 +196,13 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								});
 							}
 						},
-					clearCurrent:function(){
-							Object.keys(Task.current).forEach(function(item){
-								Task.current[item] = null;
-								if(item == "memberList"){
-									Task.current[item] = {}
-								}
-							});
+						clearCurrent:function(){
+							if(Task.current.memberList != null){
+								Task.current.memberList = {};
+							}
+							Task.current.id = 0;
+							Task.current.statusId = 1;
+							Task.current.name = "";
 						},
 						render:{
 							clear:function(id){
@@ -245,7 +226,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 									}
 									return m("div.uk-width-1-4 uk-padding-small",[
 										m("div.div.uk-flex uk-flex-middle uk-flex-between uk-margin-small-bottom",[
-											m("h3.uk-margin-remove", category.list_name),
+											m("h3.uk-margin-remove", category.listName),
 											m("span.uk-badge#category-size-"+categoryIndex)
 										]),
 											m("ul.uk-list",{id:"category-"+categoryIndex,name:"category","data-list-id":categoryIndex,"uk-sortable":"group:tasks",style:"position: relative; min-height:20%;"},[

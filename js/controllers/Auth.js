@@ -19,8 +19,8 @@ define(['mithril','titar','models/Auth'], function(n,t,Auth){
 
 		m.request({
 			method: "POST",
-			url:'api/api.php',
-			data:{model:"auth",action:"login",login:Auth.login,password:Auth.password},
+			url:'api/login',
+			data:{login:Auth.login,password:Auth.password},
 			withCredentials:true,
 		})
 		.then(function(report){
