@@ -40,7 +40,6 @@ define(['mithril','titar','controllers/Project','models/Project'], function(n,t,
 																		]),
 																		m("td",[
 																			[{}].map(() => {
-																				console.log(project);
 																				if(project.clientId != null && project.clientId > 0){
 																					return m("a",{href:"#!/client/view/"+project.clientId},project.firstname + " " + project.lastname)
 																				}

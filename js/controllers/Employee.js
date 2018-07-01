@@ -26,9 +26,8 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
         load:{
             list:function(){
                 m.request({
-                    method: "POST",
-                    url:"../api/api.php",
-                    data:{model:"employee",action:"get"},
+                    method: "GET",
+                    url:"../api/employee/list",
                     withCredentials:true,
                 }).then(function(report){
                     if(report.code == 200){
@@ -40,9 +39,8 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
             },
 						current:function(id){
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"employee",action:"getCurrent", id:id},
+									method: "get",
+									url:"../api/employee/"+id,
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -54,9 +52,8 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 						},
 						nextId:function(){
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"employee",action:"getNextId"},
+									method: "get",
+									url:"../api/employee/next/id",
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
@@ -70,15 +67,15 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 				add:function(){
 					m.request({
 							method: "POST",
-							url:"../api/api.php",
-							data:{model:"employee",action:"add", employee:Employee.current},
+							url:"../api/employee/add",
+							data:Employee.current,
 							withCredentials:true,
 					}).then(function(report){
 							if(report.code == 200){
 								m.route.set("/employee/list")
 								UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 							}else{
-
+								UIkit.notification(report.info,{status:'danger'});
 							}
 					});
 				},
@@ -86,15 +83,15 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 					if(Employee.current != null){
 						m.request({
 								method: "POST",
-								url:"../api/api.php",
-								data:{model:"employee",action:"save", employee:Employee.current},
+								url:"../api/employee/"+Employee.current.id+"/save",
+								data:Employee.current,
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
 									m.route.set("/employee/view/"+Employee.current.id)
 									UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 								}else{
-
+									UIkit.notification(report.info,{status:'danger'});
 								}
 						});
 					}
@@ -103,9 +100,8 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 				remove:function(id){
 					if(id != null){
 						m.request({
-								method: "POST",
-								url:"../api/api.php",
-								data:{model:"employee",action:"remove", id:id},
+								method: "delete",
+								url:"../api/employee/"+id+"/remove",
 								withCredentials:true,
 						}).then(function(report){
 								if(report.code == 200){
@@ -116,13 +112,6 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 						});
 					}
 
-				},
-				addContact:function(name){
-					let contact = {
-						name:name,
-						value:""
-					};
-					Client.current.contacts.push(contact);
 				},
 				clearCurrent:function(){
 					Object.keys(Employee.current).forEach(function(item){
@@ -132,8 +121,8 @@ define(['mithril','titar','models/Employee','models/Notification','libs/sortable
 				search:function(value){
 					m.request({
 							method: "POST",
-							url:"../api/api.php",
-							data:{model:"employee",action:"search", value:value},
+							url:"../api/employee/search",
+							data:{value:value},
 							withCredentials:true,
 
 					}).then(function(report){
