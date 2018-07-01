@@ -7,6 +7,7 @@ use App\Models\TaskMember;
 use App\Models\Task;
 
 use App\Http\Resources\Task\TaskStatus as TaskStatusResource;
+use App\Http\Resources\Task\TaskStatusWithoutList as TaskStatusWithoutListResource;
 use App\Http\Resources\Task\TaskMember as TaskMemberResource;
 use App\Http\Resources\Project\Task as TaskResource;
 use App\Http\Resources\Report as Report;
@@ -27,6 +28,10 @@ class TaskController extends Controller
 	public function showList(){
 		$taskList = TaskStatusResource::collection(TaskStatus::all());
 		return  response()->json(new Report("200",$taskList,"Список задач"));
+	}
+	public function showStatusList(){
+		$statusList = TaskStatusWithoutListResource::collection(TaskStatus::all());
+		return  response()->json(new Report("200",$statusList,"Список статусов задач"));
 	}
 	public function add($id,Request $request){
 		if($request->filled(['name', 'statusId', 'categoryId'])){

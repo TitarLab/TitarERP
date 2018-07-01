@@ -133,6 +133,9 @@ $router->group(['prefix' => 'task'], function () use ($router) {
 	$router->get('list', [
 	    'uses' => 'TaskController@showList'
 	]);
+	$router->get('status/list', [
+	    'uses' => 'TaskController@showStatusList'
+	]);
 
 
 });

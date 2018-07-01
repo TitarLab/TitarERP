@@ -54,9 +54,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 				},
 						statusList:() => {
 							m.request({
-									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"getStatusList"},
+									method: "get",
+									url:"../api/task/status/list",
 									withCredentials:true,
 							}).then(function(report){
 									if(report.code == 200){
