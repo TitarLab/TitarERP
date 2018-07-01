@@ -15,6 +15,10 @@
 //     return $router->app->version();
 // });
 
+$router->post('login', [
+	'uses' => 'AuthController@login'
+]);
+
 $router->group(['prefix' => 'client'], function () use ($router) {
 	$router->get('list', [
 	    'middleware' => 'token', 'as' => 'clientList', 'uses' => 'ClientController@showList'

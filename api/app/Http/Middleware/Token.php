@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Http\Resources\Report as Report;
 
 class Token
 {
@@ -16,7 +17,7 @@ class Token
     public function handle($request, Closure $next)
     {
 		if($request->cookie("token") == null){
-			return response('Unauthorized.', 401);
+			return response()->json(new Report("UNAUTHORIZED",null,"Пользователь не авторизирован"), 401);
 		}
         return $next($request);
     }
