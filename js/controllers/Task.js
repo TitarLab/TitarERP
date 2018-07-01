@@ -146,9 +146,8 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						remove:function(id, catId = -1){
 							if(id != null){
 								m.request({
-										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"remove", id:id},
+										method: "delete",
+										url:"../api/project/"+Project.current.id+"/task/"+id+"/remove",
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){

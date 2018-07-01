@@ -80,6 +80,12 @@ class TaskController extends Controller
 			return response()->json(new Report("ERROR",null,"Ошибка"));
 		}
 	}
+	public function remove($id, $taskId){
+		if($taskId > 0){
+			Task::destroy($taskId);
+			return  response()->json(new Report("200",null,"Задача успешно удалена"));
+		}
+	}
 	public function search(Request $request){
 		$tagList = TagResource::collection(Tag::where("name","like","%".$request->value."%")->get());
 		return  response()->json(new Report("200",$tagList,"Результат поиска"));
