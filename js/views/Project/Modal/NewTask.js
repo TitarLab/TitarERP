@@ -3,7 +3,7 @@ define(['mithril','titar','controllers/Project','controllers/Task','controllers/
     var ProjectModalNewTaskView = {
         oninit: function(vnode){
 			TaskController.init.new();
-					Task.current.statusId = 1;
+			Task.current.statusId = 1;
         },
 				oncreate:function(vnode){
 					//TaskController.render.test(vnode);

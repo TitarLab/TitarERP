@@ -203,6 +203,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							if(Task.current.memberList != null){
 								Task.current.memberList = {};
 							}
+							Task.current.id = 0;
 							Task.current.name = "";
 						},
 						render:{
