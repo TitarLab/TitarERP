@@ -84,7 +84,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 										}catch(e){
 											 if (e !== BreakException) throw e;
 										}
-										//Project.current.categoryList.
+										TaskController.init.new();
 										UIkit.notification("<span uk-icon='icon: check'></span>"+report.info,{status:'success'});
 									}else{
 
@@ -203,6 +203,7 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 								Task.current.memberList = {};
 							}
 							Task.current.id = 0;
+							Task.current.statusId = 1;
 							Task.current.name = "";
 						},
 						render:{
