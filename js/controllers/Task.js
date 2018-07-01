@@ -130,15 +130,14 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 						removeMember:function(employeeId){
 							if(employeeId != null){
 								m.request({
-										method: "POST",
-										url:"../api/api.php",
-										data:{model:"task",action:"removeMember", id:Task.current.id, value:employeeId},
+										method: "delete",
+										url:"../api/project/"+Project.current.id+"/task/"+Task.current.id+"/member/"+employeeId+"/remove",
 										withCredentials:true,
 								}).then(function(report){
 										if(report.code == 200){
 											delete Task.current.memberList[employeeId];
-										}else{
-
+										}else if(report.code == "ERROR"){
+											UIkit.notification(report.info,{status:'danger'});
 										}
 								});
 							}

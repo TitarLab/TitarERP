@@ -97,6 +97,12 @@ class TaskController extends Controller
 			return  response()->json(new Report("200",null,"Задача успешно удалена"));
 		}
 	}
+	public function removeMember($id,$taskId, $employeeId){
+		if($employeeId > 0){
+			TaskMember::where('task_id', $taskId)->where("employee_id", $employeeId)->delete();
+			return  response()->json(new Report("200",null,"Участник задачи успешно удалён"));
+		}
+	}
 	public function search(Request $request){
 		$tagList = TagResource::collection(Tag::where("name","like","%".$request->value."%")->get());
 		return  response()->json(new Report("200",$tagList,"Результат поиска"));

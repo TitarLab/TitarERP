@@ -127,6 +127,9 @@ $router->group(['prefix' => 'project'], function () use ($router) {
 		$router->post('task/{taskId}/member/add', [
 		    'uses' => 'TaskController@addMember'
 		]);
+		$router->delete('task/{taskId}/member/{employeeId}/remove', [
+		    'uses' => 'TaskController@removeMember'
+		]);
 	});
 
 });
