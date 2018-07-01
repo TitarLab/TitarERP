@@ -92,6 +92,18 @@ class TaskController extends Controller
 			return response()->json(new Report("ERROR",null,"Ошибка"));
 		}
 	}
+	public function setStatus($id,$taskId, Request $request){
+		if($request->filled(['statusId'])){
+			$task = Task::findOrFail($taskId);
+			if($id == $task->project_id){
+				$task->status_id = $request->statusId;
+				$task->save();
+				return  response()->json(new Report("200",null,"Статус успешно обновлён"));
+			}
+		}else{
+			return response()->json(new Report("ERROR",null,"Ошибка"));
+		}
+	}
 	public function remove($id, $taskId){
 		if($taskId > 0){
 			Task::destroy($taskId);

@@ -184,10 +184,9 @@ define(['mithril','titar','models/Task','models/Project'], function(n,t,Task,Pro
 							if(taskId != null && statusId != null){
 								m.request({
 									method: "POST",
-									url:"../api/api.php",
-									data:{model:"task",action:"setStatus",id:taskId, value:statusId},
+									url:"../api/project/"+Project.current.id+"/task/"+taskId+"/setStatus",
+									data:{statusId:statusId},
 									withCredentials:true,
-
 								}).then(function(report){
 									if(report.code == 200){
 
