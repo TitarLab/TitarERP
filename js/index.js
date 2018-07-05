@@ -1,4 +1,4 @@
-requirejs(['titar','controllers/Auth','controllers/App','uikit.min','uikit-icons.min'],function(t,Auth,App,UKit,UKitIcons){
+requirejs(['titar','controllers/Auth','controllers/App'],function(t,Auth,App){
     //alert(Auth);
     App.start();
 });
