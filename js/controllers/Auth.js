@@ -38,7 +38,7 @@ define(['mithril','titar','models/Auth'], function(n,t,Auth){
 					document.cookie = "lastname="+Auth.lastname+"; path=/; expires=" + date.toUTCString();
 					document.cookie = "email="+Auth.email+"; path=/; expires=" + date.toUTCString();
 					document.cookie = "userId="+Auth.userId+"; path=/; expires=" + date.toUTCString();
-					window.location = "https://crm.titarlab.com";
+					window.location = t.global.host;
 				}
 
 			}else{
@@ -51,7 +51,7 @@ define(['mithril','titar','models/Auth'], function(n,t,Auth){
 	logout:function(){
 		var date = new Date(new Date().getTime());
 		document.cookie = "token=; path=/; expires=" + date.toUTCString();
-		window.location = "https://crm.titarlab.com";
+		window.location = t.global.host;
 	}
 };
 

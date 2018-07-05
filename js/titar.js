@@ -3,9 +3,9 @@ define(['models/Localisation'], function(Localisation){
     var Titar = {
 		localisation:Localisation,
         global:{
-            host:"https://wallet.titarlab.com/",
+            host:"https://demo.titarlab.com/",
             siteTitle:"TitarERP",
-            logo: "https://wallet.titarlab.com/img/logo.png"
+            logo: "https://demo.titarlab.com/img/logo.png"
         },
         getById: function(id){
             return document.getElementById(id);
