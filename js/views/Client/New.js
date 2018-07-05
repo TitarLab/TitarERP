@@ -20,44 +20,73 @@ define(['mithril',"titar",'controllers/Client','models/Client'], function(n,t,Cl
 										m("div.uk-card-header",[
 											m("h3",t.localisation.dictionary.PROFILE)
 										]),
-										m("div.uk-card-body",[
-											m("div.uk-form-stacked",[
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.FIRSTNAME),
-													m("input.uk-input",{placeholder:t.localisation.dictionary.FIRSTNAME, oninput: m.withAttr("value",function(value){Client.current.firstname = value;}),value:Client.current.firstname})
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.LASTNAME),
-													m("input.uk-input",{placeholder:t.localisation.dictionary.LASTNAME, oninput: m.withAttr("value",function(value){Client.current.lastname = value;}),value:Client.current.lastname})
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.EMAIL),
-													m("input.uk-input",{placeholder:t.localisation.dictionary.EMAIL, oninput: m.withAttr("value",function(value){Client.current.email = value;}),value:Client.current.email})
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.PHONE),
-													m("input.uk-input",{placeholder:t.localisation.dictionary.PHONE, oninput: m.withAttr("value",function(value){Client.current.phone = value;}),value:Client.current.phone})
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label","Статус"),
-													m("select.uk-select",{oninput: m.withAttr("value",function(value){Client.current.status = value;})},[
-														m("option","Новый клиент"),
-														m("option","Обсуждение"),
-														m("option","Проект"),
-														m("option","Разработка"),
-														m("option","Поддержка"),
-														m("option","Окончен"),
+										m("div.uk-card-body uk-flex ",[
+											m("div.uk-width-1-5 uk-flex uk-flex-column uk-margin-small-right",[
+												[{}].map(function(){
+													let tempStyle;
+													if(Client.current.photo != null){
+														tempStyle = "background-image:url("+Client.current.photo+"); background-size:cover; background-position:center";
+													}
+													return m("div.uk-background-muted uk-inline uk-border-rounded uk-flex uk-flex-center uk-flex-middle",{style:"width:100%; max-width:256px;height: 256px; max-height:256px;" + tempStyle},[
+														[{}].map(function(){
+															if((Client.current.photo == null || Client.current.photo.length == 0 ) && Client.current.file == null && Client.current.firstname != null && Client.current.lastname != null){
+																return m("span.uk-overlay uk-position-center",{style:"font-size:64px"},Client.current.firstname.substr(0,1) + Client.current.lastname.substr(0,1))
+															}else{
+																return m("img#test",{style:"width:100%;",file:Client.current.file});
+															}
+														})
 													])
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.LAST_CONTACT),
-													m("input.uk-input",{type:"date", value:Client.current.lastContact, oninput: m.withAttr("value",function(value){Client.current.lastContact = value;})})
-												]),
-												m("div.uk-margin",[
-													m("label.uk-form-label",t.localisation.dictionary.NOTE),
-													m("input.uk-input",{placeholder:t.localisation.dictionary.NOTE, oninput: m.withAttr("value",function(value){Client.current.note = value;}),value:Client.current.note})
-												]),
-											])
+												}),
+												m("div",[
+
+												])
+
+											]),
+											m("div.uk-width-expand",[
+												m("div.uk-form-stacked",[
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.FIRSTNAME),
+														m("input.uk-input",{placeholder:t.localisation.dictionary.FIRSTNAME, oninput: m.withAttr("value",function(value){Client.current.firstname = value;}),value:Client.current.firstname})
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.LASTNAME),
+														m("input.uk-input",{placeholder:t.localisation.dictionary.LASTNAME, oninput: m.withAttr("value",function(value){Client.current.lastname = value;}),value:Client.current.lastname})
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.EMAIL),
+														m("input.uk-input",{placeholder:t.localisation.dictionary.EMAIL, oninput: m.withAttr("value",function(value){Client.current.email = value;}),value:Client.current.email})
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.PHONE),
+														m("input.uk-input",{placeholder:t.localisation.dictionary.PHONE, oninput: m.withAttr("value",function(value){Client.current.phone = value;}),value:Client.current.phone})
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label","Статус"),
+														m("select.uk-select",{oninput: m.withAttr("value",function(value){Client.current.status = value;})},[
+															m("option","Новый клиент"),
+															m("option","Обсуждение"),
+															m("option","Проект"),
+															m("option","Разработка"),
+															m("option","Поддержка"),
+															m("option","Окончен"),
+														])
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.LAST_CONTACT),
+														m("input.uk-input",{type:"date", value:Client.current.lastContact, oninput: m.withAttr("value",function(value){Client.current.lastContact = value;})})
+													]),
+													m("div.uk-margin",[
+														m("label.uk-form-label",t.localisation.dictionary.NOTE),
+														m("input.uk-input",{placeholder:t.localisation.dictionary.NOTE, oninput: m.withAttr("value",function(value){Client.current.note = value;}),value:Client.current.note})
+													]),
+													m("div.uk-margin js-upload",{"uk-form-custom":""},[
+														m("label.uk-form-label",t.localisation.dictionary.PHOTO),
+														m("input",{type:'file', multiple:'', onchange:()=>{ClientController.setThumbnail(event,'test')}}),
+														m("button.uk-button uk-button-default", "Загрузить")
+													]),
+												])
+											]),
+
 										])
 									]),
 									// m("div.uk-card uk-card-default uk-width-1-2 uk-margin-small-left",[

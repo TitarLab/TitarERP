@@ -40,6 +40,7 @@ define(['mithril','titar'], function(n,t){
 			"REMOVE":"REMOVE",
 			"MORE":"MORE",
 			"STATUS_CHANGE":"STATUS_CHANGE",
+			"PHOTO":"PHOTO",
 
 
 			"CLIENT_NAME":"CLIENT_NAME",

@@ -59,7 +59,7 @@ define(['models/Localisation'], function(Localisation){
             }
             time += dateNow.getMinutes();
             return time;
-        }
+        },
     }
 
     return Titar;

@@ -1,4 +1,4 @@
-define(['mithril','titar','models/Client','models/Notification','libs/sortable'], function(n,t,Client,Notification,Sortable){
+define(['mithril','titar','models/Client','models/Notification','libs/cropper'], function(n,t,Client,Notification,Cropper){
 
     var ClientController = {
         init:{
@@ -148,6 +148,41 @@ define(['mithril','titar','models/Client','models/Notification','libs/sortable']
 					});
 					Client.current.status = "Новый клиент";
 					Client.current.lastContact = t.getDate();
+				},
+				setThumbnail:(e, id)=>{
+					let file = e.target.files[0];
+					Client.current.file = file;
+					let img = t.getById(id);
+					let reader = new FileReader();
+				    reader.onload = (function(aImg) {
+						return function(e) {
+							//aImg.style = "background-position:center; background-size:cover;width:256px; height:256px;background-image:url("+e.target.result+")";
+							Client.current.photo = e.target.result;
+							var cropper = new Cropper(img, {
+					  		  viewMode: 2,
+					  		  aspectRatio: 1/1,
+					            ready: function () {
+					              var clone = this.cloneNode();
+					              clone.className = ''
+					              clone.style.cssText = (
+					                'display: block;' +
+					                'width: 100%;' +
+					                'min-width: 0;' +
+					                'min-height: 0;' +
+					                'max-width: none;' +
+					                'max-height: none;'
+					              );
+					            },
+					            crop: function (e) {
+					              var data = e.detail;
+					              var cropper = this.cropper;
+					              var imageData = cropper.getImageData();
+					              var previewAspectRatio = 1 / 1;
+					            }
+					          });
+						};
+					})(img);
+				    reader.readAsDataURL(file);
 				}
     }
 
